@@ -1,14 +1,25 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, ShoppingCart, UserCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { NAV_LINKS, APP_NAME, USER_NAV_LINKS_GUEST } from '@/lib/constants';
 import { cn } from '@/lib/utils';
-import CartIcon from '@/components/cart/CartIcon'; // To be created
+import CartIcon from '@/components/cart/CartIcon';
 
 const Logo = () => (
-  <Link href="/" className="text-2xl font-headline font-bold text-primary hover:opacity-80 transition-opacity">
-    {APP_NAME}
+  <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
+    <Image
+      src="/logo.png"
+      alt={`${APP_NAME} logo`}
+      width={40} // Adjust width as needed
+      height={40} // Adjust height as needed
+      className="h-10 w-10 mr-2" // Adjust styling as needed
+      priority // Prioritize loading the logo
+    />
+    <span className="text-2xl font-headline font-bold text-primary hidden sm:inline">
+      {APP_NAME}
+    </span>
   </Link>
 );
 
