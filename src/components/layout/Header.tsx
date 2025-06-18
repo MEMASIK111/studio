@@ -10,7 +10,7 @@ import CartIcon from '@/components/cart/CartIcon';
 const Logo = () => (
   <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
     <Image
-      src="https://placehold.co/40x40.png"
+      src="/logo.png" // Используем прямой путь к logo.png в public
       alt={`${APP_NAME} logo`}
       width={40}
       height={40}
