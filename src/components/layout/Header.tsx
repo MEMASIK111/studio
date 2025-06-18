@@ -10,12 +10,13 @@ import CartIcon from '@/components/cart/CartIcon';
 const Logo = () => (
   <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
     <Image
-      src="/logo.png"
+      src="https://placehold.co/40x40.png"
       alt={`${APP_NAME} logo`}
-      width={40} // Adjust width as needed
-      height={40} // Adjust height as needed
-      className="h-10 w-10 mr-2" // Adjust styling as needed
-      priority // Prioritize loading the logo
+      width={40}
+      height={40}
+      className="h-10 w-10 mr-2"
+      priority
+      data-ai-hint="logo brand"
     />
     <span className="text-2xl font-headline font-bold text-primary hidden sm:inline">
       {APP_NAME}
