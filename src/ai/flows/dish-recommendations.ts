@@ -1,3 +1,4 @@
+
 // This is a server-side file
 'use server';
 
@@ -32,13 +33,13 @@ const prompt = ai.definePrompt({
   name: 'dishRecommendationsPrompt',
   input: {schema: DishRecommendationsInputSchema},
   output: {schema: DishRecommendationsOutputSchema},
-  prompt: `You are a food recommendation expert. Based on the past order history, current discounts, and popularity data, you will provide a list of dish recommendations.
+  prompt: `You are a food recommendation expert. Based on the past order history, current discounts, and popularity data, provide a list of dish recommendations.
+Your response must be a JSON object conforming to the output schema. The JSON object should have a single key "recommendations", which is an array of strings representing the recommended dish names.
 
 Past Order History: {{{pastOrderHistory}}}
 Current Discounts: {{{currentDiscounts}}}
 Popularity Data: {{{popularityData}}}
-
-Recommendations:`, 
+`,
 });
 
 const dishRecommendationsFlow = ai.defineFlow(
