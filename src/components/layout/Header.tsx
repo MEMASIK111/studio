@@ -1,8 +1,9 @@
+
 import Link from 'next/link';
-import { Menu } from 'lucide-react';
+import { Menu, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { NAV_LINKS, APP_NAME, USER_NAV_LINKS_GUEST } from '@/lib/constants';
+import { NAV_LINKS, APP_NAME, USER_NAV_LINKS_GUEST, PHONE_NUMBER } from '@/lib/constants';
 import CartIcon from '@/components/cart/CartIcon';
 
 const Logo = () => (
@@ -61,6 +62,12 @@ const MobileNav = () => (
             </Link>
           ))}
         </div>
+        <div className="border-t border-border pt-6">
+          <Link href={`tel:${PHONE_NUMBER.replace(/\s+/g, '')}`} className="flex items-center text-md text-foreground hover:text-primary transition-colors">
+            <Phone className="mr-2 h-5 w-5" />
+            {PHONE_NUMBER}
+          </Link>
+        </div>
       </div>
     </SheetContent>
   </Sheet>
@@ -69,6 +76,10 @@ const MobileNav = () => (
 const UserActions = () => (
   <div className="flex items-center space-x-3">
     <div className="hidden md:flex items-center space-x-2">
+       <Link href={`tel:${PHONE_NUMBER.replace(/\s+/g, '')}`} className="flex items-center text-base font-medium text-foreground/80 hover:text-primary transition-colors mr-2">
+        <Phone className="mr-2 h-5 w-5" />
+        {PHONE_NUMBER}
+      </Link>
       {USER_NAV_LINKS_GUEST.map((link) => (
         <Button key={link.href} variant="ghost" size="sm" asChild>
           <Link href={link.href}>{link.label}</Link>
