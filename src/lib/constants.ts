@@ -1,6 +1,6 @@
 import type { Category } from './types';
 
-export const APP_NAME = "Mozzarella Mia";
+export const APP_NAME = "Mozzarella";
 export const PHONE_NUMBER = "+7 (988) 2-930-931";
 export const WHATSAPP_NUMBER = "79882930931"; // For wa.me link, without + or symbols
 export const INSTAGRAM_URL = "https://www.instagram.com/mozzarella_kaspiysk/"; // Example, replace with actual

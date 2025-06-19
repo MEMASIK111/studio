@@ -1,10 +1,8 @@
 import Link from 'next/link';
-import Image from 'next/image';
-import { Menu, ShoppingCart, UserCircle } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { NAV_LINKS, APP_NAME, USER_NAV_LINKS_GUEST } from '@/lib/constants';
-import { cn } from '@/lib/utils';
 import CartIcon from '@/components/cart/CartIcon';
 
 const Logo = () => (

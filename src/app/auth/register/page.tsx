@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Link from 'next/link';
+import { APP_NAME } from '@/lib/constants';
 
 export default function RegisterPage() {
   return (
@@ -15,7 +16,7 @@ export default function RegisterPage() {
         <Card className="w-full max-w-md shadow-2xl">
           <CardHeader className="text-center">
             <CardTitle className="text-3xl font-headline text-primary">Создание аккаунта</CardTitle>
-            <CardDescription>Присоединяйтесь к Mozzarella Mia!</CardDescription>
+            <CardDescription>Присоединяйтесь к {APP_NAME}!</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-2">

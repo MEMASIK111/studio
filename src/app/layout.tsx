@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import AppProviders from '@/components/AppProviders'; // To be created for cart, favorites context
+import { APP_NAME } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'Mozzarella Mia - Доставка еды в Каспийске',
-  description: 'Онлайн-заказ еды из Mozzarella Mia. Пицца, роллы, основные блюда и многое другое с доставкой по Каспийску.',
+  title: `${APP_NAME} - Доставка еды в Каспийске`,
+  description: `Онлайн-заказ еды из ${APP_NAME}. Пицца, роллы, основные блюда и многое другое с доставкой по Каспийску.`,
 };
 
 export default function RootLayout({

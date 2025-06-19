@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { APP_NAME } from '@/lib/constants';
 
 export default function HeroSection() {
   return (
@@ -12,7 +13,7 @@ export default function HeroSection() {
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="text-center md:text-left">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-headline font-bold text-primary leading-tight">
-              Mozzarella Mia
+              {APP_NAME}
             </h1>
             <p className="mt-4 text-lg sm:text-xl text-foreground/80 max-w-xl mx-auto md:mx-0">
               Насладитесь изысканными блюдами итальянской и японской кухни с доставкой на дом в Каспийске. Свежие ингредиенты, быстрая доставка!
@@ -29,7 +30,7 @@ export default function HeroSection() {
           <div className="hidden md:block relative aspect-square max-w-md mx-auto md:max-w-none md:mx-0 rounded-lg overflow-hidden shadow-2xl">
             <Image
               src="https://placehold.co/600x600.png"
-              alt="Аппетитное блюдо от Mozzarella Mia"
+              alt={`Аппетитное блюдо от ${APP_NAME}`}
               layout="fill"
               objectFit="cover"
               className="transform hover:scale-105 transition-transform duration-500 ease-in-out"
