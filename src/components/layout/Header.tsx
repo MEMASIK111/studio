@@ -10,7 +10,7 @@ import CartIcon from '@/components/cart/CartIcon';
 const Logo = () => (
   <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
     <Image
-      src="/logo.png" // Используем прямой путь к logo.png в public
+      src="/logo.png" // Это указывает на public/logo.png
       alt={`${APP_NAME} logo`}
       width={40}
       height={40}
