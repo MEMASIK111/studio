@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'PT Sans', sans-serif;
-}
+/* Removed direct font-family for body to let Tailwind utility class take precedence */
 
 @layer base {
   :root {
