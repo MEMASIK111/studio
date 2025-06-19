@@ -7,7 +7,7 @@ const FooterLink = ({ href, icon: Icon, text, external = false }: { href: string
     href={href}
     target={external ? "_blank" : "_self"}
     rel={external ? "noopener noreferrer" : ""}
-    className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors group"
+    className="flex items-center space-x-2 text-base text-muted-foreground hover:text-primary transition-colors group"
   >
     <Icon className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
     <span>{text}</span>
@@ -22,7 +22,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <h3 className="text-lg font-headline font-semibold text-primary mb-4">{APP_NAME}</h3>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               Вкуснейшая еда с доставкой на дом в Каспийске.
             </p>
             <div className="mt-4 flex space-x-3">
@@ -55,13 +55,13 @@ export default function Footer() {
                 <FooterLink href={`https://wa.me/${WHATSAPP_NUMBER}`} icon={MessageSquare} text="Написать в WhatsApp" external />
               </li>
               <li>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                <div className="flex items-center space-x-2 text-base text-muted-foreground">
                   <MapPin className="h-4 w-4 text-muted-foreground" />
                   <span>{ADDRESS}</span>
                 </div>
               </li>
               <li>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                <div className="flex items-center space-x-2 text-base text-muted-foreground">
                   <Clock className="h-4 w-4 text-muted-foreground" />
                   <span>{WORKING_HOURS}</span>
                 </div>
@@ -71,24 +71,24 @@ export default function Footer() {
           
           <div>
             <h4 className="text-md font-headline font-semibold text-foreground mb-4">Информация о доставке</h4>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               Доставка по г. {DELIVERY_INFO.city}.
             </p>
-            <p className="text-sm text-muted-foreground mt-1">
+            <p className="text-base text-muted-foreground mt-1">
               Время доставки: {DELIVERY_INFO.averageTime}.
             </p>
-            <p className="text-sm text-muted-foreground mt-1">
+            <p className="text-base text-muted-foreground mt-1">
               Бесплатно от {DELIVERY_INFO.freeDeliveryFrom} руб.
             </p>
-             <p className="text-sm text-muted-foreground mt-1">
+             <p className="text-base text-muted-foreground mt-1">
               {DELIVERY_INFO.costNote}.
             </p>
-            <Link href="/delivery-info" className="text-sm text-primary hover:underline mt-2 block">Подробнее о доставке</Link>
+            <Link href="/delivery-info" className="text-base text-primary hover:underline mt-2 block">Подробнее о доставке</Link>
           </div>
         </div>
 
         <div className="mt-8 border-t border-border/40 pt-8 text-center">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-base text-muted-foreground">
             &copy; {new Date().getFullYear()} {APP_NAME}. Все права защищены.
           </p>
         </div>

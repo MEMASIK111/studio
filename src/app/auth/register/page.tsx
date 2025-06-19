@@ -38,7 +38,7 @@ export default function RegisterPage() {
             <Button type="submit" className="w-full" disabled>Зарегистрироваться (в разработке)</Button>
           </CardContent>
           <CardFooter className="text-center">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               Уже есть аккаунт?{' '}
               <Link href="/auth/login" className="text-primary hover:underline font-medium">
                 Войти

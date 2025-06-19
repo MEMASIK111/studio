@@ -19,7 +19,7 @@ const DesktopNav = () => (
       <Link
         key={link.href}
         href={link.href}
-        className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+        className="text-base font-medium text-foreground/80 hover:text-primary transition-colors"
       >
         {link.label}
       </Link>

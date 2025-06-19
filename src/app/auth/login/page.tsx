@@ -26,7 +26,7 @@ export default function LoginPage() {
               <Label htmlFor="password">Пароль</Label>
               <Input id="password" type="password" placeholder="••••••••" />
             </div>
-             <div className="flex items-center justify-between text-sm">
+             <div className="flex items-center justify-between text-base">
               {/* <div className="flex items-center space-x-2">
                 <Checkbox id="remember-me" />
                 <Label htmlFor="remember-me">Запомнить меня</Label>
@@ -38,7 +38,7 @@ export default function LoginPage() {
             <Button type="submit" className="w-full" disabled>Войти (в разработке)</Button>
           </CardContent>
           <CardFooter className="text-center flex-col">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               Нет аккаунта?{' '}
               <Link href="/auth/register" className="text-primary hover:underline font-medium">
                 Зарегистрироваться

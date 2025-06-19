@@ -24,19 +24,19 @@ export default function ContactPage() {
             <CardContent>
               <form className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-1">Ваше имя</label>
+                  <Label htmlFor="name" className="block text-foreground mb-1">Ваше имя</Label>
                   <Input id="name" type="text" placeholder="Иван Иванов" required />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-foreground mb-1">Email</label>
+                  <Label htmlFor="email" className="block text-foreground mb-1">Email</Label>
                   <Input id="email" type="email" placeholder="you@example.com" required />
                 </div>
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-1">Телефон (необязательно)</label>
+                  <Label htmlFor="phone" className="block text-foreground mb-1">Телефон (необязательно)</Label>
                   <Input id="phone" type="tel" placeholder="+7 (9XX) XXX-XX-XX" />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-1">Сообщение</label>
+                  <Label htmlFor="message" className="block text-foreground mb-1">Сообщение</Label>
                   <Textarea id="message" placeholder="Ваше сообщение..." rows={5} required />
                 </div>
                 <Button type="submit" className="w-full" disabled>Отправить (форма в разработке)</Button>

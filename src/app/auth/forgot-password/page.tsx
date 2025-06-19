@@ -25,7 +25,7 @@ export default function ForgotPasswordPage() {
             <Button type="submit" className="w-full" disabled>Отправить ссылку (в разработке)</Button>
           </CardContent>
           <CardFooter className="text-center">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               Вспомнили пароль?{' '}
               <Link href="/auth/login" className="text-primary hover:underline font-medium">
                 Войти

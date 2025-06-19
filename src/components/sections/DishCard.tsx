@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Heart, ShoppingCart, GitCompareArrows, Star } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
-import { useState } from 'react'; // Добавлено для состояния избранного
+import { useState } from 'react'; 
 
 // import { useCart } from '@/hooks/useCart'; // Placeholder for cart context
 // import { useFavorites } from '@/hooks/useFavorites'; // Placeholder for favorites context
@@ -18,7 +18,7 @@ interface DishCardProps {
 
 export default function DishCard({ dish }: DishCardProps) {
   const { toast } = useToast();
-  const [isFavorite, setIsFavorite] = useState(false); // Состояние для отслеживания избранного
+  const [isFavorite, setIsFavorite] = useState(false); 
   // const { addItem } = useCart(); // Example usage
   // const { toggleFavorite, isFavorite } = useFavorites(); // Example usage
 
@@ -31,11 +31,7 @@ export default function DishCard({ dish }: DishCardProps) {
   };
 
   const handleToggleFavorite = () => {
-    setIsFavorite(prev => !prev); // Переключаем состояние избранного
-    // Уведомление удалено по запросу
-    // toast({
-    //   title: `${dish.name} ${!isFavorite ? "добавлен в избранное" : "удален из избранного"}`,
-    // });
+    setIsFavorite(prev => !prev); 
   };
   
   const handleCompare = () => {
@@ -61,7 +57,7 @@ export default function DishCard({ dish }: DishCardProps) {
       </CardHeader>
       <CardContent className="p-4 flex-grow">
         <CardTitle className="text-xl font-headline mb-1 truncate" title={dish.name}>{dish.name}</CardTitle>
-        <CardDescription className="text-sm text-muted-foreground mb-2 h-10 overflow-hidden text-ellipsis">
+        <CardDescription className="text-muted-foreground mb-2 h-12 overflow-hidden text-ellipsis">
           {dish.ingredients.join(', ')}
         </CardDescription>
         <div className="flex items-center justify-between mt-2">
