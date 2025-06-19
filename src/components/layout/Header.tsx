@@ -9,16 +9,7 @@ import CartIcon from '@/components/cart/CartIcon';
 
 const Logo = () => (
   <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
-    <Image
-      src="/logo.png" // Это указывает на public/logo.png
-      alt={`${APP_NAME} logo`}
-      width={40}
-      height={40}
-      className="h-10 w-10 mr-2"
-      priority
-      data-ai-hint="logo brand"
-    />
-    <span className="text-2xl font-headline font-bold text-primary hidden sm:inline">
+    <span className="text-2xl font-headline font-bold text-primary">
       {APP_NAME}
     </span>
   </Link>
