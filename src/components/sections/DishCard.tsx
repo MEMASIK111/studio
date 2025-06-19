@@ -1,11 +1,14 @@
+
 'use client';
 
 import Image from 'next/image';
 import type { Dish } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Heart, ShoppingCart,GitCompareArrows, Star } from 'lucide-react';
+import { Heart, ShoppingCart, GitCompareArrows, Star } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
+import { useState } from 'react'; // Добавлено для состояния избранного
+
 // import { useCart } from '@/hooks/useCart'; // Placeholder for cart context
 // import { useFavorites } from '@/hooks/useFavorites'; // Placeholder for favorites context
 
@@ -15,6 +18,7 @@ interface DishCardProps {
 
 export default function DishCard({ dish }: DishCardProps) {
   const { toast } = useToast();
+  const [isFavorite, setIsFavorite] = useState(false); // Состояние для отслеживания избранного
   // const { addItem } = useCart(); // Example usage
   // const { toggleFavorite, isFavorite } = useFavorites(); // Example usage
 
@@ -27,11 +31,11 @@ export default function DishCard({ dish }: DishCardProps) {
   };
 
   const handleToggleFavorite = () => {
-    // toggleFavorite(dish.id); // Example
-    // const favoriteStatus = isFavorite(dish.id) ? "удален из избранного" : "добавлен в избранное";
-    toast({
-      title: `${dish.name} ${ Math.random() > 0.5 ? "добавлен в избранное" : "удален из избранного" }`,
-    });
+    setIsFavorite(prev => !prev); // Переключаем состояние избранного
+    // Уведомление удалено по запросу
+    // toast({
+    //   title: `${dish.name} ${!isFavorite ? "добавлен в избранное" : "удален из избранного"}`,
+    // });
   };
   
   const handleCompare = () => {
@@ -76,7 +80,7 @@ export default function DishCard({ dish }: DishCardProps) {
         </Button>
         <div className="flex items-center justify-center sm:justify-end space-x-2">
           <Button variant="ghost" size="icon" onClick={handleToggleFavorite} aria-label="Добавить в избранное">
-            <Heart className="h-5 w-5" />
+            <Heart className={`h-5 w-5 ${isFavorite ? 'fill-accent text-accent' : ''}`} />
           </Button>
           <Button variant="ghost" size="icon" onClick={handleCompare} aria-label="Сравнить">
             <GitCompareArrows className="h-5 w-5" />
