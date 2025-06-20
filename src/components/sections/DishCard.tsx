@@ -50,7 +50,7 @@ export default function DishCard({ dish }: DishCardProps) {
       </CardHeader>
       <CardContent className="p-4 flex-grow">
         <CardTitle className="text-xl font-headline mb-1 truncate" title={dish.name}>{dish.name}</CardTitle>
-        <CardDescription className="text-base text-muted-foreground mb-2 h-12 overflow-hidden text-ellipsis">
+        <CardDescription className="text-base text-foreground/90 mb-2 h-12 overflow-hidden text-ellipsis">
           {dish.ingredients.join(', ')}
         </CardDescription>
         <div className="flex items-center justify-between mt-2">
@@ -70,4 +70,3 @@ export default function DishCard({ dish }: DishCardProps) {
     </Card>
   );
 }
-
