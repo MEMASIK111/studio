@@ -147,7 +147,7 @@ export default function CheckoutPage() {
                     <PackageOpen className={`mr-2 h-6 w-6 ${deliveryMethod === 'courier' ? 'text-primary' : 'text-muted-foreground'}`} />
                     <span className="font-semibold text-base text-foreground">Курьер</span>
                   </div>
-                  <p className={`text-xs mt-1 ml-9 ${deliveryMethod === 'courier' ? 'text-primary' : 'text-muted-foreground'}`}>Стоимость доставки нефиксированная</p>
+                  <p className={`text-sm mt-1 ml-9 ${deliveryMethod === 'courier' ? 'text-primary' : 'text-muted-foreground'}`}>Стоимость доставки нефиксированная</p>
                 
                   {deliveryMethod === 'courier' && (
                     <div className="mt-4 space-y-3 w-full pl-1">
@@ -201,7 +201,7 @@ export default function CheckoutPage() {
                       <span>{WORKING_HOURS}</span>
                     </div>
                   </div>
-                  <p className={`text-xs mt-2 ml-9 ${deliveryMethod === 'pickup' ? 'text-primary font-medium' : 'text-muted-foreground'}`}>Самовывоз — 10% скидка</p>
+                  <p className={`text-sm mt-2 ml-9 ${deliveryMethod === 'pickup' ? 'text-primary font-medium' : 'text-muted-foreground'}`}>Самовывоз — 10% скидка</p>
                 </Label>
               </RadioGroup>
             </section>
@@ -252,8 +252,8 @@ export default function CheckoutPage() {
               <div className="text-right">
                 <p className="text-lg font-semibold text-foreground">
                   Итоговая сумма: <span className="text-primary">{Math.round(calculatedTotalPrice)} руб.</span>
-                  {deliveryMethod === 'courier' && <span className="text-sm text-muted-foreground"> (без учета доставки)</span>}
-                  {deliveryMethod === 'pickup' && originalTotalPrice !== calculatedTotalPrice && <span className="text-sm text-muted-foreground"> (скидка 10% применена)</span>}
+                  {deliveryMethod === 'courier' && <span className="text-base text-muted-foreground"> (без учета доставки)</span>}
+                  {deliveryMethod === 'pickup' && originalTotalPrice !== calculatedTotalPrice && <span className="text-base text-muted-foreground"> (скидка 10% применена)</span>}
                 </p>
               </div>
             </section>
