@@ -6,7 +6,7 @@ import { getDishRecommendations, type DishRecommendationsInput, type DishRecomme
 import { mockDishes } from '@/data/menu'; // For fallback popular items
 import type { Dish } from '@/lib/types';
 
-const FALLBACK_RECOMMENDATION_NAMES = ["Пицца Цезарь", "Ролл Филадельфия", "Паста Карбонара", "Том Ям", "Салат Боул с Креветками"];
+const FALLBACK_RECOMMENDATION_NAMES = ["Пицца Цезарь", "Ролл Филадельфия", "Том Ям", "Салат Боул с Креветками", "Пицца Пепперони"];
 
 export async function fetchRecommendationsAction(input: DishRecommendationsInput): Promise<DishRecommendationsOutput> {
   try {
@@ -65,3 +65,4 @@ export async function fetchRecommendationsAction(input: DishRecommendationsInput
 export async function getDishesByNamesAction(dishNames: string[]): Promise<Dish[]> {
     return mockDishes.filter(dish => dishNames.includes(dish.name));
 }
+

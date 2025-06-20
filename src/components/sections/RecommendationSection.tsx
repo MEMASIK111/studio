@@ -18,7 +18,7 @@ const mockUser: User | null = {
 
 const RecommendationSkeleton = () => (
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-    {[...Array(5)].map((_, i) => ( // Changed from 4 to 5
+    {[...Array(5)].map((_, i) => ( 
       <CardSkeleton key={i} />
     ))}
   </div>
@@ -66,14 +66,14 @@ export default function RecommendationSection() {
         setRecommendedDishes(detailedDishes.slice(0, 5)); // Show up to 5 recommendations
       } else {
         // Fallback if AI gives no specific recommendations but action provides some
-        const fallbackDishes = await getDishesByNamesAction(["Пицца Цезарь", "Ролл Филадельфия", "Паста Карбонара", "Том Ям", "Салат Боул с Креветками"]);
+        const fallbackDishes = await getDishesByNamesAction(["Пицца Цезарь", "Ролл Филадельфия", "Том Ям", "Салат Боул с Креветками", "Пицца Пепперони"]);
         setRecommendedDishes(fallbackDishes.filter(d => d).slice(0,5));
       }
 
     } catch (err) {
       console.error("Failed to load recommendations:", err);
       setError("Не удалось загрузить рекомендации. Попробуйте позже.");
-       const fallbackDishes = await getDishesByNamesAction(["Пицца Цезарь", "Ролл Филадельфия", "Паста Карбонара", "Том Ям", "Салат Боул с Креветками"]);
+       const fallbackDishes = await getDishesByNamesAction(["Пицца Цезарь", "Ролл Филадельфия", "Том Ям", "Салат Боул с Креветками", "Пицца Пепперони"]);
        setRecommendedDishes(fallbackDishes.filter(d => d).slice(0,5));
     } finally {
       setIsLoading(false);
@@ -113,3 +113,4 @@ export default function RecommendationSection() {
     </section>
   );
 }
+
