@@ -8,7 +8,7 @@ import CartIcon from '@/components/cart/CartIcon';
 
 const Logo = () => (
   <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
-    <span className="text-3xl font-headline font-bold text-primary">
+    <span className="text-2xl md:text-3xl font-headline font-bold text-primary">
       {APP_NAME}
     </span>
   </Link>
@@ -56,14 +56,14 @@ const MobileNav = () => (
              <Link
               key={link.href}
               href={link.href}
-              className="block py-2 text-md text-foreground hover:text-primary transition-colors"
+              className="block py-2 text-base text-foreground hover:text-primary transition-colors"
             >
               {link.label}
             </Link>
           ))}
         </div>
         <div className="border-t border-border pt-6">
-          <Link href={`tel:${PHONE_NUMBER.replace(/\s+/g, '')}`} className="flex items-center text-md text-foreground hover:text-primary transition-colors">
+          <Link href={`tel:${PHONE_NUMBER.replace(/\s+/g, '')}`} className="flex items-center text-base text-foreground hover:text-primary transition-colors">
             <Phone className="mr-2 h-5 w-5" />
             {PHONE_NUMBER}
           </Link>
