@@ -17,19 +17,31 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
-    if (typeof window !== 'undefined') {
-      const localData = localStorage.getItem('cartItems');
-      return localData ? JSON.parse(localData) : [];
-    }
-    return [];
-  });
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isCartLoadedFromStorage, setIsCartLoadedFromStorage] = useState(false);
 
+  // Load cart from localStorage on client side after initial mount
   useEffect(() => {
     if (typeof window !== 'undefined') {
+      const localData = localStorage.getItem('cartItems');
+      if (localData) {
+        try {
+          setCartItems(JSON.parse(localData));
+        } catch (e) {
+          console.error("Failed to parse cartItems from localStorage", e);
+          // setCartItems([]); // Already initialized to empty, so this is optional
+        }
+      }
+      setIsCartLoadedFromStorage(true); // Mark cart as loaded from storage
+    }
+  }, []); // Empty dependency array: run once on mount
+
+  // Save cart to localStorage whenever it changes, but only if it has been loaded from storage first
+  useEffect(() => {
+    if (typeof window !== 'undefined' && isCartLoadedFromStorage) {
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }
-  }, [cartItems]);
+  }, [cartItems, isCartLoadedFromStorage]);
 
   const addItem = (dish: Dish, quantity: number = 1) => {
     setCartItems((prevItems) => {
