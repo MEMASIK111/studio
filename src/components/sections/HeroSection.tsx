@@ -28,7 +28,8 @@ export default function HeroSection() {
               </Button>
             </div>
           </div>
-          <div className="hidden md:block relative aspect-square max-w-md mx-auto md:max-w-none md:mx-0 bg-background rounded-lg overflow-hidden shadow-xl">
+          {/* Обновленный div для логотипа */}
+          <div className="hidden md:block relative aspect-square max-w-md mx-auto md:max-w-none md:mx-0 bg-background">
             <Image
               src="/logo-hero.png"
               alt={`Логотип ${APP_NAME}`}
