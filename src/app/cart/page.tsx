@@ -101,14 +101,16 @@ export default function CartPage() {
                   </div>
                   <div className="flex justify-between text-base text-muted-foreground mb-4">
                     <span>Доставка:</span>
-                    <span>Бесплатно (уточнить)</span>
+                    <span>(уточнить при оформлении)</span>
                   </div>
                   <hr className="my-4 border-border" />
                   <div className="flex justify-between text-xl font-bold text-foreground mb-6">
                     <span>Итого:</span>
                     <span>{totalPrice} руб.</span>
                   </div>
-                  <Button size="lg" className="w-full" disabled>Оформить заказ (в разработке)</Button>
+                  <Button size="lg" className="w-full" asChild>
+                    <Link href="/checkout">Оформить заказ</Link>
+                  </Button>
                 </CardContent>
               </Card>
             </div>
@@ -119,3 +121,6 @@ export default function CartPage() {
     </div>
   );
 }
+
+
+    
