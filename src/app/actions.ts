@@ -29,7 +29,7 @@ export async function fetchRecommendationsAction(input: DishRecommendationsInput
     console.error("Error fetching recommendations:", error);
     // Fallback to generic popular items in case of error
     const fallbackPopular = mockDishes.filter(d => d.popular).slice(0,3).map(d => d.name);
-    return { recommendations: fallbackPopular.length > 0 ? fallbackPopular : ["Пицца Маргарита", "Салат Цезарь"] };
+    return { recommendations: fallbackPopular.length > 0 ? fallbackPopular : ["Пицца Цезарь", "Салат Цезарь"] };
   }
 }
 

@@ -11,6 +11,7 @@ export interface Dish {
   new?: boolean;
   rating?: number; // Рейтинг оставим, но не будем отображать на карточке
   reviews?: number; // Количество отзывов оставим, но не будем отображать
+  dataAiHint?: string;
 }
 
 export interface Category {

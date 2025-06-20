@@ -60,7 +60,7 @@ export default function DishCard({ dish }: DishCardProps) {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Added for fill
             style={{ objectFit: 'cover' }} // Changed from objectFit="cover"
             className="transition-transform duration-300 group-hover:scale-105"
-            data-ai-hint="food meal"
+            data-ai-hint={dish.dataAiHint || "food meal"}
           />
         </div>
       </CardHeader>

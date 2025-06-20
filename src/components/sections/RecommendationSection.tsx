@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -72,7 +73,7 @@ export default function RecommendationSection() {
     } catch (err) {
       console.error("Failed to load recommendations:", err);
       setError("Не удалось загрузить рекомендации. Попробуйте позже.");
-       const fallbackDishes = await getDishesByNamesAction(["Пицца Маргарита", "Ролл Калифорния", "Том Ям", "Лимонад \"Классический\""]);
+       const fallbackDishes = await getDishesByNamesAction(["Пицца Цезарь", "Ролл Калифорния", "Том Ям", "Лимонад \"Классический\""]);
        setRecommendedDishes(fallbackDishes.filter(d => d).slice(0,4));
     } finally {
       setIsLoading(false);
