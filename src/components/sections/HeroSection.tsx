@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -29,12 +30,12 @@ export default function HeroSection() {
           </div>
           <div className="hidden md:block relative aspect-square max-w-md mx-auto md:max-w-none md:mx-0 rounded-lg overflow-hidden shadow-2xl">
             <Image
-              src="https://placehold.co/600x600.png"
-              alt={`Аппетитное блюдо от ${APP_NAME}`}
+              src="/logo-hero.png"
+              alt={`Логотип ${APP_NAME}`}
               layout="fill"
-              objectFit="cover"
+              objectFit="contain" /* Changed from cover to contain to ensure logo isn't cropped */
               className="transform hover:scale-105 transition-transform duration-500 ease-in-out"
-              data-ai-hint="pizza pasta"
+              data-ai-hint="restaurant logo"
             />
           </div>
         </div>
