@@ -75,7 +75,7 @@ export const mockDishes: Dish[] = [
     dataAiHint: 'pizza pepperoni',
     rating: 4.6,
     reviews: 90,
-    popular: true,
+    popular: false, // Removed from popular
     new: false,
   },
   // Rolls - Cold
@@ -167,7 +167,7 @@ export const mockDishes: Dish[] = [
     category: 'pizza',
     imageUrl: '/Асорти.png',
     dataAiHint: 'pizza assorted',
-    popular: true,
+    popular: false, // Removed from popular
     new: false,
     rating: 4.7,
     reviews: 65,
@@ -181,7 +181,7 @@ export const mockDishes: Dish[] = [
     category: 'pizza',
     imageUrl: '/Маргарита.png',
     dataAiHint: 'pizza margherita',
-    popular: true,
+    popular: false, // Removed from popular
     new: false,
     rating: 4.6,
     reviews: 150,
@@ -223,7 +223,7 @@ export const mockDishes: Dish[] = [
     category: 'pizza',
     imageUrl: '/куриная с грибами.png',
     dataAiHint: 'pizza chicken mushroom',
-    popular: true,
+    popular: false, // Removed from popular
     new: false,
     rating: 4.7,
     reviews: 80,
@@ -251,7 +251,7 @@ export const mockDishes: Dish[] = [
     category: 'pizza',
     imageUrl: '/четыри сыра.png',
     dataAiHint: 'pizza four cheese',
-    popular: true,
+    popular: false, // Removed from popular
     new: false,
     rating: 4.9,
     reviews: 100,
@@ -275,6 +275,7 @@ export const getDishById = (id: string): Dish | undefined => mockDishes.find(dis
     
 
     
+
 
 
 
