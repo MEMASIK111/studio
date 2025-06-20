@@ -64,12 +64,12 @@ export default function CheckoutPage() {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow container mx-auto max-w-screen-md px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-        <h1 className="text-3xl md:text-4xl font-headline font-bold text-primary mb-10 text-center">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-headline font-bold text-primary mb-10 text-center">
           Оформление заказа
         </h1>
 
         <Card className="shadow-xl">
-          <CardContent className="p-6 md:p-8 space-y-8">
+          <CardContent className="p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8">
             {/* Account Section */}
             <section>
               <div className="flex items-center space-x-2 mb-4">
@@ -77,7 +77,7 @@ export default function CheckoutPage() {
                 <Label htmlFor="hasAccount" className="text-base font-medium">У меня уже есть учётная запись</Label>
               </div>
 
-              <Card className="bg-background/50 p-6">
+              <Card className="bg-background/50 p-4 sm:p-6">
                 <CardTitle className="text-xl font-headline mb-4 text-foreground">
                   {hasAccount ? 'Вход в аккаунт' : 'Контактная информация'}
                 </CardTitle>
@@ -268,5 +268,3 @@ export default function CheckoutPage() {
     </div>
   );
 }
-
-    
