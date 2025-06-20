@@ -5,9 +5,9 @@ import Image from 'next/image';
 import type { Dish } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Heart, ShoppingCart, GitCompareArrows, Star } from 'lucide-react';
+import { Heart, ShoppingCart, GitCompareArrows } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
-import { useState } from 'react'; 
+import { useState } from 'react';
 
 // import { useCart } from '@/hooks/useCart'; // Placeholder for cart context
 // import { useFavorites } from '@/hooks/useFavorites'; // Placeholder for favorites context
@@ -18,7 +18,7 @@ interface DishCardProps {
 
 export default function DishCard({ dish }: DishCardProps) {
   const { toast } = useToast();
-  const [isFavorite, setIsFavorite] = useState(false); 
+  const [isFavorite, setIsFavorite] = useState(false);
   // const { addItem } = useCart(); // Example usage
   // const { toggleFavorite, isFavorite } = useFavorites(); // Example usage
 
@@ -31,9 +31,10 @@ export default function DishCard({ dish }: DishCardProps) {
   };
 
   const handleToggleFavorite = () => {
-    setIsFavorite(prev => !prev); 
+    setIsFavorite(prev => !prev);
+    // No toast for favorites as per previous request
   };
-  
+
   const handleCompare = () => {
     toast({
       title: `${dish.name} добавлен к сравнению`,
@@ -57,17 +58,12 @@ export default function DishCard({ dish }: DishCardProps) {
       </CardHeader>
       <CardContent className="p-4 flex-grow">
         <CardTitle className="text-xl font-headline mb-1 truncate" title={dish.name}>{dish.name}</CardTitle>
-        <CardDescription className="text-muted-foreground mb-2 h-12 overflow-hidden text-ellipsis">
+        <CardDescription className="text-muted-foreground text-base mb-2 h-12 overflow-hidden text-ellipsis">
           {dish.ingredients.join(', ')}
         </CardDescription>
         <div className="flex items-center justify-between mt-2">
           <p className="text-2xl font-semibold text-primary">{dish.price} руб.</p>
-          {dish.rating && (
-            <div className="flex items-center text-sm text-muted-foreground">
-              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400 mr-1" />
-              {dish.rating.toFixed(1)} ({dish.reviews})
-            </div>
-          )}
+          {/* Rating display removed as per request */}
         </div>
       </CardContent>
       <CardFooter className="p-4 pt-0 flex flex-col sm:flex-row items-stretch sm:items-center sm:justify-between gap-2">
@@ -76,10 +72,10 @@ export default function DishCard({ dish }: DishCardProps) {
         </Button>
         <div className="flex items-center justify-center sm:justify-end space-x-2">
           <Button variant="ghost" size="icon" onClick={handleToggleFavorite} aria-label="Добавить в избранное">
-            <Heart className={`h-5 w-5 ${isFavorite ? 'fill-accent text-accent' : ''}`} />
+            <Heart className={`h-5 w-5 ${isFavorite ? 'fill-accent text-accent' : 'text-muted-foreground hover:text-accent'}`} />
           </Button>
           <Button variant="ghost" size="icon" onClick={handleCompare} aria-label="Сравнить">
-            <GitCompareArrows className="h-5 w-5" />
+            <GitCompareArrows className="h-5 w-5 text-muted-foreground hover:text-primary" />
           </Button>
         </div>
       </CardFooter>
