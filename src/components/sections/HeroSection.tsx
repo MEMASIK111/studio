@@ -33,7 +33,7 @@ export default function HeroSection() {
               src="/logo-hero.png"
               alt={`Логотип ${APP_NAME}`}
               layout="fill"
-              objectFit="contain" /* Changed from cover to contain to ensure logo isn't cropped */
+              objectFit="contain" 
               className="transform hover:scale-105 transition-transform duration-500 ease-in-out"
               data-ai-hint="restaurant logo"
             />
