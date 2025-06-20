@@ -71,7 +71,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Томатный соус', 'Сыр Моцарелла', 'Пепперони'],
     price: 500,
     category: 'pizza',
-    imageUrl: '/Пеперони.png', // Matched to public folder screenshot
+    imageUrl: '/Пеперони.png', 
     dataAiHint: 'pizza pepperoni',
     rating: 4.6,
     reviews: 90,
@@ -165,7 +165,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Томатный соус', 'Сыр Моцарелла', 'Пепперони', 'Ветчина', 'Грибы', 'Маслины', 'Болгарский перец'],
     price: 520,
     category: 'pizza',
-    imageUrl: '/Асорти.jpg', // Matched to public folder screenshot
+    imageUrl: '/Асорти.png', // Corrected extension based on screenshot
     dataAiHint: 'pizza assorted',
     popular: true,
     new: false,
@@ -179,7 +179,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Томатный соус', 'Сыр Моцарелла', 'Свежий базилик', 'Оливковое масло'],
     price: 400,
     category: 'pizza',
-    imageUrl: '/Маргарита.png', // Matched to public folder screenshot
+    imageUrl: '/Маргарита.png', 
     dataAiHint: 'pizza margherita',
     popular: true,
     new: false,
@@ -193,7 +193,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Томатный соус', 'Сыр Моцарелла (двойная порция)', 'Орегано'],
     price: 430,
     category: 'pizza',
-    imageUrl: '/Моцарела.png', // Matched to public folder screenshot
+    imageUrl: '/Моцарела.png', 
     dataAiHint: 'pizza mozzarella',
     popular: false,
     new: false,
@@ -207,7 +207,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Томатный соус', 'Сыр Моцарелла', 'Охотничьи колбаски', 'Маринованные огурцы', 'Красный лук'],
     price: 480,
     category: 'pizza',
-    imageUrl: '/охота.png', // Matched to public folder screenshot
+    imageUrl: '/охота.png', 
     dataAiHint: 'pizza hunting sausage',
     popular: false,
     new: false,
@@ -221,7 +221,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Сливочный соус', 'Сыр Моцарелла', 'Куриное филе', 'Шампиньоны', 'Укроп'],
     price: 470,
     category: 'pizza',
-    imageUrl: '/куриная с грибами.png', // Matched to public folder screenshot
+    imageUrl: '/куриная с грибами.png', // Assuming the filename in public should be 'куриная...' for "Chicken..."
     dataAiHint: 'pizza chicken mushroom',
     popular: true,
     new: false,
@@ -235,7 +235,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Дрожжевое тесто', 'Сыр Сулугуни', 'Сыр Имеретинский', 'Яйцо куриное', 'Сливочное масло'],
     price: 460,
     category: 'pizza',
-    imageUrl: '/хачапури.png', // Matched to public folder screenshot
+    imageUrl: '/хачапури.png', 
     dataAiHint: 'pizza khachapuri cheese',
     popular: false,
     new: true,
@@ -249,7 +249,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Сливочный соус', 'Сыр Моцарелла', 'Сыр Дорблю', 'Сыр Пармезан', 'Сыр Чеддер'],
     price: 550,
     category: 'pizza',
-    imageUrl: '/четыре сыра.png', // Matched to public folder screenshot
+    imageUrl: '/четыри сыра.png', 
     dataAiHint: 'pizza four cheese',
     popular: true,
     new: false,
@@ -272,7 +272,6 @@ export const getDishesByCategory = (categorySlug: string, subCategorySlug?: stri
 export const getPopularDishes = (): Dish[] => mockDishes.filter(dish => dish.popular);
 export const getNewDishes = (): Dish[] => mockDishes.filter(dish => dish.new);
 export const getDishById = (id: string): Dish | undefined => mockDishes.find(dish => dish.id === id);
-
     
 
     
