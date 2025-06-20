@@ -8,7 +8,7 @@ import CartIcon from '@/components/cart/CartIcon';
 
 const Logo = () => (
   <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
-    <span className="text-2xl font-headline font-bold text-primary">
+    <span className="text-3xl font-headline font-bold text-primary">
       {APP_NAME}
     </span>
   </Link>
