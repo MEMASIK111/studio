@@ -157,7 +157,7 @@ export const mockDishes: Dish[] = [
     reviews: 50,
     popular: false,
   },
-  // New Pizzas
+  // Pizzas (continued)
   {
     id: '11',
     name: 'Пицца Ассорти',
@@ -165,7 +165,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Томатный соус', 'Сыр Моцарелла', 'Пепперони', 'Ветчина', 'Грибы', 'Маслины', 'Болгарский перец'],
     price: 520,
     category: 'pizza',
-    imageUrl: '/Асорти.jpg',
+    imageUrl: '/Асорти.jpg', // Проверьте это имя и расширение
     dataAiHint: 'pizza assorted',
     popular: true,
     new: false,
@@ -179,7 +179,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Томатный соус', 'Сыр Моцарелла', 'Свежий базилик', 'Оливковое масло'],
     price: 400,
     category: 'pizza',
-    imageUrl: '/Маргарита.png',
+    imageUrl: '/Маргарита.png', // Проверьте это имя
     dataAiHint: 'pizza margherita',
     popular: true,
     new: false,
@@ -221,7 +221,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Сливочный соус', 'Сыр Моцарелла', 'Куриное филе', 'Шампиньоны', 'Укроп'],
     price: 470,
     category: 'pizza',
-    imageUrl: '/куриная с грибами.png',
+    imageUrl: '/куриная с грибами.png', // Проверьте это имя (пробелы, регистр)
     dataAiHint: 'pizza chicken mushroom',
     popular: true,
     new: false,
