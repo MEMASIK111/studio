@@ -28,15 +28,15 @@ export default function HeroSection() {
               </Button>
             </div>
           </div>
-          <div className="hidden md:block relative aspect-square max-w-md mx-auto md:max-w-none md:mx-0">
+          <div className="hidden md:block relative aspect-square max-w-sm mx-auto md:max-w-none md:mx-0"> {/* Changed max-w-md to max-w-sm */}
             <Image
-              src="/logo-hero.png" 
+              src="/logo-hero.png"
               alt={`Логотип ${APP_NAME}`}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               style={{ objectFit: 'contain' }}
               className="transform hover:scale-105 transition-transform duration-500 ease-in-out"
-              priority 
+              priority
               data-ai-hint="restaurant logo"
             />
           </div>
