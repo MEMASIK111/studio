@@ -28,15 +28,16 @@ export default function HeroSection() {
               </Button>
             </div>
           </div>
-          {/* Обновленный div для логотипа */}
+          {/* Этот div имеет фон как у страницы. Если логотип имеет свой белый фон, он будет поверх этого. */}
           <div className="hidden md:block relative aspect-square max-w-md mx-auto md:max-w-none md:mx-0 bg-background">
             <Image
-              src="/logo-hero.png"
+              src="/logo-hero.png" // Убедитесь, что этот файл имеет прозрачный фон
               alt={`Логотип ${APP_NAME}`}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               style={{ objectFit: 'contain' }}
               className="transform hover:scale-105 transition-transform duration-500 ease-in-out"
+              priority // Добавляем priority для важного изображения на первом экране
               data-ai-hint="restaurant logo"
             />
           </div>
