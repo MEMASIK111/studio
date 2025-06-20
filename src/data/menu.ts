@@ -230,13 +230,13 @@ export const mockDishes: Dish[] = [
   },
   {
     id: '16',
-    name: 'Пицца Хачапури',
+    name: 'Пицца Хачапури по-аджарски',
     description: 'Ароматная пицца в стиле хачапури по-аджарски с сыром сулугуни и яйцом.',
     ingredients: ['Дрожжевое тесто', 'Сыр Сулугуни', 'Сыр Имеретинский', 'Яйцо куриное', 'Сливочное масло'],
     price: 460,
     category: 'pizza',
-    imageUrl: '/хачапури.png',
-    dataAiHint: 'pizza khachapuri cheese',
+    imageUrl: '/хачапури по-аджарски.png',
+    dataAiHint: 'pizza khachapuri adjarian',
     popular: false,
     new: true,
     rating: 4.8,
@@ -275,5 +275,6 @@ export const getDishById = (id: string): Dish | undefined => mockDishes.find(dis
     
 
     
+
 
 
