@@ -1,3 +1,4 @@
+
 import type { Dish } from '@/lib/types';
 
 export const mockDishes: Dish[] = [
@@ -9,7 +10,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Соус Цезарь', 'Сыр Моцарелла', 'Курица', 'Помидоры Черри', 'Листья салата', 'Сыр Пармезан'],
     price: 450,
     category: 'pizza',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/pizza-caesar.png', // Updated image URL
     dataAiHint: 'pizza caesar',
     popular: true,
     rating: 4.5,
