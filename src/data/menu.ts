@@ -215,6 +215,20 @@ export const mockDishes: Dish[] = [
     reviews: 70,
   },
   {
+    id: '15',
+    name: 'Пицца Куриная с грибами',
+    description: 'Сочетание нежного куриного филе, шампиньонов и сливочного соуса.',
+    ingredients: ['Тесто', 'Сливочный соус', 'Сыр Моцарелла', 'Куриное филе', 'Шампиньоны', 'Укроп'],
+    price: 470,
+    category: 'pizza',
+    imageUrl: '/куриная с грибами.png',
+    dataAiHint: 'pizza chicken mushroom',
+    popular: true,
+    new: false,
+    rating: 4.7,
+    reviews: 80,
+  },
+  {
     id: '16',
     name: 'Пицца Хачапури',
     description: 'Ароматная пицца в стиле хачапури по-аджарски с сыром сулугуни и яйцом.',
@@ -235,7 +249,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Сливочный соус', 'Сыр Моцарелла', 'Сыр Дорблю', 'Сыр Пармезан', 'Сыр Чеддер'],
     price: 550,
     category: 'pizza',
-    imageUrl: '/четыри сыра.png', // ИСПРАВЛЕНО ЗДЕСЬ
+    imageUrl: '/четыри сыра.png',
     dataAiHint: 'pizza four cheese',
     popular: true,
     new: false,
@@ -261,4 +275,5 @@ export const getDishById = (id: string): Dish | undefined => mockDishes.find(dis
     
 
     
+
 
