@@ -20,20 +20,26 @@ export default function DeliveryInfoPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-foreground/90">
-              <p className="flex items-center"><MapPin className="mr-2 h-5 w-5 text-primary/80" />Город доставки: <strong>{DELIVERY_INFO.city}</strong></p>
-              <p>Мы осуществляем доставку по следующим районам и улицам (но не ограничиваясь ими):</p>
+              <p className="flex items-center text-base"><MapPin className="mr-2 h-5 w-5 text-primary/80" />Город доставки: <strong>{DELIVERY_INFO.city}</strong></p>
+              <p className="text-base">Мы осуществляем доставку по следующим районам и улицам (но не ограничиваясь ими):</p>
               <ul className="list-disc list-inside pl-4 text-base text-muted-foreground space-y-1">
                 {DELIVERY_INFO.streets.map(street => <li key={street}>{street}</li>)}
                 <li>и другие районы города.</li>
               </ul>
               <div className="flex items-start">
                 <Clock className="mr-2 h-5 w-5 text-primary/80 mt-0.5 flex-shrink-0" />
-                <p>
+                <p className="text-base">
                   Среднее время доставки: <strong>{DELIVERY_INFO.averageTime}.</strong>
                   {' Время может меняться в зависимости от загруженности кухни и дорожной ситуации.'}
                 </p>
               </div>
-              <p className="flex items-center"><PackageCheck className="mr-2 h-5 w-5 text-primary/80" />Бесплатная доставка при заказе от: <strong>{DELIVERY_INFO.freeDeliveryFrom} рублей</strong>.</p>
+              <p className="flex items-center text-lg font-medium">
+                <PackageCheck className="mr-2 h-6 w-6 text-primary flex-shrink-0" />
+                <span>
+                  Бесплатная доставка при заказе{' '}
+                  <strong className="text-primary font-bold">от {DELIVERY_INFO.freeDeliveryFrom} рублей</strong>.
+                </span>
+              </p>
               <p className="text-base text-muted-foreground">{DELIVERY_INFO.costNote} по телефону.</p>
             </CardContent>
           </Card>
@@ -45,7 +51,7 @@ export default function DeliveryInfoPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-foreground/90">
-              <p>Мы принимаем следующие способы оплаты:</p>
+              <p className="text-base">Мы принимаем следующие способы оплаты:</p>
               <ul className="list-disc list-inside pl-4 space-y-1 text-base">
                 {PAYMENT_METHODS.map(method => (
                   <li key={method} className="capitalize">{method} курьеру</li>
