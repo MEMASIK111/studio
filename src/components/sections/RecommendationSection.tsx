@@ -66,14 +66,14 @@ export default function RecommendationSection() {
         setRecommendedDishes(detailedDishes.slice(0, 4)); // Show up to 4 recommendations
       } else {
         // Fallback if AI gives no specific recommendations but action provides some
-        const fallbackDishes = await getDishesByNamesAction(["Пицца Пепперони", "Ролл Филадельфия", "Паста Карбонара", "Чизкейк Нью-Йорк"]);
+        const fallbackDishes = await getDishesByNamesAction(["Пицца Цезарь", "Ролл Филадельфия", "Паста Карбонара", "Том Ям"]);
         setRecommendedDishes(fallbackDishes.filter(d => d).slice(0,4));
       }
 
     } catch (err) {
       console.error("Failed to load recommendations:", err);
       setError("Не удалось загрузить рекомендации. Попробуйте позже.");
-       const fallbackDishes = await getDishesByNamesAction(["Пицца Цезарь", "Ролл Калифорния", "Том Ям", "Лимонад \"Классический\""]);
+       const fallbackDishes = await getDishesByNamesAction(["Пицца Цезарь", "Ролл Филадельфия", "Паста Карбонара", "Том Ям"]);
        setRecommendedDishes(fallbackDishes.filter(d => d).slice(0,4));
     } finally {
       setIsLoading(false);
@@ -113,3 +113,4 @@ export default function RecommendationSection() {
     </section>
   );
 }
+
