@@ -5,7 +5,7 @@ import Image from 'next/image';
 import type { Dish } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Heart, ShoppingCart, GitCompareArrows } from 'lucide-react';
+import { Heart, ShoppingCart } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import { useState } from 'react';
 import { useCart } from '@/context/CartContext';
@@ -24,30 +24,14 @@ export default function DishCard({ dish }: DishCardProps) {
     toast({
       title: `${dish.name} добавлен в корзину!`,
       description: `Цена: ${dish.price} руб.`,
-      variant: "default", // Explicitly set variant if needed, or remove if default is fine
+      variant: "default",
     });
   };
 
   const handleToggleFavorite = () => {
     setIsFavorite(prev => !prev);
     // No toast for favorites as per previous request
-    // If you want a toast here, uncomment below and customize
-    /*
-    toast({
-      title: isFavorite ? `${dish.name} удален из избранного` : `${dish.name} добавлен в избранное!`,
-      variant: "default",
-    });
-    */
   };
-
-  const handleCompare = () => {
-    toast({
-      title: `${dish.name} добавлен к сравнению`,
-      description: "Функция сравнения в разработке.",
-      variant: "default",
-    });
-  };
-
 
   return (
     <Card className="flex flex-col overflow-hidden h-full shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg">
@@ -56,9 +40,9 @@ export default function DishCard({ dish }: DishCardProps) {
           <Image
             src={dish.imageUrl}
             alt={dish.name}
-            fill // Changed from layout="fill"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Added for fill
-            style={{ objectFit: 'cover' }} // Changed from objectFit="cover"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            style={{ objectFit: 'cover' }}
             className="transition-transform duration-300 group-hover:scale-105"
             data-ai-hint={dish.dataAiHint || "food meal"}
           />
@@ -81,11 +65,9 @@ export default function DishCard({ dish }: DishCardProps) {
           <Button variant="ghost" size="icon" onClick={handleToggleFavorite} aria-label="Добавить в избранное">
             <Heart className={`h-5 w-5 transition-colors ${isFavorite ? 'fill-accent text-accent' : 'text-muted-foreground hover:text-accent'}`} />
           </Button>
-          <Button variant="ghost" size="icon" onClick={handleCompare} aria-label="Сравнить">
-            <GitCompareArrows className="h-5 w-5 text-muted-foreground hover:text-primary" />
-          </Button>
         </div>
       </CardFooter>
     </Card>
   );
 }
+
