@@ -28,7 +28,6 @@ export default function HeroSection() {
               </Button>
             </div>
           </div>
-          {/* Этот div имеет фон как у страницы. Если логотип имеет свой белый фон, он будет поверх этого. */}
           <div className="hidden md:block relative aspect-square max-w-md mx-auto md:max-w-none md:mx-0 bg-background">
             <Image
               src="/logo-hero.png" 
