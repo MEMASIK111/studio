@@ -28,12 +28,12 @@ export default function HeroSection() {
               </Button>
             </div>
           </div>
-          <div className="hidden md:block relative aspect-square max-w-md mx-auto md:max-w-none md:mx-0 rounded-lg overflow-hidden shadow-2xl">
+          <div className="hidden md:block relative aspect-square max-w-md mx-auto md:max-w-none md:mx-0">
             <Image
               src="/logo-hero.png"
               alt={`Логотип ${APP_NAME}`}
               layout="fill"
-              objectFit="contain" 
+              objectFit="contain"
               className="transform hover:scale-105 transition-transform duration-500 ease-in-out"
               data-ai-hint="restaurant logo"
             />
