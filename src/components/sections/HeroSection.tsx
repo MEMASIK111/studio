@@ -28,7 +28,7 @@ export default function HeroSection() {
               </Button>
             </div>
           </div>
-          <div className="hidden md:block relative aspect-square max-w-md mx-auto md:max-w-none md:mx-0 bg-background">
+          <div className="hidden md:block relative aspect-square max-w-md mx-auto md:max-w-none md:mx-0">
             <Image
               src="/logo-hero.png" 
               alt={`Логотип ${APP_NAME}`}
