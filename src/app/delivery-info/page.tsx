@@ -1,3 +1,4 @@
+
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -25,7 +26,13 @@ export default function DeliveryInfoPage() {
                 {DELIVERY_INFO.streets.map(street => <li key={street}>{street}</li>)}
                 <li>и другие районы города.</li>
               </ul>
-              <p className="flex items-center"><Clock className="mr-2 h-5 w-5 text-primary/80" />Среднее время доставки: <strong>{DELIVERY_INFO.averageTime}</strong>. Время может меняться в зависимости от загруженности кухни и дорожной ситуации.</p>
+              <div className="flex items-start">
+                <Clock className="mr-2 h-5 w-5 text-primary/80 mt-0.5 flex-shrink-0" />
+                <p>
+                  Среднее время доставки: <strong>{DELIVERY_INFO.averageTime}.</strong>
+                  {' Время может меняться в зависимости от загруженности кухни и дорожной ситуации.'}
+                </p>
+              </div>
               <p className="flex items-center"><PackageCheck className="mr-2 h-5 w-5 text-primary/80" />Бесплатная доставка при заказе от: <strong>{DELIVERY_INFO.freeDeliveryFrom} рублей</strong>.</p>
               <p className="text-base text-muted-foreground">{DELIVERY_INFO.costNote} по телефону.</p>
             </CardContent>
