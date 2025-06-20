@@ -1,3 +1,4 @@
+
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import HeroSection from '@/components/sections/HeroSection';
@@ -18,20 +19,18 @@ export default function HomePage() {
         <section className="py-12 md:py-20 bg-background">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary mb-6">Отзывы наших клиентов</h2>
-                <p className="text-muted-foreground mb-8">Скоро здесь появятся отзывы довольных клиентов!</p>
-                {/* Placeholder for reviews component or static reviews */}
                  <div className="grid md:grid-cols-3 gap-6">
                     <div className="p-6 border rounded-lg shadow-sm bg-card">
-                        <p className="italic">"Лучшая пицца в городе! Доставка всегда вовремя."</p>
-                        <p className="mt-2 font-semibold">- Анна К.</p>
+                        <p className="italic">"Невероятно вкусная пицца! Заказывали несколько раз, всегда горячая и свежая. Доставка быстрая, курьеры вежливые. Рекомендую всем!"</p>
+                        <p className="mt-2 font-semibold">- Александр В.</p>
                     </div>
                      <div className="p-6 border rounded-lg shadow-sm bg-card">
-                        <p className="italic">"Роллы просто восхитительные, особенно Филадельфия. Рекомендую!"</p>
-                        <p className="mt-2 font-semibold">- Максим П.</p>
+                        <p className="italic">"Роллы просто объедение! Филадельфия и Калифорния - наши фавориты. Рыба свежайшая, рис сварен идеально. Теперь заказываем только здесь."</p>
+                        <p className="mt-2 font-semibold">- Мария П.</p>
                     </div>
                      <div className="p-6 border rounded-lg shadow-sm bg-card">
-                        <p className="italic">"Заказываем здесь регулярно, всегда всё свежее и вкусное."</p>
-                        <p className="mt-2 font-semibold">- Елена С.</p>
+                        <p className="italic">"Отличный сервис и вкусная еда. Пробовали пасту и салаты - все на высшем уровне. Очень удобно, что можно заказать на большую компанию."</p>
+                        <p className="mt-2 font-semibold">- Дмитрий С.</p>
                     </div>
                 </div>
             </div>
