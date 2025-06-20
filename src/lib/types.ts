@@ -9,8 +9,8 @@ export interface Dish {
   imageUrl: string;
   popular?: boolean;
   new?: boolean;
-  rating?: number;
-  reviews?: number;
+  rating?: number; // Рейтинг оставим, но не будем отображать на карточке
+  reviews?: number; // Количество отзывов оставим, но не будем отображать
 }
 
 export interface Category {
