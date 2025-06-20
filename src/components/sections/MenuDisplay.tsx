@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -10,29 +11,6 @@ import type { Dish } from '@/lib/types';
 export default function MenuDisplay() {
   const [activeTab, setActiveTab] = useState(MENU_CATEGORIES[0].slug);
 
-  const renderDishes = (categorySlug: string) => {
-    let dishes: Dish[];
-    if (categorySlug === 'popular') {
-      dishes = getPopularDishes();
-    } else if (categorySlug === 'new') {
-      dishes = getNewDishes();
-    } else {
-      dishes = getDishesByCategory(categorySlug);
-    }
-    
-    if (!dishes || dishes.length === 0) {
-      return <p className="text-center text-muted-foreground py-8">В этой категории пока нет блюд.</p>;
-    }
-
-    return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {dishes.map((dish) => (
-          <DishCard key={dish.id} dish={dish} />
-        ))}
-      </div>
-    );
-  };
-  
   // For categories with subcategories, we might need a more complex tab structure or separate sections.
   // For simplicity, this example will list all dishes under the main category if subcategories exist.
   // A more advanced implementation would handle subcategory selection within the tab content.
@@ -44,12 +22,12 @@ export default function MenuDisplay() {
           Наше Меню
         </h2>
         <Tabs defaultValue={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:flex lg:flex-wrap lg:justify-center gap-2 mb-8 bg-transparent p-0">
+          <TabsList className="flex items-center overflow-x-auto space-x-2 p-1 mb-8 sm:grid sm:w-full sm:grid-cols-3 md:grid-cols-4 lg:flex lg:flex-wrap lg:justify-center sm:gap-2 sm:space-x-0 bg-transparent sm:p-0">
             {MENU_CATEGORIES.map((category) => (
               <TabsTrigger
                 key={category.id}
                 value={category.slug}
-                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md hover:bg-primary/10 transition-colors px-4 py-2 rounded-md text-sm md:text-base"
+                className="whitespace-nowrap flex-shrink-0 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md hover:bg-primary/10 transition-colors px-4 py-2 rounded-md text-sm"
               >
                 {category.name}
               </TabsTrigger>
@@ -100,3 +78,4 @@ const renderDishes = (categorySlug: string, subCategorySlug?: string) => {
     </div>
   );
 };
+
