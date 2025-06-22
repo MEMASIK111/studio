@@ -1,3 +1,4 @@
+
 import type { Dish } from '@/lib/types';
 
 export const mockDishes: Dish[] = [
@@ -9,7 +10,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Соус Цезарь', 'Сыр Моцарелла', 'Курица', 'Помидоры Черри', 'Листья салата', 'Сыр Пармезан'],
     price: 450,
     category: 'pizza',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/pizza-caesar.png',
     dataAiHint: 'pizza caesar',
     popular: true,
     rating: 4.5,
@@ -70,7 +71,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Томатный соус', 'Сыр Моцарелла', 'Пепперони'],
     price: 500,
     category: 'pizza',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/Пеперони.png',
     dataAiHint: 'pizza pepperoni',
     rating: 4.6,
     reviews: 90,
@@ -164,7 +165,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Томатный соус', 'Сыр Моцарелла', 'Пепперони', 'Ветчина', 'Грибы', 'Маслины', 'Болгарский перец'],
     price: 520,
     category: 'pizza',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/Асорти.png',
     dataAiHint: 'pizza assorted',
     popular: false, 
     new: false,
@@ -178,7 +179,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Томатный соус', 'Сыр Моцарелла', 'Свежий базилик', 'Оливковое масло'],
     price: 400,
     category: 'pizza',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/Маргарита.png',
     dataAiHint: 'pizza margherita',
     popular: false, 
     new: false,
@@ -192,7 +193,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Томатный соус', 'Сыр Моцарелла (двойная порция)', 'Орегано'],
     price: 430,
     category: 'pizza',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/Моцарела.png',
     dataAiHint: 'pizza mozzarella',
     popular: false,
     new: false,
@@ -206,7 +207,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Томатный соус', 'Сыр Моцарелла', 'Охотничьи колбаски', 'Маринованные огурцы', 'Красный лук'],
     price: 480,
     category: 'pizza',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/охота.png',
     dataAiHint: 'pizza hunting sausage',
     popular: false,
     new: false,
@@ -220,7 +221,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Сливочный соус', 'Сыр Моцарелла', 'Куриное филе', 'Шампиньоны', 'Укроп'],
     price: 470,
     category: 'pizza',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/куриная с грибами.png',
     dataAiHint: 'pizza chicken mushroom',
     popular: false, 
     new: false,
@@ -234,7 +235,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Дрожжевое тесто', 'Сыр Сулугуни', 'Сыр Имеретинский', 'Яйцо куриное', 'Сливочное масло'],
     price: 460,
     category: 'pizza',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/хачапури по-аджарски.png',
     dataAiHint: 'pizza khachapuri adjarian',
     popular: false,
     new: true,
@@ -248,7 +249,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Сливочный соус', 'Сыр Моцарелла', 'Сыр Дорблю', 'Сыр Пармезан', 'Сыр Чеддер'],
     price: 550,
     category: 'pizza',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/четыри сыра.png',
     dataAiHint: 'pizza four cheese',
     popular: false, 
     new: false,
@@ -271,5 +272,7 @@ export const getDishesByCategory = (categorySlug: string, subCategorySlug?: stri
 export const getPopularDishes = (): Dish[] => mockDishes.filter(dish => dish.popular);
 export const getNewDishes = (): Dish[] => mockDishes.filter(dish => dish.new);
 export const getDishById = (id: string): Dish | undefined => mockDishes.find(dish => dish.id === id);
+
+    
 
     
