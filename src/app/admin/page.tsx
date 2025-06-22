@@ -15,7 +15,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from "@/hooks/use-toast";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Loader2, PlusCircle, Edit, Trash2 } from 'lucide-radix';
+import { Loader2, PlusCircle, Edit, Trash2 } from 'lucide-react';
 import type { Dish } from '@/lib/types';
 
 // Extend Dish type for Firestore operations, making id optional for new dishes

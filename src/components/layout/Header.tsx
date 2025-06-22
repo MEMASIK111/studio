@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { Menu, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import { NAV_LINKS, APP_NAME, USER_NAV_LINKS_GUEST, PHONE_NUMBER } from '@/lib/constants';
 import CartIcon from '@/components/cart/CartIcon';
 
@@ -37,7 +37,13 @@ const MobileNav = () => (
       </Button>
     </SheetTrigger>
     <SheetContent side="left" className="w-[300px] sm:w-[400px] bg-background p-6">
-      <div className="flex flex-col space-y-6">
+       <SheetHeader>
+        <SheetTitle className="sr-only">Меню навигации</SheetTitle>
+        <SheetDescription className="sr-only">
+          Основная навигация по сайту и ссылки на аккаунт.
+        </SheetDescription>
+      </SheetHeader>
+      <div className="flex flex-col space-y-6 mt-4">
         <Logo />
         <nav className="flex flex-col space-y-4">
           {NAV_LINKS.map((link) => (
