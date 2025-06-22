@@ -10,9 +10,6 @@ const FALLBACK_RECOMMENDATION_NAMES = ["Пицца Цезарь", "Ролл Фи
 
 export async function fetchRecommendationsAction(input: DishRecommendationsInput): Promise<DishRecommendationsOutput> {
   try {
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
     // If input indicates no history or preferences, return general popular items
     if (!input.pastOrderHistory && !input.currentDiscounts && !input.popularityData) {
         const popularDishes = mockDishes.filter(d => d.popular).slice(0, 5).map(d => d.name);
@@ -65,4 +62,5 @@ export async function fetchRecommendationsAction(input: DishRecommendationsInput
 export async function getDishesByNamesAction(dishNames: string[]): Promise<Dish[]> {
     return mockDishes.filter(dish => dishNames.includes(dish.name));
 }
+
 

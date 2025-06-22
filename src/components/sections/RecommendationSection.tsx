@@ -2,10 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import DishCard from "./DishCard";
-import { Button } from "@/components/ui/button";
 import { fetchRecommendationsAction, getDishesByNamesAction } from '@/app/actions';
 import type { Dish } from '@/lib/types';
-import { Loader2 } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Terminal } from 'lucide-react';
 
@@ -67,17 +65,21 @@ export default function RecommendationSection() {
                     </Alert>
                 )}
 
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-6">
                     {isLoading ? (
                         Array.from({ length: 5 }).map((_, index) => (
-                            <div key={index} className="flex flex-col space-y-3 p-2 bg-card rounded-lg">
-                                <div className="rounded-lg bg-muted aspect-[4/3] w-full animate-pulse"></div>
-                                <div className="space-y-2 px-2 pb-2">
-                                    <div className="h-5 bg-muted rounded animate-pulse w-3/4"></div>
-                                    <div className="h-3 bg-muted rounded animate-pulse w-full"></div>
-                                    <div className="h-3 bg-muted rounded animate-pulse w-1/2"></div>
-                                    <div className="h-6 bg-muted rounded animate-pulse w-1/3 mt-2"></div>
-                                    <div className="h-10 bg-muted rounded-lg animate-pulse w-full mt-2"></div>
+                            <div key={index} className="flex flex-col overflow-hidden h-full shadow-sm rounded-lg border-none bg-card">
+                                <div className="aspect-[4/3] w-full relative overflow-hidden rounded-t-lg bg-muted animate-pulse"></div>
+                                <div className="p-4 flex-grow flex flex-col justify-between">
+                                    <div className="space-y-2">
+                                        <div className="h-5 bg-muted rounded animate-pulse w-3/4"></div>
+                                        <div className="h-3 bg-muted rounded animate-pulse w-full"></div>
+                                        <div className="h-3 bg-muted rounded animate-pulse w-2/3"></div>
+                                    </div>
+                                    <div className="mt-4">
+                                        <div className="h-6 bg-muted rounded animate-pulse w-1/3 mb-3"></div>
+                                        <div className="h-10 bg-muted rounded-lg animate-pulse w-full"></div>
+                                    </div>
                                 </div>
                             </div>
                         ))
