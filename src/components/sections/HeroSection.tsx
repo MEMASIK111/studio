@@ -1,33 +1,32 @@
-
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { APP_NAME } from '@/lib/constants';
+import Image from 'next/image';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default function HeroSection() {
   return (
-    <section className="relative bg-gradient-to-br from-primary/20 via-background to-background py-16 md:py-24 lg:py-32">
-      <div className="absolute inset-0 opacity-10">
-        {/* Placeholder for a subtle background pattern or image */}
-      </div>
+    <section className="py-4 md:py-8 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 gap-8 items-center">
-          <div className="text-center">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-headline font-bold text-primary leading-tight">
-              {APP_NAME}
-            </h1>
-            <p className="mt-4 text-lg sm:text-xl text-foreground/80 max-w-xl mx-auto">
-              Насладитесь изысканными блюдами итальянской и японской кухни с доставкой на дом в Каспийске. Свежие ингредиенты, быстрая доставка!
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-              <Button size="lg" asChild className="shadow-lg hover:shadow-xl transition-shadow">
-                <Link href="/#menu">Перейти к Меню</Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild className="shadow-lg hover:shadow-xl transition-shadow">
-                <Link href="/contact">Связаться с нами</Link>
-              </Button>
+        <Card className="overflow-hidden shadow-lg border-none">
+          <div className="relative aspect-video md:aspect-[2.5/1] w-full">
+            <Image
+              src="https://placehold.co/1200x480.png"
+              alt="Акция на роллы"
+              fill
+              style={{ objectFit: 'cover' }}
+              data-ai-hint="sushi promotion"
+              priority
+            />
+            <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-start p-6 md:p-12">
+              <h2 className="text-2xl md:text-4xl font-extrabold text-white uppercase leading-tight max-w-md">
+                Собери <span className="bg-primary px-2 rounded">5 магнитов</span> и получи любой ролл в подарок!
+              </h2>
+              <p className="text-xs text-white/80 mt-2 max-w-xs">
+                Сделай заказ на 2000Р и получи один магнит. Акция распространяется только на доставку.
+              </p>
             </div>
           </div>
-        </div>
+        </Card>
       </div>
     </section>
   );

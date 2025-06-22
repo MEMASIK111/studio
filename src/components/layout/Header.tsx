@@ -1,6 +1,5 @@
-
 import Link from 'next/link';
-import { Menu, Phone } from 'lucide-react';
+import { Menu, Phone, User, Search, CircleUserRound } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import { NAV_LINKS, APP_NAME, USER_NAV_LINKS_GUEST, PHONE_NUMBER } from '@/lib/constants';
@@ -8,9 +7,7 @@ import CartIcon from '@/components/cart/CartIcon';
 
 const Logo = () => (
   <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
-    <span className="text-2xl md:text-3xl font-headline font-bold text-primary">
-      {APP_NAME}
-    </span>
+    <img src="https://placehold.co/120x40.png" data-ai-hint="restaurant logo" alt={APP_NAME} className="h-8 md:h-10 w-auto" />
   </Link>
 );
 
@@ -31,7 +28,7 @@ const DesktopNav = () => (
 const MobileNav = () => (
   <Sheet>
     <SheetTrigger asChild>
-      <Button variant="ghost" size="icon" className="md:hidden">
+      <Button variant="ghost" size="icon">
         <Menu className="h-6 w-6" />
         <span className="sr-only">Открыть меню</span>
       </Button>
@@ -92,21 +89,51 @@ const UserActions = () => (
         </Button>
       ))}
     </div>
-    <CartIcon />
+    {/* CartIcon removed from desktop header actions */}
   </div>
 );
 
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center space-x-4">
-          <MobileNav />
+    <header className="sticky top-0 z-40 w-full border-b border-border/40 bg-card backdrop-blur supports-[backdrop-filter]:bg-card/60">
+      <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8 relative">
+        {/* --- Left Group --- */}
+        <div className="flex flex-1 items-center justify-start gap-1">
+          <div className="md:hidden">
+            <MobileNav />
+          </div>
+          <Button variant="ghost" size="icon" className="md:hidden">
+            <Search className="h-5 w-5" />
+          </Button>
+          <div className="hidden md:flex">
+            <Logo />
+          </div>
+        </div>
+
+        {/* --- Center Group (Logo) --- */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:hidden">
           <Logo />
         </div>
-        <DesktopNav />
-        <UserActions />
+        <div className="hidden md:flex flex-none">
+          <DesktopNav />
+        </div>
+
+        {/* --- Right Group --- */}
+        <div className="flex flex-1 items-center justify-end gap-1">
+          {/* Mobile Icons */}
+          <Link href="/auth/login" className="md:hidden">
+            <Button variant="ghost" size="icon"><CircleUserRound className="h-6 w-6" /></Button>
+          </Link>
+          <Link href={`tel:${PHONE_NUMBER.replace(/\s+/g, '')}`} className="md:hidden">
+            <Button variant="ghost" size="icon"><Phone className="h-6 w-6" /></Button>
+          </Link>
+          
+          {/* Desktop Actions */}
+          <div className="hidden md:flex">
+             <UserActions />
+          </div>
+        </div>
       </div>
     </header>
   );

@@ -1,11 +1,10 @@
-
 'use client';
 
 import Image from 'next/image';
 import type { Dish } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Heart, ShoppingCart } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import { useState } from 'react';
 import { useCart } from '@/context/CartContext';
@@ -28,44 +27,41 @@ export default function DishCard({ dish }: DishCardProps) {
     });
   };
 
-  const handleToggleFavorite = () => {
+  const handleToggleFavorite = (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent triggering card click or other parent events
+    e.stopPropagation();
     setIsFavorite(prev => !prev);
-    // No toast for favorites as per previous request
   };
 
   return (
-    <Card className="flex flex-col overflow-hidden h-full shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg">
-      <CardHeader className="p-0">
-        <div className="relative aspect-video w-full">
+    <Card className="flex flex-col overflow-hidden h-full shadow-sm hover:shadow-lg transition-shadow duration-300 rounded-xl border-none">
+      <CardHeader className="p-0 relative">
+        <div className="aspect-square w-full relative">
           <Image
             src={dish.imageUrl}
             alt={dish.name}
             fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             style={{ objectFit: 'cover' }}
-            className="transition-transform duration-300 group-hover:scale-105"
+            className="rounded-t-xl"
             data-ai-hint={dish.dataAiHint || "food meal"}
           />
-        </div>
-      </CardHeader>
-      <CardContent className="p-4 flex-grow">
-        <CardTitle className="text-xl font-headline mb-1 truncate" title={dish.name}>{dish.name}</CardTitle>
-        <CardDescription className="text-base text-foreground/90 mb-2 h-12 overflow-hidden text-ellipsis">
-          {dish.ingredients.join(', ')}
-        </CardDescription>
-        <div className="flex items-center justify-between mt-2">
-          <p className="text-2xl font-semibold text-primary">{dish.price} руб.</p>
-        </div>
-      </CardContent>
-      <CardFooter className="p-4 pt-0 flex flex-col sm:flex-row items-stretch sm:items-center sm:justify-between gap-2">
-        <Button onClick={handleAddToCart} className="w-full sm:w-auto flex-grow">
-          <ShoppingCart className="mr-2 h-4 w-4" /> Добавить
-        </Button>
-        <div className="flex items-center justify-center sm:justify-end space-x-2">
-          <Button variant="ghost" size="icon" onClick={handleToggleFavorite} aria-label="Добавить в избранное">
-            <Heart className={`h-5 w-5 transition-colors ${isFavorite ? 'fill-accent text-accent' : 'text-muted-foreground hover:text-accent'}`} />
+           <Button variant="ghost" size="icon" onClick={handleToggleFavorite} aria-label="Добавить в избранное" className="absolute top-2 right-2 bg-white/80 hover:bg-white backdrop-blur-sm rounded-full h-8 w-8 z-10">
+            <Heart className={`h-5 w-5 transition-colors ${isFavorite ? 'fill-primary text-primary' : 'text-muted-foreground hover:text-primary'}`} />
           </Button>
         </div>
+      </CardHeader>
+      <CardContent className="p-3 flex-grow flex flex-col bg-card">
+        <CardTitle className="text-base font-semibold leading-tight mb-2 flex-grow">{dish.name}</CardTitle>
+        <CardDescription className="text-xs text-muted-foreground mb-3">
+          {dish.description}
+        </CardDescription>
+        <p className="text-lg font-bold text-foreground mt-auto">{dish.price} руб.</p>
+      </CardContent>
+      <CardFooter className="p-3 pt-0 bg-card rounded-b-xl">
+        <Button onClick={handleAddToCart} variant="destructive" className="w-full font-bold h-10 text-base">
+          ДОБАВИТЬ
+        </Button>
       </CardFooter>
     </Card>
   );
