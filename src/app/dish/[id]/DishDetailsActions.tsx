@@ -29,15 +29,21 @@ export default function DishDetailsActions({ dish }: { dish: Dish }) {
     };
 
     return (
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-6">
-            <p className="text-3xl font-bold text-primary w-full sm:w-auto">{dish.price} руб.</p>
-            <div className="flex items-center gap-2 w-full sm:w-auto">
-                <Button onClick={handleAddToCart} size="lg" className="flex-grow font-semibold">
+        <div className="flex flex-col sm:flex-row items-center gap-6 w-full">
+            <p className="text-4xl font-bold text-primary flex-shrink-0">{dish.price} руб.</p>
+            <div className="flex items-center gap-3 w-full">
+                <Button onClick={handleAddToCart} size="lg" className="flex-grow text-lg font-semibold h-14">
                     <ShoppingCart className="mr-2 h-5 w-5" />
-                    В корзину
+                    Добавить в корзину
                 </Button>
-                <Button variant="outline" size="lg" onClick={handleToggleFavorite} className="text-muted-foreground hover:text-destructive flex-shrink-0 border-2 hover:border-destructive hover:bg-destructive/10">
-                    <Heart className={`h-6 w-6 transition-colors ${isFavorite ? 'fill-red-500 text-red-500' : ''}`} />
+                <Button 
+                    variant="outline" 
+                    size="icon" 
+                    onClick={handleToggleFavorite} 
+                    className="h-14 w-14 flex-shrink-0"
+                    aria-label="Добавить в избранное"
+                >
+                    <Heart className={`h-7 w-7 transition-colors ${isFavorite ? 'text-destructive fill-destructive' : 'text-muted-foreground'}`} />
                 </Button>
             </div>
         </div>
