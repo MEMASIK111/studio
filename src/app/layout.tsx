@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Cormorant_Garamond } from 'next/font/google';
+import { Inter, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import AppProviders from '@/components/AppProviders';
@@ -11,10 +11,10 @@ const inter = Inter({
   variable: '--font-inter' 
 });
 
-const cormorantGaramond = Cormorant_Garamond({ 
+const playfairDisplay = Playfair_Display({ 
   subsets: ['latin', 'cyrillic'], 
   display: 'swap', 
-  variable: '--font-cormorant-garamond',
+  variable: '--font-playfair-display',
   weight: ['400', '500', '600', '700']
 });
 
@@ -31,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={`${inter.variable} ${cormorantGaramond.variable} font-body antialiased bg-background`}>
+      <body className={`${inter.variable} ${playfairDisplay.variable} font-body antialiased bg-background`}>
         <AppProviders>
           {children}
           <Toaster />
