@@ -1,12 +1,9 @@
-
 'use client';
 
 import { useEffect, useState } from 'react';
 import { fetchRecommendationsAction, getDishesByNamesAction } from '@/app/actions';
 import type { Dish, User } from '@/lib/types'; // Assuming User type exists
 import DishCard from './DishCard';
-import { Button } from '@/components/ui/button';
-import { Loader2, Shuffle } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 
 // Mock current user data (in a real app, this would come from auth context)
@@ -87,14 +84,10 @@ export default function RecommendationSection() {
   return (
     <section className="py-12 md:py-20 bg-secondary/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row justify-between items-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary text-center sm:text-left mb-4 sm:mb-0">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">
             Рекомендуем Попробовать
           </h2>
-          <Button variant="outline" onClick={getRecommendations} disabled={isLoading}>
-            {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Shuffle className="mr-2 h-4 w-4" />}
-            Обновить
-          </Button>
         </div>
 
         {isLoading && <RecommendationSkeleton />}
@@ -113,4 +106,3 @@ export default function RecommendationSection() {
     </section>
   );
 }
-
