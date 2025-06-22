@@ -1,12 +1,22 @@
 import type { Metadata } from 'next';
-import { Roboto_Flex, Playfair_Display } from 'next/font/google';
+import { Inter, Cormorant_Garamond } from 'next/font/google';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import AppProviders from '@/components/AppProviders';
 import { APP_NAME } from '@/lib/constants';
 
-const robotoFlex = Roboto_Flex({ subsets: ['latin'], display: 'swap', variable: '--font-roboto-flex' });
-const playfairDisplay = Playfair_Display({ subsets: ['latin'], display: 'swap', variable: '--font-playfair-display' });
+const inter = Inter({ 
+  subsets: ['latin', 'cyrillic'], 
+  display: 'swap', 
+  variable: '--font-inter' 
+});
+
+const cormorantGaramond = Cormorant_Garamond({ 
+  subsets: ['latin', 'cyrillic'], 
+  display: 'swap', 
+  variable: '--font-cormorant-garamond',
+  weight: ['400', '500', '600', '700']
+});
 
 
 export const metadata: Metadata = {
@@ -21,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={`${robotoFlex.variable} ${playfairDisplay.variable} font-body antialiased bg-background`}>
+      <body className={`${inter.variable} ${cormorantGaramond.variable} font-body antialiased bg-background`}>
         <AppProviders>
           {children}
           <Toaster />
