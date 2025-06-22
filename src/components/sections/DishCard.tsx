@@ -61,7 +61,7 @@ export default function DishCard({ dish }: DishCardProps) {
         <div className="mt-auto">
           <p className="text-xl font-bold text-primary mb-3">{dish.price} руб.</p>
           <div className="flex items-center gap-2">
-            <Button onClick={handleAddToCart} className="w-full font-semibold">
+            <Button onClick={handleAddToCart} className="flex-grow font-semibold">
                 <ShoppingCart className="mr-2 h-4 w-4" />
                 Добавить
             </Button>
