@@ -1,5 +1,4 @@
 
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { APP_NAME } from '@/lib/constants';
@@ -11,15 +10,15 @@ export default function HeroSection() {
         {/* Placeholder for a subtle background pattern or image */}
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div className="text-center md:text-left">
+        <div className="grid grid-cols-1 gap-8 items-center">
+          <div className="text-center">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-headline font-bold text-primary leading-tight">
               {APP_NAME}
             </h1>
-            <p className="mt-4 text-lg sm:text-xl text-foreground/80 max-w-xl mx-auto md:mx-0">
+            <p className="mt-4 text-lg sm:text-xl text-foreground/80 max-w-xl mx-auto">
               Насладитесь изысканными блюдами итальянской и японской кухни с доставкой на дом в Каспийске. Свежие ингредиенты, быстрая доставка!
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+            <div className="mt-8 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
               <Button size="lg" asChild className="shadow-lg hover:shadow-xl transition-shadow">
                 <Link href="/#menu">Перейти к Меню</Link>
               </Button>
@@ -27,18 +26,6 @@ export default function HeroSection() {
                 <Link href="/contact">Связаться с нами</Link>
               </Button>
             </div>
-          </div>
-          <div className="hidden md:block relative aspect-square max-w-sm mx-auto md:max-w-none md:mx-0 rounded-full bg-primary/10 p-4 shadow-lg"> {/* Changed max-w-md to max-w-sm */}
-            <Image
-              src="/logo-hero.png"
-              alt={`Логотип ${APP_NAME}`}
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              style={{ objectFit: 'contain' }}
-              className="transform hover:scale-105 transition-transform duration-500 ease-in-out"
-              priority
-              data-ai-hint="restaurant logo"
-            />
           </div>
         </div>
       </div>
