@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Only the specified admin can read and write to the dishes collection
+    match /dishes/{dishId} {
+      // IMPORTANT: Replace 'admin@example.com' with your actual admin email address.
+      allow read, write: if request.auth.token.email == 'admin@example.com';
+    }
+  }
+}
