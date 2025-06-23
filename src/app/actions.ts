@@ -9,6 +9,13 @@ import type { Dish } from '@/lib/types';
 const FALLBACK_RECOMMENDATION_NAMES = ["Пицца Цезарь", "Ролл Филадельфия", "Том Ям", "Салат Боул с Креветками", "Пицца Пепперони"];
 
 export async function fetchRecommendationsAction(input: DishRecommendationsInput): Promise<DishRecommendationsOutput> {
+  // If no API key, immediately return fallback recommendations to prevent crash.
+  if (!process.env.GOOGLE_API_KEY) {
+      console.warn("GOOGLE_API_KEY is not set. Falling back to default recommendations.");
+      const fallbackDishes = await getDishesByNamesAction(FALLBACK_RECOMMENDATION_NAMES);
+      return { recommendations: fallbackDishes.map(d=>d.name).slice(0,5) };
+  }
+  
   try {
     // If input indicates no history or preferences, return general popular items
     if (!input.pastOrderHistory && !input.currentDiscounts && !input.popularityData) {
@@ -62,5 +69,3 @@ export async function fetchRecommendationsAction(input: DishRecommendationsInput
 export async function getDishesByNamesAction(dishNames: string[]): Promise<Dish[]> {
     return mockDishes.filter(dish => dishNames.includes(dish.name));
 }
-
-

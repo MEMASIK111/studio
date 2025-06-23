@@ -7,7 +7,6 @@ import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescri
 
 const Logo = () => (
   <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-    <img src="/logo.png" className="h-10" alt={`${APP_NAME} Logo`} />
     <span className="self-center text-2xl font-headline font-semibold whitespace-nowrap text-foreground">{APP_NAME}</span>
   </Link>
 );
