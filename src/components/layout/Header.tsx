@@ -4,11 +4,18 @@ import { NAV_LINKS, APP_NAME, USER_NAV_LINKS_GUEST, PHONE_NUMBER } from '@/lib/c
 import CartIcon from '@/components/cart/CartIcon';
 import { Menu, Phone, User } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
+import Image from 'next/image';
 
 const Logo = () => (
-  <Link href="/" className="flex items-center rtl:space-x-reverse">
-    <span className="self-center text-2xl font-headline font-semibold whitespace-nowrap text-foreground">{APP_NAME}</span>
-  </Link>
+    <Link href="/" className="flex items-center" aria-label={`${APP_NAME} - на главную`}>
+        <Image
+            src="/logo.png"
+            alt={`${APP_NAME} logo`}
+            width={60}
+            height={60}
+            priority
+        />
+    </Link>
 );
 
 const DesktopNav = () => (
