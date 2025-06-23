@@ -4,6 +4,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import AppProviders from '@/components/AppProviders';
 import { APP_NAME } from '@/lib/constants';
+import CallFab from '@/components/layout/CallFab';
 
 const inter = Inter({ 
   subsets: ['latin', 'cyrillic'], 
@@ -35,6 +36,7 @@ export default function RootLayout({
         <AppProviders>
           {children}
           <Toaster />
+          <CallFab />
         </AppProviders>
       </body>
     </html>
