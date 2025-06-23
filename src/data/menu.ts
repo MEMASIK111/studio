@@ -24,7 +24,7 @@ export const mockDishes: Dish[] = [
     price: 380,
     category: 'rolls',
     subCategory: 'cold-rolls',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/Филадельфия.png',
     dataAiHint: 'sushi roll',
     popular: true,
     rating: 4.8,
@@ -279,7 +279,7 @@ export const mockDishes: Dish[] = [
     price: 520,
     category: 'rolls',
     subCategory: 'cold-rolls',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/Канада.png',
     dataAiHint: 'sushi canada',
     popular: true, 
     new: false, 
@@ -362,6 +362,21 @@ export const mockDishes: Dish[] = [
     rating: 4.7,
     reviews: 25,
   },
+  {
+    id: '25',
+    name: 'Ролл Калифорния с Креветкой',
+    description: 'Популярный ролл Калифорния с сочной тигровой креветкой, авокадо и огурцом.',
+    ingredients: ['Рис', 'Нори', 'Тигровая креветка', 'Авокадо', 'Огурец', 'Икра Тобико'],
+    price: 390,
+    category: 'rolls',
+    subCategory: 'cold-rolls',
+    imageUrl: '/Калифорния с Криветкой.png',
+    dataAiHint: 'sushi california shrimp',
+    rating: 4.5,
+    reviews: 75,
+    popular: false,
+    new: true,
+  }
 ];
 
 // Function to get dishes by category (and optionally subcategory)
@@ -382,6 +397,7 @@ export const getDishById = (id: string): Dish | undefined => mockDishes.find(dis
     
 
     
+
 
 
 
