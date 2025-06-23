@@ -2,8 +2,8 @@ import type { Category } from './types';
 
 export const APP_NAME = "Mozzarella";
 // Updated PHONE_NUMBER to match the request in the image
-export const PHONE_NUMBER = "+7 (988) 777-02-20"; 
-export const WHATSAPP_NUMBER = "79887770220"; // For wa.me link, without + or symbols
+export const PHONE_NUMBER = "+7 (989) 479-70-70"; 
+export const WHATSAPP_NUMBER = "79894797070"; // For wa.me link, without + or symbols
 export const INSTAGRAM_URL = "https://www.instagram.com/mozzarella_kaspiysk/"; // Example, replace with actual
 export const ADDRESS = "Каспийск, улица Ленина 51 Б";
 export const WORKING_HOURS = "Ежедневно с 9:00 до 23:00";
