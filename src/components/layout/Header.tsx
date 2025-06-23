@@ -109,7 +109,7 @@ const UserActions = () => (
 export default function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/40 bg-background/80 backdrop-blur-sm">
-      <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8 relative">
         <div className="flex items-center">
           <MobileNav />
           <div className="hidden lg:flex mr-6">
@@ -117,7 +117,7 @@ export default function Header() {
           </div>
           <DesktopNav />
         </div>
-         <div className="flex items-center lg:hidden">
+         <div className="lg:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <Logo />
         </div>
         <UserActions />
