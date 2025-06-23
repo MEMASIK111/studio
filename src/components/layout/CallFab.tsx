@@ -50,11 +50,9 @@ export default function CallFab() {
           aria-expanded={isOpen}
           aria-label="Открыть контакты"
         >
-          {isOpen ? (
-            <X className="h-8 w-8" />
-          ) : (
-            <Phone className="h-8 w-8" />
-          )}
+          {/* Animate between Phone and X icons */}
+          <Phone className={`h-8 w-8 transition-all duration-300 ease-in-out ${isOpen ? 'opacity-0 -rotate-90 scale-50' : 'opacity-100 rotate-0 scale-100'}`} />
+          <X className={`h-8 w-8 absolute transition-all duration-300 ease-in-out ${isOpen ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-90 scale-50'}`} />
         </Button>
       </div>
     </div>
