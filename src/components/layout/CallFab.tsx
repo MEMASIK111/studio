@@ -21,7 +21,6 @@ export default function CallFab() {
             ${isOpen ? 'translate-y-0 scale-100 opacity-100' : 'translate-y-4 scale-95 opacity-0 pointer-events-none'}
           `}
         >
-          <h4 className="text-base font-semibold text-center text-primary">Быстрая связь</h4>
           <Link
             href={`https://wa.me/${WHATSAPP_NUMBER}`}
             target="_blank"
