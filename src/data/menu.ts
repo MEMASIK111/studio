@@ -347,6 +347,21 @@ export const mockDishes: Dish[] = [
     rating: 4.7, 
     reviews: 50,
   },
+  {
+    id: '24',
+    name: "Запеченный ролл 'Якитори'",
+    description: 'Аппетитный запеченный ролл с лососем, покрытый пикантным соусом и кунжутом.',
+    ingredients: ['Рис', 'Нори', 'Лосось', 'Сливочный сыр', 'Соус Якитори', 'Кунжут', 'Японский майонез'],
+    price: 460,
+    category: 'rolls',
+    subCategory: 'hot-rolls',
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'sushi baked salmon',
+    popular: false,
+    new: true,
+    rating: 4.7,
+    reviews: 25,
+  },
 ];
 
 // Function to get dishes by category (and optionally subcategory)
@@ -367,6 +382,7 @@ export const getDishById = (id: string): Dish | undefined => mockDishes.find(dis
     
 
     
+
 
 
 
