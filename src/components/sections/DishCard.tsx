@@ -58,7 +58,7 @@ export default function DishCard({ dish }: DishCardProps) {
         </CardHeader>
         <CardContent className="p-4 flex-grow flex flex-col justify-between">
           <div>
-            <CardTitle className="text-xl font-headline leading-tight text-foreground mb-1">{dish.name}</CardTitle>
+            <CardTitle className="text-xl font-headline leading-tight text-foreground mb-1 h-14">{dish.name}</CardTitle>
             <CardDescription className="text-sm text-muted-foreground mb-3 line-clamp-2">
               {dish.description}
             </CardDescription>
