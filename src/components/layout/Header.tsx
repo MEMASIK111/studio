@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { NAV_LINKS, APP_NAME, USER_NAV_LINS_GUEST, PHONE_NUMBER } from '@/lib/constants';
+import { NAV_LINKS, APP_NAME, USER_NAV_LINKS_GUEST, PHONE_NUMBER } from '@/lib/constants';
 import CartIcon from '@/components/cart/CartIcon';
 import { Menu, Phone, User } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
