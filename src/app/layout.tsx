@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import AppProviders from '@/components/AppProviders';
 import { APP_NAME } from '@/lib/constants';
 import CallFab from '@/components/layout/CallFab';
+import BottomNavBar from '@/components/layout/BottomNavBar';
 
 const inter = Inter({ 
   subsets: ['latin', 'cyrillic'], 
@@ -32,11 +33,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={`${inter.variable} ${playfairDisplay.variable} font-body antialiased bg-background`}>
+      <body className={`${inter.variable} ${playfairDisplay.variable} font-body antialiased bg-background pb-16 md:pb-0`}>
         <AppProviders>
           {children}
           <Toaster />
           <CallFab />
+          <BottomNavBar />
         </AppProviders>
       </body>
     </html>
