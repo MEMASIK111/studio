@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { NAV_LINKS, APP_NAME, USER_NAV_LINKS_GUEST, PHONE_NUMBER } from '@/lib/constants';
+import { NAV_LINKS, APP_NAME, USER_NAV_LINS_GUEST, PHONE_NUMBER } from '@/lib/constants';
 import CartIcon from '@/components/cart/CartIcon';
 import { Menu, Phone, User } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 
 const Logo = () => (
   <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-    <img src="https://placehold.co/40x40.png" data-ai-hint="logo pizza" className="h-10" alt={`${APP_NAME} Logo`} />
+    <img src="/logo.png" className="h-10" alt={`${APP_NAME} Logo`} />
     <span className="self-center text-2xl font-headline font-semibold whitespace-nowrap text-foreground">{APP_NAME}</span>
   </Link>
 );

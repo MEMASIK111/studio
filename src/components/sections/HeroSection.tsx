@@ -16,17 +16,7 @@ export default function HeroSection() {
                 priority
             />
         </div>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
-         <div className="mb-6">
-            <Image
-                src="https://placehold.co/500x200.png"
-                data-ai-hint="restaurant logo brand"
-                alt="Mozzarella Logo"
-                width={500}
-                height={200}
-                className="max-w-sm md:max-w-md h-auto"
-            />
-        </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center justify-center h-full">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-headline font-bold text-foreground tracking-tight">
           Доставка вкусной еды в <span className="text-primary">Каспийске</span>
         </h1>
