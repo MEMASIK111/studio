@@ -9,7 +9,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Соус Цезарь', 'Сыр Моцарелла', 'Курица', 'Помидоры Черри', 'Листья салата', 'Сыр Пармезан'],
     price: 450,
     category: 'pizza',
-    imageUrl: '/Цезарь.png',
+    imageUrl: '/pizza-caesar.png',
     dataAiHint: 'pizza caesar',
     popular: true,
     rating: 4.5,
@@ -275,4 +275,5 @@ export const getDishById = (id: string): Dish | undefined => mockDishes.find(dis
     
 
     
+
 
