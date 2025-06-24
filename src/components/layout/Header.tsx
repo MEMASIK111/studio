@@ -1,10 +1,15 @@
+// src/components/layout/Header.tsx
+'use client';
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { NAV_LINKS, APP_NAME, USER_NAV_LINKS_GUEST, PHONE_NUMBER } from '@/lib/constants';
 import CartIcon from '@/components/cart/CartIcon';
-import { Menu, Phone, User } from 'lucide-react';
-import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
+import { User, Phone } from 'lucide-react';
+import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescription, SheetClose } from '@/components/ui/sheet';
 import Image from 'next/image';
+import { useState } from 'react';
+import AnimatedHamburgerIcon from './AnimatedHamburgerIcon';
 
 const Logo = () => (
     <Link href="/" className="flex items-center shrink-0" aria-label={`${APP_NAME} - на главную`}>
@@ -36,31 +41,32 @@ const DesktopNav = () => (
 const MobileNavSheet = () => (
     <SheetContent side="left" className="w-[300px] p-0">
        <SheetHeader className="p-4 border-b">
-        <SheetTitle asChild>
-            <div className="flex items-center">
-                 <Image
-                    src="/logo.png"
-                    alt={`${APP_NAME} logo`}
-                    width={40}
-                    height={40}
-                    priority
-                />
-            </div>
-        </SheetTitle>
+        <SheetClose asChild>
+          <Link href="/" className="flex items-center" aria-label={`${APP_NAME} - на главную`}>
+               <Image
+                  src="/logo.png"
+                  alt={`${APP_NAME} logo`}
+                  width={40}
+                  height={40}
+                  priority
+              />
+          </Link>
+        </SheetClose>
         <SheetDescription className="sr-only">
           Основная навигация по сайту и ссылки на аккаунт.
         </SheetDescription>
       </SheetHeader>
-      <div className="flex flex-col h-[calc(100%-4.5rem)]">
+      <div className="flex flex-col h-[calc(100%-5.5rem)]">
         <nav className="flex flex-col space-y-1 p-4">
           {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2 rounded-md px-2"
-            >
-              {link.label}
-            </Link>
+            <SheetClose asChild key={link.href}>
+              <Link
+                href={link.href}
+                className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2 rounded-md px-2"
+              >
+                {link.label}
+              </Link>
+            </SheetClose>
           ))}
         </nav>
         <div className="mt-auto border-t">
@@ -68,21 +74,24 @@ const MobileNavSheet = () => (
             <h3 className="text-sm font-semibold text-foreground mb-2">Аккаунт</h3>
             <div className="flex flex-col space-y-1">
               {USER_NAV_LINKS_GUEST.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="block py-2 text-lg text-foreground hover:text-primary transition-colors px-2 rounded-md"
-                >
-                  {link.label}
-                </Link>
+                <SheetClose asChild key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="block py-2 text-lg text-foreground hover:text-primary transition-colors px-2 rounded-md"
+                  >
+                    {link.label}
+                  </Link>
+                </SheetClose>
               ))}
             </div>
           </div>
           <div className="border-t p-4">
-            <a href={`tel:${PHONE_NUMBER.replace(/\s+/g, '')}`} className="flex items-center text-lg text-foreground hover:text-primary transition-colors py-2">
-                <Phone className="mr-2 h-5 w-5" />
-                {PHONE_NUMBER}
-            </a>
+            <SheetClose asChild>
+              <a href={`tel:${PHONE_NUMBER.replace(/\s+/g, '')}`} className="flex items-center text-lg text-foreground hover:text-primary transition-colors py-2">
+                  <Phone className="mr-2 h-5 w-5" />
+                  {PHONE_NUMBER}
+              </a>
+            </SheetClose>
           </div>
         </div>
       </div>
@@ -106,6 +115,8 @@ const UserActionsDesktop = () => (
 
 
 export default function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/40 bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
@@ -125,11 +136,10 @@ export default function Header() {
         <div className="relative flex w-full items-center justify-between lg:hidden">
           {/* Left actions */}
           <div className="flex items-center">
-            <Sheet>
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Menu className="h-6 w-6" />
-                  <span className="sr-only">Открыть меню</span>
+                <Button variant="ghost" size="icon" aria-label="Открыть меню">
+                  <AnimatedHamburgerIcon open={isMobileMenuOpen} />
                 </Button>
               </SheetTrigger>
               <MobileNavSheet />
