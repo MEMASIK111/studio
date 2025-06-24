@@ -235,6 +235,21 @@ export const mockDishes: Dish[] = [
     rating: 4.7,
     reviews: 50,
   },
+  {
+    id: '32',
+    name: 'Ойси Хотто',
+    description: 'Аппетитный горячий ролл с тигровыми креветками, нежным лососем, сливочным сыром и свежим огурцом.',
+    ingredients: ['Рис', 'Нори', 'Сливочный сыр', 'Огурец', 'Тигровые креветки', 'Лосось'],
+    price: 430,
+    category: 'rolls',
+    subCategory: 'hot-rolls',
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'sushi shrimp salmon',
+    popular: false,
+    new: true,
+    rating: 4.7,
+    reviews: 15,
+  },
   
   // Other dishes
   {
