@@ -198,7 +198,7 @@ export const mockDishes: Dish[] = [
     price: 420,
     category: 'rolls',
     subCategory: 'hot-rolls',
-    imageUrl: '/roll-Tokyn.png',
+    imageUrl: '/roll-Tokyo.png',
     dataAiHint: 'sushi spicy salmon',
     popular: false,
     new: false,
