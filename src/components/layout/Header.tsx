@@ -15,7 +15,7 @@ const Logo = () => (
     <Link href="/" className="flex items-center shrink-0" aria-label={`${APP_NAME} - на главную`}>
         <Image
             src="/logo.png"
-            alt={`${APP_NAME} logo`}
+            alt="Mozz logo"
             width={40}
             height={40}
             priority
@@ -121,21 +121,22 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/40 bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
-        {/* Desktop Header */}
+        
+        {/* DESKTOP HEADER */}
         <div className="hidden w-full items-center justify-between lg:flex">
             <div className="flex items-center gap-6">
                 <Logo />
                 <DesktopNav />
             </div>
-            <div className="flex items-center space-x-1 sm:space-x-2">
+            <div className="flex items-center gap-2">
               <UserActionsDesktop />
               <CartIcon />
             </div>
         </div>
 
-        {/* Mobile Header */}
-        <div className="relative flex w-full items-center justify-between lg:hidden">
-          {/* Left actions */}
+        {/* MOBILE HEADER */}
+        <div className="flex w-full items-center justify-between lg:hidden">
+          {/* Left part of mobile header */}
           <div className="flex items-center">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
@@ -147,12 +148,12 @@ export default function Header() {
             </Sheet>
           </div>
 
-          {/* Centered Logo */}
+          {/* Center part of mobile header (absolutely positioned) */}
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <Logo />
           </div>
 
-          {/* Right actions */}
+          {/* Right part of mobile header */}
           <div className="flex items-center">
             <Button variant="ghost" size="icon" asChild>
               <Link href="/auth/login" aria-label="Войти в аккаунт">
