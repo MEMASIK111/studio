@@ -55,7 +55,7 @@ export default function CartPage() {
                   </div>
 
                   <div className="flex-grow flex flex-col gap-2">
-                    {item.category === 'pizza' && item.prices && item.size ? (
+                    {item.category === 'pizza' && item.prices && Object.keys(item.prices).length > 1 && item.size ? (
                       <>
                         <h3 className="text-base sm:text-lg font-semibold text-foreground leading-tight">
                           {item.name}
