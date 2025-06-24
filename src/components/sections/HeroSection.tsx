@@ -9,7 +9,7 @@ export default function HeroSection() {
              <Image
                 src="https://placehold.co/1920x1080.png"
                 data-ai-hint="restaurant interior"
-                alt="Background of a cozy restaurant"
+                alt=""
                 fill
                 style={{objectFit: "cover"}}
                 className="opacity-20"
