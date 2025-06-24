@@ -15,7 +15,7 @@ const Logo = () => (
     <Link href="/" className="flex items-center shrink-0" aria-label={`${APP_NAME} - на главную`}>
         <Image
             src="/logo.png"
-            alt="Mozz logo"
+            alt={`${APP_NAME} logo`}
             width={40}
             height={40}
             priority
