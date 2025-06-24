@@ -1,18 +1,8 @@
 // src/context/CartContext.tsx
 "use client";
 
-import type { Dish, CartItem } from '@/lib/types';
+import type { Dish, CartItem, CartContextType } from '@/lib/types';
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
-
-interface CartContextType {
-  cartItems: CartItem[];
-  addItem: (dish: Dish, quantity?: number, size?: string) => void;
-  removeItem: (cartItemId: string) => void;
-  updateItemQuantity: (cartItemId: string, quantity: number) => void;
-  clearCart: () => void;
-  totalPrice: number;
-  totalItems: number; // Total number of individual items (sum of quantities)
-}
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
@@ -95,6 +85,52 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
+  const updateItemSize = (cartItemId: string, newSize: string) => {
+    setCartItems((prevItems) => {
+      const currentItem = prevItems.find((item) => item.id === cartItemId);
+      // Check if it's a pizza with size options
+      if (!currentItem || !currentItem.prices || !currentItem.dishId) {
+        return prevItems;
+      }
+
+      const newCartItemId = `${currentItem.dishId}-${newSize}`;
+
+      // If the size is the same, do nothing
+      if (cartItemId === newCartItemId) {
+          return prevItems;
+      }
+
+      // Temporarily remove the item being changed
+      const otherItems = prevItems.filter((item) => item.id !== cartItemId);
+
+      // Check if an item with the new size already exists in the cart
+      const existingTargetItem = otherItems.find((item) => item.id === newCartItemId);
+      
+      let newItems: CartItem[];
+
+      if (existingTargetItem) {
+        // If it exists, merge quantities and remove the old item (which we did by filtering)
+        newItems = otherItems.map((item) =>
+          item.id === newCartItemId
+            ? { ...item, quantity: item.quantity + currentItem.quantity }
+            : item
+        );
+      } else {
+        // If it doesn't exist, create a new item with the updated size and price
+        const newItem: CartItem = {
+          ...currentItem,
+          id: newCartItemId,
+          size: newSize,
+          price: currentItem.prices[newSize],
+        };
+        // Add the new item back into the list
+        newItems = [...otherItems, newItem];
+      }
+
+      return newItems;
+    });
+  };
+
   const clearCart = () => {
     setCartItems([]);
   };
@@ -116,6 +152,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         addItem,
         removeItem,
         updateItemQuantity,
+        updateItemSize,
         clearCart,
         totalPrice,
         totalItems,

@@ -10,9 +10,10 @@ import { useCart } from '@/context/CartContext';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 export default function CartPage() {
-  const { cartItems, totalPrice, removeItem, updateItemQuantity, totalItems } = useCart();
+  const { cartItems, totalPrice, removeItem, updateItemQuantity, updateItemSize, totalItems } = useCart();
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -53,11 +54,37 @@ export default function CartPage() {
                     />
                   </div>
 
-                  <div className="flex-grow flex flex-col gap-1">
-                    <h3 className="text-base sm:text-lg font-semibold text-foreground leading-tight">
-                      {item.name}
-                      {item.size && <span className="text-muted-foreground font-normal text-sm ml-2">({item.size})</span>}
-                    </h3>
+                  <div className="flex-grow flex flex-col gap-2">
+                    {item.category === 'pizza' && item.prices && item.size ? (
+                      <>
+                        <h3 className="text-base sm:text-lg font-semibold text-foreground leading-tight">
+                          {item.name}
+                        </h3>
+                        <Select
+                          value={item.size}
+                          onValueChange={(newSize) => {
+                            if (newSize) updateItemSize(item.id, newSize);
+                          }}
+                        >
+                          <SelectTrigger className="w-[120px] h-8 text-sm">
+                            <SelectValue placeholder="Размер" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {Object.keys(item.prices).map((size) => (
+                              <SelectItem key={size} value={size}>
+                                {size}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </>
+                    ) : (
+                      <h3 className="text-base sm:text-lg font-semibold text-foreground leading-tight">
+                        {item.name}
+                        {item.size && <span className="text-muted-foreground font-normal text-sm ml-2">({item.size})</span>}
+                      </h3>
+                    )}
+
                     <div className="flex items-center gap-2">
                        <Button 
                           variant="outline" 

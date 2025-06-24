@@ -34,6 +34,18 @@ export interface CartItem extends Dish {
   price: number;
 }
 
+export interface CartContextType {
+  cartItems: CartItem[];
+  addItem: (dish: Dish, quantity?: number, size?: string) => void;
+  removeItem: (cartItemId: string) => void;
+  updateItemQuantity: (cartItemId: string, quantity: number) => void;
+  updateItemSize: (cartItemId: string, newSize: string) => void;
+  clearCart: () => void;
+  totalPrice: number;
+  totalItems: number; // Total number of individual items (sum of quantities)
+}
+
+
 export interface User {
   id: string;
   name?: string | null;
