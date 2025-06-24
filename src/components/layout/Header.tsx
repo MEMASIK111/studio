@@ -7,7 +7,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescri
 import Image from 'next/image';
 
 const Logo = () => (
-    <Link href="/" className="flex items-center" aria-label={`${APP_NAME} - на главную`}>
+    <Link href="/" className="flex items-center shrink-0" aria-label={`${APP_NAME} - на главную`}>
         <Image
             src="/logo.png"
             alt={`${APP_NAME} logo`}
@@ -37,7 +37,15 @@ const MobileNavSheet = () => (
     <SheetContent side="left" className="w-[300px] p-0">
        <SheetHeader className="p-4 border-b">
         <SheetTitle asChild>
-            <Logo />
+            <div className="flex items-center">
+                 <Image
+                    src="/logo.png"
+                    alt={`${APP_NAME} logo`}
+                    width={40}
+                    height={40}
+                    priority
+                />
+            </div>
         </SheetTitle>
         <SheetDescription className="sr-only">
           Основная навигация по сайту и ссылки на аккаунт.
@@ -82,9 +90,7 @@ const MobileNavSheet = () => (
 );
 
 
-const UserActions = () => (
-  <div className="flex items-center space-x-1 sm:space-x-2">
-    {/* Desktop-only Actions */}
+const UserActionsDesktop = () => (
     <div className="hidden lg:flex items-center space-x-2">
        <a href={`tel:${PHONE_NUMBER.replace(/\s+/g, '')}`} className="flex items-center font-semibold text-foreground hover:text-primary text-sm">
         <Phone className="mr-2 h-5 w-5 text-primary" />
@@ -96,10 +102,6 @@ const UserActions = () => (
         </Button>
       ))}
     </div>
-    
-    {/* Cart Icon visible on all screen sizes */}
-    <CartIcon />
-  </div>
 );
 
 
@@ -107,16 +109,21 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/40 bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
-        {/* Left Side: Logo and Desktop Nav */}
-        <div className="flex items-center gap-6">
-          <Logo />
-          <DesktopNav />
+        {/* Desktop Header */}
+        <div className="hidden lg:flex w-full items-center justify-between">
+            <div className="flex items-center gap-6">
+                <Logo />
+                <DesktopNav />
+            </div>
+            <div className="flex items-center space-x-1 sm:space-x-2">
+              <UserActionsDesktop />
+              <CartIcon />
+            </div>
         </div>
 
-        {/* Right Side: Actions and Mobile Menu */}
-        <div className="flex items-center gap-1">
-          <UserActions />
-          <div className="lg:hidden">
+        {/* Mobile Header */}
+        <div className="flex lg:hidden w-full items-center justify-between">
+          <div className="flex-1">
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
@@ -126,6 +133,12 @@ export default function Header() {
               </SheetTrigger>
               <MobileNavSheet />
             </Sheet>
+          </div>
+          <div className="flex-1 flex justify-center">
+            <Logo />
+          </div>
+          <div className="flex-1 flex justify-end">
+            <CartIcon />
           </div>
         </div>
       </div>
