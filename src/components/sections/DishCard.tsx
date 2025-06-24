@@ -19,13 +19,26 @@ export default function DishCard({ dish }: DishCardProps) {
   const [isFavorite, setIsFavorite] = useState(false);
   const { addItem } = useCart();
 
+  const isPizza = dish.category === 'pizza' && dish.prices;
+  const startingPrice = isPizza ? Object.values(dish.prices!)[0] : dish.price;
+
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    addItem(dish, 1);
+
+    let size;
+    let toastDescription = `${dish.name} теперь в вашей корзине.`;
+
+    if (isPizza) {
+      size = Object.keys(dish.prices!)[0]; // Add default size (e.g., "30 см")
+      toastDescription = `${dish.name} (${size}) теперь в вашей корзине.`;
+    }
+    
+    addItem(dish, 1, size);
+    
     toast({
       title: "Блюдо добавлено!",
-      description: `${dish.name} теперь в вашей корзине.`,
+      description: toastDescription,
       variant: "default",
     });
   };
@@ -53,6 +66,7 @@ export default function DishCard({ dish }: DishCardProps) {
               style={{ objectFit: 'cover' }}
               className="transition-transform duration-300 group-hover:scale-105"
               data-ai-hint={dish.dataAiHint || "food meal"}
+              unoptimized
             />
           </div>
         </CardHeader>
@@ -65,7 +79,9 @@ export default function DishCard({ dish }: DishCardProps) {
           </div>
           <div className="mt-auto">
             <div className="flex items-center justify-between gap-2 mb-2">
-              <p className="text-lg font-bold text-primary">{dish.price} руб.</p>
+              <p className="text-lg font-bold text-primary">
+                {isPizza && 'от '}{startingPrice} руб.
+              </p>
                <Button variant="ghost" size="icon" onClick={handleToggleFavorite} className="text-muted-foreground hover:text-destructive rounded-md border bg-transparent hover:bg-card flex-shrink-0 h-8 w-8">
                   <Heart className={`h-4 w-4 transition-colors ${isFavorite ? 'fill-red-500 text-red-500' : ''}`} />
               </Button>

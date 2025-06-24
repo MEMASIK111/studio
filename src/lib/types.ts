@@ -3,14 +3,15 @@ export interface Dish {
   name: string;
   description: string;
   ingredients: string[];
-  price: number;
+  price?: number; // Price for non-pizza items
+  prices?: Record<string, number>; // Prices for different sizes, e.g., { "30cm": 500, "40cm": 650 }
   category: string;
   subCategory?: string;
   imageUrl: string;
   popular?: boolean;
   new?: boolean;
-  rating?: number; // Рейтинг оставим, но не будем отображать на карточке
-  reviews?: number; // Количество отзывов оставим, но не будем отображать
+  rating?: number;
+  reviews?: number;
   dataAiHint?: string;
 }
 
@@ -23,6 +24,14 @@ export interface Category {
 
 export interface CartItem extends Dish {
   quantity: number;
+  // Overriding id to be the unique identifier for the cart item (e.g., "pizza-1-30cm")
+  id: string; 
+  // The original dish ID
+  dishId: string;
+  // The selected size for items that have sizes
+  size?: string;
+  // The price for the selected size
+  price: number;
 }
 
 export interface User {

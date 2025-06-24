@@ -10,6 +10,7 @@ import { ChevronLeft } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 export default async function DishPage({ params }: { params: { id: string } }) {
+  // The ID from the URL is the original dish ID, not the cart item ID
   const dish = getDishById(params.id);
 
   if (!dish) {
@@ -39,6 +40,7 @@ export default async function DishPage({ params }: { params: { id: string } }) {
                 sizes="(max-width: 768px) 100vw, 40vw"
                 data-ai-hint={dish.dataAiHint || "food meal"}
                 priority
+                unoptimized
                 />
             </div>
           </div>

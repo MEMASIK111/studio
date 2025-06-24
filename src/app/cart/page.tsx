@@ -49,11 +49,15 @@ export default function CartPage() {
                         style={{ objectFit: 'cover' }}
                         sizes="(max-width: 640px) 80px, 96px"
                         data-ai-hint="food meal"
+                        unoptimized
                     />
                   </div>
 
                   <div className="flex-grow flex flex-col gap-1">
-                    <h3 className="text-base sm:text-lg font-semibold text-foreground leading-tight">{item.name}</h3>
+                    <h3 className="text-base sm:text-lg font-semibold text-foreground leading-tight">
+                      {item.name}
+                      {item.size && <span className="text-muted-foreground font-normal text-sm ml-2">({item.size})</span>}
+                    </h3>
                     <div className="flex items-center gap-2">
                        <Button 
                           variant="outline" 

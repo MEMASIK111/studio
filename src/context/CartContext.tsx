@@ -6,9 +6,9 @@ import React, { createContext, useContext, useState, ReactNode, useEffect } from
 
 interface CartContextType {
   cartItems: CartItem[];
-  addItem: (dish: Dish, quantity?: number) => void;
-  removeItem: (dishId: string) => void;
-  updateItemQuantity: (dishId: string, quantity: number) => void;
+  addItem: (dish: Dish, quantity?: number, size?: string) => void;
+  removeItem: (cartItemId: string) => void;
+  updateItemQuantity: (cartItemId: string, quantity: number) => void;
   clearCart: () => void;
   totalPrice: number;
   totalItems: number; // Total number of individual items (sum of quantities)
@@ -29,12 +29,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
           setCartItems(JSON.parse(localData));
         } catch (e) {
           console.error("Failed to parse cartItems from localStorage", e);
-          // setCartItems([]); // Already initialized to empty, so this is optional
         }
       }
       setIsCartLoadedFromStorage(true); // Mark cart as loaded from storage
     }
-  }, []); // Empty dependency array: run once on mount
+  }, []);
 
   // Save cart to localStorage whenever it changes, but only if it has been loaded from storage first
   useEffect(() => {
@@ -43,29 +42,54 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [cartItems, isCartLoadedFromStorage]);
 
-  const addItem = (dish: Dish, quantity: number = 1) => {
+  const addItem = (dish: Dish, quantity: number = 1, size?: string) => {
     setCartItems((prevItems) => {
-      const existingItem = prevItems.find((item) => item.id === dish.id);
+      // Create a unique ID for the cart item based on the dish ID and size
+      const cartItemId = size ? `${dish.id}-${size}` : dish.id;
+      
+      const existingItem = prevItems.find((item) => item.id === cartItemId);
+
       if (existingItem) {
+        // If item already exists, just update the quantity
         return prevItems.map((item) =>
-          item.id === dish.id
+          item.id === cartItemId
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
+      } else {
+        // If it's a new item, add it to the cart
+        let price: number;
+        if (size && dish.prices) {
+            price = dish.prices[size];
+        } else if (dish.price) {
+            price = dish.price;
+        } else {
+            console.error("No price found for the dish:", dish.name);
+            return prevItems; // Or handle this error appropriately
+        }
+
+        const newItem: CartItem = {
+          ...dish,
+          id: cartItemId, // Unique cart ID
+          dishId: dish.id, // Original dish ID
+          quantity,
+          size,
+          price,
+        };
+        return [...prevItems, newItem];
       }
-      return [...prevItems, { ...dish, quantity }];
     });
   };
 
-  const removeItem = (dishId: string) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== dishId));
+  const removeItem = (cartItemId: string) => {
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== cartItemId));
   };
 
-  const updateItemQuantity = (dishId: string, quantity: number) => {
+  const updateItemQuantity = (cartItemId: string, quantity: number) => {
     setCartItems((prevItems) =>
       prevItems
         .map((item) =>
-          item.id === dishId ? { ...item, quantity } : item
+          item.id === cartItemId ? { ...item, quantity } : item
         )
         .filter((item) => item.quantity > 0) // Remove if quantity is 0 or less
     );
