@@ -36,7 +36,6 @@ export const MENU_CATEGORIES: Category[] = [
     subCategories: [
       { id: "cold-rolls", name: "Холодные роллы", slug: "cold-rolls" },
       { id: "hot-rolls", name: "Горячие роллы", slug: "hot-rolls" },
-      { id: "sets", name: "Сеты", slug: "sets" },
     ],
   },
   { id: "pizza", name: "Пицца", slug: "pizza" },
