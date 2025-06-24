@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { NAV_LINKS, APP_NAME, USER_NAV_LINKS_GUEST, PHONE_NUMBER } from '@/lib/constants';
 import CartIcon from '@/components/cart/CartIcon';
-import { Menu, Phone } from 'lucide-react';
+import { Menu, Phone, User } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import Image from 'next/image';
 
@@ -110,7 +110,7 @@ export default function Header() {
     <header className="sticky top-0 z-40 w-full border-b border-border/40 bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
         {/* Desktop Header */}
-        <div className="hidden lg:flex w-full items-center justify-between">
+        <div className="hidden w-full items-center justify-between lg:flex">
             <div className="flex items-center gap-6">
                 <Logo />
                 <DesktopNav />
@@ -122,8 +122,9 @@ export default function Header() {
         </div>
 
         {/* Mobile Header */}
-        <div className="flex lg:hidden w-full items-center justify-between">
-          <div className="flex-1">
+        <div className="relative flex w-full items-center justify-between lg:hidden">
+          {/* Left actions */}
+          <div className="flex items-center">
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
@@ -134,10 +135,19 @@ export default function Header() {
               <MobileNavSheet />
             </Sheet>
           </div>
-          <div className="flex-1 flex justify-center">
+
+          {/* Centered Logo */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <Logo />
           </div>
-          <div className="flex-1 flex justify-end">
+
+          {/* Right actions */}
+          <div className="flex items-center">
+            <Button variant="ghost" size="icon" asChild>
+              <Link href="/auth/login" aria-label="Войти в аккаунт">
+                <User className="h-6 w-6" />
+              </Link>
+            </Button>
             <CartIcon />
           </div>
         </div>
