@@ -41,6 +41,7 @@ const DesktopNav = () => (
 const MobileNavSheet = () => (
     <SheetContent side="left" className="w-[300px] p-0">
        <SheetHeader className="p-4 border-b">
+        <SheetTitle className="sr-only">Главное меню</SheetTitle>
         <SheetClose asChild>
           <Link href="/" className="flex items-center" aria-label={`${APP_NAME} - на главную`}>
                <Image
