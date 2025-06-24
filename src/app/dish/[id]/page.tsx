@@ -19,8 +19,8 @@ export default async function DishPage({ params }: { params: { id: string } }) {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow container mx-auto max-w-screen-lg px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-        <div className="mb-8">
+      <main className="flex-grow container mx-auto max-w-screen-lg px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+        <div className="mb-4 sm:mb-6">
             <Button variant="ghost" asChild>
                 <Link href="/#menu">
                     <ChevronLeft className="mr-2 h-4 w-4" />
@@ -28,7 +28,7 @@ export default async function DishPage({ params }: { params: { id: string } }) {
                 </Link>
             </Button>
         </div>
-        <div className="grid md:grid-cols-5 gap-8 lg:gap-16">
+        <div className="grid md:grid-cols-5 gap-6 lg:gap-12">
           <div className="md:col-span-2">
             <div className="relative aspect-square rounded-lg overflow-hidden shadow-2xl">
                 <Image
@@ -43,21 +43,21 @@ export default async function DishPage({ params }: { params: { id: string } }) {
             </div>
           </div>
           <div className="md:col-span-3 flex flex-col">
-            <h1 className="text-4xl md:text-5xl font-headline font-bold text-primary mb-3">{dish.name}</h1>
-            <p className="text-lg text-muted-foreground mb-8">{dish.description}</p>
+            <h1 className="text-3xl md:text-4xl font-headline font-bold text-primary mb-2">{dish.name}</h1>
+            <p className="text-base text-muted-foreground mb-6">{dish.description}</p>
             
-            <div className="mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-foreground">Состав:</h3>
+            <div className="mb-6">
+                <h3 className="text-lg font-semibold mb-3 text-foreground">Состав:</h3>
                 <div className="flex flex-wrap gap-2">
                     {dish.ingredients.map((ingredient) => (
-                        <Badge key={ingredient} variant="outline" className="text-base font-medium py-1 px-3 bg-card">
+                        <Badge key={ingredient} variant="outline" className="text-sm font-normal py-1 px-2 bg-card">
                             {ingredient}
                         </Badge>
                     ))}
                 </div>
             </div>
             
-             <div className="mt-auto pt-8 border-t border-border/40">
+             <div className="mt-auto pt-6 border-t border-border/40">
                 <DishDetailsActions dish={dish} />
              </div>
           </div>

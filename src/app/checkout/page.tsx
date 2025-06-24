@@ -1,4 +1,3 @@
-
 // src/app/checkout/page.tsx
 'use client';
 
@@ -63,22 +62,22 @@ export default function CheckoutPage() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow container mx-auto max-w-screen-md px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-headline font-bold text-primary mb-10 text-center">
+      <main className="flex-grow container mx-auto max-w-screen-md px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <h1 className="text-2xl sm:text-3xl font-headline font-bold text-primary mb-8 text-center">
           Оформление заказа
         </h1>
 
         <Card className="shadow-xl">
-          <CardContent className="p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8">
+          <CardContent className="p-4 sm:p-6 space-y-6">
             {/* Account Section */}
             <section>
               <div className="flex items-center space-x-2 mb-4">
                 <Checkbox id="hasAccount" checked={hasAccount} onCheckedChange={(checked) => setHasAccount(Boolean(checked))} />
-                <Label htmlFor="hasAccount" className="text-base font-medium">У меня уже есть учётная запись</Label>
+                <Label htmlFor="hasAccount" className="font-medium">У меня уже есть учётная запись</Label>
               </div>
 
-              <Card className="bg-background/50 p-4 sm:p-6">
-                <CardTitle className="text-xl font-headline mb-4 text-foreground">
+              <Card className="bg-background/50 p-4">
+                <CardTitle className="text-lg sm:text-xl font-headline mb-4 text-foreground">
                   {hasAccount ? 'Вход в аккаунт' : 'Контактная информация'}
                 </CardTitle>
                 {hasAccount ? (
@@ -86,15 +85,15 @@ export default function CheckoutPage() {
                     <div className="space-y-1">
                       <Label htmlFor="login-email">Email <span className="text-destructive">*</span></Label>
                       <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                        <Input id="login-email" type="email" placeholder="you@example.com" required className="pl-10" />
+                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input id="login-email" type="email" placeholder="you@example.com" required className="pl-9" />
                       </div>
                     </div>
                     <div className="space-y-1">
                       <Label htmlFor="login-password">Пароль <span className="text-destructive">*</span></Label>
                       <div className="relative">
-                         <LockKeyhole className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                        <Input id="login-password" type="password" placeholder="••••••••" required className="pl-10" />
+                         <LockKeyhole className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input id="login-password" type="password" placeholder="••••••••" required className="pl-9" />
                       </div>
                     </div>
                     <Button type="button" className="w-full" disabled>Войти (в разработке)</Button>
@@ -104,29 +103,29 @@ export default function CheckoutPage() {
                     <div className="space-y-1">
                       <Label htmlFor="guest-email">Email <span className="text-destructive">*</span></Label>
                        <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                        <Input id="guest-email" type="email" placeholder="you@example.com" required className="pl-10" />
+                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input id="guest-email" type="email" placeholder="you@example.com" required className="pl-9" />
                        </div>
                     </div>
                     <div className="space-y-1">
                       <Label htmlFor="guest-name">Имя <span className="text-destructive">*</span></Label>
                        <div className="relative">
-                        <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                        <Input id="guest-name" type="text" placeholder="Иван" required className="pl-10" />
+                        <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input id="guest-name" type="text" placeholder="Иван" required className="pl-9" />
                        </div>
                     </div>
                     <div className="space-y-1">
                       <Label htmlFor="guest-lastname">Фамилия <span className="text-destructive">*</span></Label>
                        <div className="relative">
-                        <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                        <Input id="guest-lastname" type="text" placeholder="Иванов" required className="pl-10" />
+                        <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input id="guest-lastname" type="text" placeholder="Иванов" required className="pl-9" />
                       </div>
                     </div>
                     <div className="space-y-1">
                       <Label htmlFor="guest-phone">Контактный телефон <span className="text-destructive">*</span></Label>
                        <div className="relative">
-                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                        <Input id="guest-phone" type="tel" placeholder="+7 (XXX) XXX-XX-XX" required className="pl-10" />
+                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input id="guest-phone" type="tel" placeholder="+7 (XXX) XXX-XX-XX" required className="pl-9" />
                       </div>
                     </div>
                   </div>
@@ -138,13 +137,13 @@ export default function CheckoutPage() {
 
             {/* Delivery Method Section */}
             <section>
-              <CardTitle className="text-xl font-headline mb-4 text-foreground">Способ доставки</CardTitle>
+              <CardTitle className="text-lg sm:text-xl font-headline mb-4 text-foreground">Способ доставки</CardTitle>
               <RadioGroup value={deliveryMethod} onValueChange={(value) => setDeliveryMethod(value as 'courier' | 'pickup')} className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Courier Option */}
-                <Label htmlFor="delivery-courier" className={`flex flex-col items-start p-4 border rounded-lg cursor-pointer transition-all ${deliveryMethod === 'courier' ? 'border-primary ring-2 ring-primary shadow-md' : 'border-border hover:border-muted-foreground/50'}`}>
+                <Label htmlFor="delivery-courier" className={`flex flex-col items-start p-3 sm:p-4 border rounded-lg cursor-pointer transition-all ${deliveryMethod === 'courier' ? 'border-primary ring-2 ring-primary shadow-md' : 'border-border hover:border-muted-foreground/50'}`}>
                   <div className="flex items-center w-full">
                     <RadioGroupItem value="courier" id="delivery-courier" className="mr-3 shrink-0" />
-                    <PackageOpen className={`mr-2 h-6 w-6 ${deliveryMethod === 'courier' ? 'text-primary' : 'text-muted-foreground'}`} />
+                    <PackageOpen className={`mr-2 h-5 w-5 ${deliveryMethod === 'courier' ? 'text-primary' : 'text-muted-foreground'}`} />
                     <span className="font-semibold text-base text-foreground">Курьер</span>
                   </div>
                   <p className={`text-sm mt-1 ml-9 ${deliveryMethod === 'courier' ? 'text-primary' : 'text-muted-foreground'}`}>Стоимость доставки нефиксированная</p>
@@ -185,10 +184,10 @@ export default function CheckoutPage() {
                 </Label>
 
                 {/* Pickup Option */}
-                <Label htmlFor="delivery-pickup" className={`flex flex-col items-start p-4 border rounded-lg cursor-pointer transition-all ${deliveryMethod === 'pickup' ? 'border-primary ring-2 ring-primary shadow-md' : 'border-border hover:border-muted-foreground/50'}`}>
+                <Label htmlFor="delivery-pickup" className={`flex flex-col items-start p-3 sm:p-4 border rounded-lg cursor-pointer transition-all ${deliveryMethod === 'pickup' ? 'border-primary ring-2 ring-primary shadow-md' : 'border-border hover:border-muted-foreground/50'}`}>
                   <div className="flex items-center w-full">
                     <RadioGroupItem value="pickup" id="delivery-pickup" className="mr-3 shrink-0" />
-                    <ShoppingBag className={`mr-2 h-6 w-6 ${deliveryMethod === 'pickup' ? 'text-primary' : 'text-muted-foreground'}`} />
+                    <ShoppingBag className={`mr-2 h-5 w-5 ${deliveryMethod === 'pickup' ? 'text-primary' : 'text-muted-foreground'}`} />
                     <span className="font-semibold text-base text-foreground">Самовывоз</span>
                   </div>
                   <div className="mt-2 ml-9 space-y-1 text-foreground/90">
@@ -210,9 +209,9 @@ export default function CheckoutPage() {
 
             {/* Payment Method Section */}
             <section>
-              <CardTitle className="text-xl font-headline mb-4 text-foreground">Способ оплаты</CardTitle>
+              <CardTitle className="text-lg sm:text-xl font-headline mb-4 text-foreground">Способ оплаты</CardTitle>
               <RadioGroup defaultValue="cash_on_delivery" className="space-y-2">
-                 <Label htmlFor="payment-cash" className="flex items-center p-4 border rounded-lg cursor-pointer transition-all border-primary ring-2 ring-primary shadow-md">
+                 <Label htmlFor="payment-cash" className="flex items-center p-3 sm:p-4 border rounded-lg cursor-pointer transition-all border-primary ring-2 ring-primary shadow-md">
                     <RadioGroupItem value="cash_on_delivery" id="payment-cash" className="mr-3 shrink-0" checked={true} />
                     <Wallet className="mr-3 h-6 w-6 text-primary" />
                     <div className="text-foreground">
@@ -227,7 +226,7 @@ export default function CheckoutPage() {
 
             {/* Order Comments Section */}
             <section className="space-y-4">
-              <CardTitle className="text-xl font-headline text-foreground">Комментарии к заказу</CardTitle>
+              <CardTitle className="text-lg sm:text-xl font-headline text-foreground">Комментарии к заказу</CardTitle>
               <div>
                 <Label htmlFor="comments">Ваши пожелания</Label>
                 <Textarea
@@ -250,10 +249,10 @@ export default function CheckoutPage() {
                 />
               </div>
               <div className="text-right">
-                <p className="text-lg font-semibold text-foreground">
+                <p className="text-base sm:text-lg font-semibold text-foreground">
                   Итоговая сумма: <span className="text-primary">{Math.round(calculatedTotalPrice)} руб.</span>
-                  {deliveryMethod === 'courier' && <span className="text-base text-muted-foreground"> (без учета доставки)</span>}
-                  {deliveryMethod === 'pickup' && originalTotalPrice !== calculatedTotalPrice && <span className="text-base text-muted-foreground"> (скидка 10% применена)</span>}
+                  {deliveryMethod === 'courier' && <span className="text-sm text-muted-foreground"> (без учета доставки)</span>}
+                  {deliveryMethod === 'pickup' && originalTotalPrice !== calculatedTotalPrice && <span className="text-sm text-muted-foreground"> (скидка 10% применена)</span>}
                 </p>
               </div>
             </section>

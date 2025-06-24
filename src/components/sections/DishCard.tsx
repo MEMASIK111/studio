@@ -56,21 +56,21 @@ export default function DishCard({ dish }: DishCardProps) {
             />
           </div>
         </CardHeader>
-        <CardContent className="p-4 flex-grow flex flex-col justify-between">
+        <CardContent className="p-3 flex-grow flex flex-col justify-between">
           <div>
-            <CardTitle className="text-xl font-headline leading-tight text-foreground mb-1 h-14">{dish.name}</CardTitle>
-            <CardDescription className="text-sm text-muted-foreground mb-3 line-clamp-2">
+            <CardTitle className="text-lg font-headline leading-tight text-foreground mb-1 h-14">{dish.name}</CardTitle>
+            <CardDescription className="text-xs text-muted-foreground mb-2 line-clamp-2">
               {dish.description}
             </CardDescription>
           </div>
           <div className="mt-auto">
-            <div className="flex items-center justify-between gap-2 mb-3">
-              <p className="text-xl font-bold text-primary">{dish.price} руб.</p>
-               <Button variant="ghost" size="icon" onClick={handleToggleFavorite} className="text-muted-foreground hover:text-destructive rounded-md border bg-transparent hover:bg-card flex-shrink-0">
-                  <Heart className={`h-5 w-5 transition-colors ${isFavorite ? 'fill-red-500 text-red-500' : ''}`} />
+            <div className="flex items-center justify-between gap-2 mb-2">
+              <p className="text-lg font-bold text-primary">{dish.price} руб.</p>
+               <Button variant="ghost" size="icon" onClick={handleToggleFavorite} className="text-muted-foreground hover:text-destructive rounded-md border bg-transparent hover:bg-card flex-shrink-0 h-8 w-8">
+                  <Heart className={`h-4 w-4 transition-colors ${isFavorite ? 'fill-red-500 text-red-500' : ''}`} />
               </Button>
             </div>
-            <Button onClick={handleAddToCart} className="w-full font-semibold">
+            <Button onClick={handleAddToCart} size="sm" className="w-full font-semibold">
                 <ShoppingCart className="mr-2 h-4 w-4" />
                 В корзину
             </Button>

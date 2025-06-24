@@ -11,15 +11,15 @@ const Logo = () => (
         <Image
             src="/logo.png"
             alt={`${APP_NAME} logo`}
-            width={60}
-            height={60}
+            width={48}
+            height={48}
             priority
         />
     </Link>
 );
 
 const DesktopNav = () => (
-  <nav className="hidden lg:flex items-center space-x-6 text-lg">
+  <nav className="hidden lg:flex items-center space-x-6 text-base">
     {NAV_LINKS.map((link) => (
       <Link
         key={link.href}
@@ -84,7 +84,7 @@ const MobileNav = () => (
 );
 
 const UserActions = () => (
-  <div className="flex items-center space-x-3">
+  <div className="flex items-center space-x-2 sm:space-x-3">
     <div className="hidden lg:flex items-center space-x-2">
       {USER_NAV_LINKS_GUEST.map((link) => (
         <Button key={link.href} variant="outline" asChild>
@@ -109,7 +109,7 @@ const UserActions = () => (
 export default function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/40 bg-background/80 backdrop-blur-sm">
-      <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8 relative">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8 relative">
         <div className="flex items-center">
           <MobileNav />
           <div className="hidden lg:flex mr-6">

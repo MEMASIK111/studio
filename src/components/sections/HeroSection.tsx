@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full h-[60vh] min-h-[400px] md:h-[70vh] flex items-center justify-center text-center overflow-hidden bg-gradient-to-r from-amber-50 to-orange-100">
+    <section className="relative w-full h-[50vh] min-h-[350px] md:h-[60vh] flex items-center justify-center text-center overflow-hidden bg-gradient-to-r from-amber-50 to-orange-100">
         <div className="absolute inset-0 z-0">
              <Image
                 src="https://placehold.co/1920x1080.png"
@@ -17,17 +17,17 @@ export default function HeroSection() {
             />
         </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center justify-center h-full">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-headline font-bold text-foreground tracking-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-headline font-bold text-foreground tracking-tight">
           Доставка вкусной еды в <span className="text-primary">Каспийске</span>
         </h1>
-        <p className="mt-4 max-w-2xl text-lg md:text-xl text-foreground/80">
+        <p className="mt-3 max-w-2xl text-base md:text-lg text-foreground/80">
           Насладитесь изысканными блюдами: от ароматной пиццы до свежайших роллов, приготовленных с любовью.
         </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Button size="lg" asChild className="text-lg px-8 py-6 font-bold">
+        <div className="mt-6 flex flex-wrap justify-center gap-3 sm:gap-4">
+          <Button size="lg" asChild className="text-base font-semibold px-6 h-12">
             <Link href="/#menu">Перейти в меню</Link>
           </Button>
-          <Button size="lg" variant="outline" asChild className="text-lg px-8 py-6 font-bold">
+          <Button size="lg" variant="outline" asChild className="text-base font-semibold px-6 h-12">
             <Link href="/delivery-info">Условия доставки</Link>
           </Button>
         </div>
