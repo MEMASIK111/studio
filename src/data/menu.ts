@@ -20,8 +20,8 @@ export const mockDishes: Dish[] = [
   {
     id: '5',
     name: 'Пицца Пепперони',
-    description: 'Томат для пиццы, сыр моцарелла, колбаса, перец "Халапеньо".',
-    ingredients: ['Тесто', 'Томатный соус', 'Сыр Моцарелла', 'Колбаса пепперони', 'Перец Халапеньо'],
+    description: 'Томат для пиццы, сыр моцарелла, колбаса чеченская халяль, перец "Халапеньо".',
+    ingredients: ['Тесто', 'Томатный соус', 'Сыр Моцарелла', 'Колбаса чеченская халяль', 'Перец Халапеньо'],
     prices: { '30 см': 420, '40 см': 650 },
     category: 'pizza',
     imageUrl: '/Пеперони.png',
@@ -340,5 +340,5 @@ export const getDishesByCategory = (categorySlug: string, subCategorySlug?: stri
 };
 
 export const getPopularDishes = (): Dish[] => mockDishes.filter(dish => dish.popular);
-export const getNewDishes = (): Dish[] => mockDishes.filter(dish => dish.new);
+export const getNewDishes = (): Dish[] => mockDishes.filter(dish => !dish.new);
 export const getDishById = (id: string): Dish | undefined => mockDishes.find(dish => dish.id === id);
