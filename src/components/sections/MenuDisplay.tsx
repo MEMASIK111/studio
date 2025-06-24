@@ -15,10 +15,10 @@ export default function MenuDisplay() {
   return (
     <section id="menu" className="py-8 sm:py-12 md:py-16 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8">
+        <div className="text-center mb-8 animate-in fade-in slide-in-from-top-4 duration-700">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-headline font-bold text-primary">Наше Меню</h2>
         </div>
-        <Tabs defaultValue={activeTab} onValueChange={setActiveTab} className="w-full">
+        <Tabs defaultValue={activeTab} onValueChange={setActiveTab} className="w-full animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
           <div className="flex justify-center mb-6 sm:mb-8">
             <ScrollArea className="max-w-full">
                 <TabsList className="inline-flex h-auto p-1 bg-primary/10 rounded-lg">

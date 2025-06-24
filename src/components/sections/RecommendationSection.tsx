@@ -49,7 +49,7 @@ export default function RecommendationSection() {
     return (
         <section id="recommendations" className="py-12 md:py-20 bg-background">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-10">
+                <div className="text-center mb-10 animate-in fade-in slide-in-from-top-4 duration-700">
                     <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">
                         Рекомендуем Попробовать
                     </h2>
@@ -65,7 +65,7 @@ export default function RecommendationSection() {
                     </Alert>
                 )}
 
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-6 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
                     {isLoading ? (
                         Array.from({ length: 5 }).map((_, index) => (
                             <div key={index} className="flex flex-col overflow-hidden h-full shadow-sm rounded-lg border-none bg-card">

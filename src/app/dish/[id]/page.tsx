@@ -21,7 +21,7 @@ export default async function DishPage({ params }: { params: { id: string } }) {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow container mx-auto max-w-screen-lg px-4 sm:px-6 lg:px-8 py-6 md:py-10">
-        <div className="mb-4 sm:mb-6">
+        <div className="mb-4 sm:mb-6 animate-in fade-in slide-in-from-left-4 duration-500">
             <Button variant="ghost" asChild>
                 <Link href="/#menu">
                     <ChevronLeft className="mr-2 h-4 w-4" />
@@ -30,7 +30,7 @@ export default async function DishPage({ params }: { params: { id: string } }) {
             </Button>
         </div>
         <div className="grid md:grid-cols-5 gap-6 lg:gap-12">
-          <div className="md:col-span-2">
+          <div className="md:col-span-2 animate-in fade-in zoom-in-95 duration-500">
             <div className="relative aspect-square rounded-lg overflow-hidden shadow-2xl">
                 <Image
                 src={dish.imageUrl}
@@ -44,7 +44,7 @@ export default async function DishPage({ params }: { params: { id: string } }) {
                 />
             </div>
           </div>
-          <div className="md:col-span-3 flex flex-col">
+          <div className="md:col-span-3 flex flex-col animate-in fade-in slide-in-from-right-8 duration-700 delay-200">
             <h1 className="text-3xl md:text-4xl font-headline font-bold text-primary mb-2">{dish.name}</h1>
             <p className="text-base text-muted-foreground mb-6">{dish.description}</p>
             

@@ -19,7 +19,7 @@ export default function CartPage() {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow container mx-auto max-w-screen-lg px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
-        <div className="flex flex-col sm:flex-row items-center justify-between mb-8 gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between mb-8 gap-4 animate-in fade-in slide-in-from-top-4 duration-700">
           <h1 className="text-3xl sm:text-4xl font-headline font-bold text-primary text-center sm:text-left">Ваша Корзина</h1>
           {cartItems.length > 0 && (
             <Button variant="outline" asChild>
@@ -29,7 +29,7 @@ export default function CartPage() {
         </div>
 
         {cartItems.length === 0 ? (
-          <div className="text-center py-12">
+          <div className="text-center py-12 animate-in fade-in zoom-in-95 duration-500">
             <ShoppingCart className="mx-auto h-20 w-20 sm:h-24 sm:w-24 text-muted-foreground/50 mb-6" />
             <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-3">Ваша корзина пуста</h2>
             <p className="text-muted-foreground mb-6 text-sm sm:text-base">Похоже, вы еще ничего не добавили. Давайте это исправим!</p>
@@ -38,7 +38,7 @@ export default function CartPage() {
             </Button>
           </div>
         ) : (
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
             <div className="md:col-span-2 space-y-4">
               {cartItems.map((item) => (
                 <Card key={item.id} className="flex items-center p-3 gap-4 shadow-sm">
