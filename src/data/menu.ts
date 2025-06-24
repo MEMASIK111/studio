@@ -76,8 +76,8 @@ export const mockDishes: Dish[] = [
   {
     id: '14',
     name: 'Пицца Охотничья',
-    description: 'Соус барбекю, лук репчатый, сыр моцарелла, охотничья колбаса, корнишоны.',
-    ingredients: ['Тесто', 'Соус барбекю', 'Сыр Моцарелла', 'Охотничьи колбаски', 'Корнишоны', 'Лук репчатый'],
+    description: 'Соус барбекю, красный лук, сыр моцарелла, охотничья колбаса, корнишоны.',
+    ingredients: ['Тесто', 'Соус барбекю', 'Сыр Моцарелла', 'Охотничьи колбаски', 'Корнишоны', 'Красный лук'],
     prices: { '30 см': 470, '40 см': 620 },
     category: 'pizza',
     imageUrl: '/охота.png',
@@ -340,5 +340,5 @@ export const getDishesByCategory = (categorySlug: string, subCategorySlug?: stri
 };
 
 export const getPopularDishes = (): Dish[] => mockDishes.filter(dish => dish.popular);
-export const getNewDishes = (): Dish[] => mockDishes.filter(dish => !dish.new);
+export const getNewDishes = (): Dish[] => mockDishes.filter(dish => dish.new);
 export const getDishById = (id: string): Dish | undefined => mockDishes.find(dish => dish.id === id);
