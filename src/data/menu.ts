@@ -184,7 +184,7 @@ export const mockDishes: Dish[] = [
     price: 390,
     category: 'rolls',
     subCategory: 'hot-rolls',
-    imageUrl: '/Ролл Цезарь с курицей.png',
+    imageUrl: '/roll-caesar-chicken.png',
     dataAiHint: 'sushi caesar chicken tempura',
     popular: false,
     new: false,
@@ -429,3 +429,6 @@ export const getDishById = (id: string): Dish | undefined => mockDishes.find(dis
 
 
 
+
+
+    
