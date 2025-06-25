@@ -60,7 +60,7 @@ export default function DishCard({ dish }: DishCardProps) {
         <CardHeader className="p-0">
           <div className="aspect-[4/3] w-full relative overflow-hidden rounded-t-xl">
             <Image
-              src={encodeURI(dish.imageUrl)}
+              src={dish.imageUrl}
               alt={dish.name}
               fill
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
