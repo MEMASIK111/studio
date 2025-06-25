@@ -12,16 +12,37 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { PackageOpen, Wallet, User, Mail, Phone, LockKeyhole, ShoppingBag, MapPin, CalendarDays, Info } from 'lucide-react';
+import { PackageOpen, Wallet, User, Mail, Phone, LockKeyhole, ShoppingBag, MapPin, CalendarDays } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { ADDRESS, WORKING_HOURS } from '@/lib/constants';
 import Link from 'next/link';
 
+// All form fields in one state object for easier management
+const initialFormData = {
+  // Account info
+  loginEmail: '',
+  loginPassword: '',
+  guestEmail: '',
+  guestName: '',
+  guestLastname: '',
+  guestPhone: '',
+  // Delivery info
+  street: '',
+  house: '',
+  building: '',
+  apartment: '',
+  entrance: '',
+  floor: '',
+  // Order details
+  comments: '',
+  cutlery: '1',
+};
+
+
 export default function CheckoutPage() {
   const [hasAccount, setHasAccount] = useState(false);
   const [deliveryMethod, setDeliveryMethod] = useState<'courier' | 'pickup'>('courier');
-  const [cutleryCount, setCutleryCount] = useState<number | string>(1);
-  const [comments, setComments] = useState('');
+  const [formData, setFormData] = useState(initialFormData);
 
   const { cartItems, totalPrice: originalTotalPrice, totalItems } = useCart();
 
@@ -34,6 +55,19 @@ export default function CheckoutPage() {
       setCalculatedTotalPrice(originalTotalPrice);
     }
   }, [originalTotalPrice, deliveryMethod]);
+  
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
+  };
+
+  const handleCutleryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      // Allow empty string for clearing input, otherwise ensure non-negative integer
+      if (value === '' || parseInt(value, 10) >= 0) {
+          setFormData(prev => ({ ...prev, cutlery: value }));
+      }
+  };
 
   if (totalItems === 0) {
     return (
@@ -83,17 +117,17 @@ export default function CheckoutPage() {
                 {hasAccount ? (
                   <div className="space-y-4">
                     <div className="space-y-1">
-                      <Label htmlFor="login-email">Email <span className="text-destructive">*</span></Label>
+                      <Label htmlFor="loginEmail">Email <span className="text-destructive">*</span></Label>
                       <div className="relative">
                         <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input id="login-email" type="email" placeholder="you@example.com" required className="pl-9" />
+                        <Input id="loginEmail" type="email" placeholder="you@example.com" required className="pl-9" value={formData.loginEmail} onChange={handleInputChange} />
                       </div>
                     </div>
                     <div className="space-y-1">
-                      <Label htmlFor="login-password">Пароль <span className="text-destructive">*</span></Label>
+                      <Label htmlFor="loginPassword">Пароль <span className="text-destructive">*</span></Label>
                       <div className="relative">
                          <LockKeyhole className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input id="login-password" type="password" placeholder="••••••••" required className="pl-9" />
+                        <Input id="loginPassword" type="password" placeholder="••••••••" required className="pl-9" value={formData.loginPassword} onChange={handleInputChange} />
                       </div>
                     </div>
                     <Button type="button" className="w-full" disabled>Войти (в разработке)</Button>
@@ -101,31 +135,31 @@ export default function CheckoutPage() {
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-1">
-                      <Label htmlFor="guest-email">Email <span className="text-destructive">*</span></Label>
+                      <Label htmlFor="guestEmail">Email <span className="text-destructive">*</span></Label>
                        <div className="relative">
                         <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input id="guest-email" type="email" placeholder="you@example.com" required className="pl-9" />
+                        <Input id="guestEmail" type="email" placeholder="you@example.com" required className="pl-9" value={formData.guestEmail} onChange={handleInputChange} />
                        </div>
                     </div>
                     <div className="space-y-1">
-                      <Label htmlFor="guest-name">Имя <span className="text-destructive">*</span></Label>
+                      <Label htmlFor="guestName">Имя <span className="text-destructive">*</span></Label>
                        <div className="relative">
                         <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input id="guest-name" type="text" placeholder="Иван" required className="pl-9" />
+                        <Input id="guestName" type="text" placeholder="Иван" required className="pl-9" value={formData.guestName} onChange={handleInputChange} />
                        </div>
                     </div>
                     <div className="space-y-1">
-                      <Label htmlFor="guest-lastname">Фамилия <span className="text-destructive">*</span></Label>
+                      <Label htmlFor="guestLastname">Фамилия <span className="text-destructive">*</span></Label>
                        <div className="relative">
                         <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input id="guest-lastname" type="text" placeholder="Иванов" required className="pl-9" />
+                        <Input id="guestLastname" type="text" placeholder="Иванов" required className="pl-9" value={formData.guestLastname} onChange={handleInputChange} />
                       </div>
                     </div>
                     <div className="space-y-1">
-                      <Label htmlFor="guest-phone">Контактный телефон <span className="text-destructive">*</span></Label>
+                      <Label htmlFor="guestPhone">Контактный телефон <span className="text-destructive">*</span></Label>
                        <div className="relative">
                         <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input id="guest-phone" type="tel" placeholder="+7 (XXX) XXX-XX-XX" required className="pl-9" />
+                        <Input id="guestPhone" type="tel" placeholder="+7 (XXX) XXX-XX-XX" required className="pl-9" value={formData.guestPhone} onChange={handleInputChange} />
                       </div>
                     </div>
                   </div>
@@ -153,31 +187,31 @@ export default function CheckoutPage() {
                       <h4 className="font-medium text-foreground mb-2 text-base">Адрес доставки:</h4>
                       <div className="space-y-1">
                         <Label htmlFor="street">Улица <span className="text-destructive">*</span></Label>
-                        <Input id="street" placeholder="ул. Примерная" required />
+                        <Input id="street" placeholder="ул. Примерная" required value={formData.street} onChange={handleInputChange} />
                       </div>
                       <div className="grid grid-cols-2 gap-3">
                         <div className="space-y-1">
                           <Label htmlFor="house">Дом <span className="text-destructive">*</span></Label>
-                          <Input id="house" placeholder="10" required />
+                          <Input id="house" placeholder="10" required value={formData.house} onChange={handleInputChange} />
                         </div>
                         <div className="space-y-1">
                           <Label htmlFor="building">Строение/Корпус</Label>
-                          <Input id="building" placeholder="А" />
+                          <Input id="building" placeholder="А" value={formData.building} onChange={handleInputChange} />
                         </div>
                       </div>
                       <div className="grid grid-cols-2 gap-3">
                          <div className="space-y-1">
                           <Label htmlFor="apartment">Квартира</Label>
-                          <Input id="apartment" placeholder="15" />
+                          <Input id="apartment" placeholder="15" value={formData.apartment} onChange={handleInputChange} />
                         </div>
                         <div className="space-y-1">
                           <Label htmlFor="entrance">Подъезд</Label>
-                          <Input id="entrance" placeholder="1" />
+                          <Input id="entrance" placeholder="1" value={formData.entrance} onChange={handleInputChange} />
                         </div>
                       </div>
                        <div className="space-y-1">
                           <Label htmlFor="floor">Этаж</Label>
-                          <Input id="floor" placeholder="5" />
+                          <Input id="floor" placeholder="5" value={formData.floor} onChange={handleInputChange} />
                         </div>
                     </div>
                   )}
@@ -232,8 +266,8 @@ export default function CheckoutPage() {
                 <Textarea
                   id="comments"
                   placeholder="Например, без лука или не звонить в домофон"
-                  value={comments}
-                  onChange={(e) => setComments(e.target.value)}
+                  value={formData.comments}
+                  onChange={handleInputChange}
                   rows={3}
                 />
               </div>
@@ -243,8 +277,8 @@ export default function CheckoutPage() {
                   id="cutlery"
                   type="number"
                   min="0"
-                  value={cutleryCount}
-                  onChange={(e) => setCutleryCount(e.target.value === '' ? '' : Math.max(0, parseInt(e.target.value, 10)))}
+                  value={formData.cutlery}
+                  onChange={handleCutleryChange}
                   className="w-24"
                 />
               </div>
