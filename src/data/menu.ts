@@ -401,21 +401,6 @@ export const mockDishes: Dish[] = [
     reviews: 5,
   },
   {
-    id: '45',
-    name: 'Стейк Рибай',
-    description: 'Классический стейк из мраморной говядины, подается с соусом на выбор и овощами гриль.',
-    ingredients: ['Говядина Рибай', 'Соль', 'Перец', 'Овощи гриль', 'Соус Пеппер'],
-    price: 1200,
-    category: 'main-dishes',
-    subCategory: 'steaks',
-    imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'ribeye steak',
-    popular: false,
-    new: false,
-    rating: 4.9,
-    reviews: 30,
-  },
-  {
     id: '46',
     name: 'Стейк «Томагавк»',
     description: 'Говядина, соус сальса.',
@@ -462,5 +447,6 @@ export const getDishById = (id: string): Dish | undefined => mockDishes.find(dis
 
 
     
+
 
 
