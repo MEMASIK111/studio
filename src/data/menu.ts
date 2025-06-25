@@ -184,7 +184,7 @@ export const mockDishes: Dish[] = [
     price: 350,
     category: 'rolls',
     subCategory: 'hot-rolls',
-    imageUrl: '/roll-Caesarl with Shrimp.png',
+    imageUrl: '/roll-Caesarl with kuritsa.png',
     dataAiHint: 'sushi caesar chicken tempura',
     popular: false,
     new: false,
@@ -314,9 +314,9 @@ export const mockDishes: Dish[] = [
   {
     id: '38',
     name: 'Грузинские хинкали',
-    description: 'Традиционные грузинские мешочки из тонкого теста с сочной мясной начинкой и бульоном внутри.',
-    ingredients: ['Тесто', 'Говяжий фарш', 'Свиной фарш', 'Кинза', 'Специи', 'Лук'],
-    price: 450,
+    description: 'Подаются со сметаной.',
+    ingredients: ['Тесто', 'Мясной фарш', 'Специи', 'Сметана'],
+    price: 350,
     category: 'main-dishes',
     subCategory: 'meat',
     imageUrl: '/Грузинские хинкали.png',
@@ -329,9 +329,9 @@ export const mockDishes: Dish[] = [
   {
     id: '39',
     name: 'Гувеч по-Турецки',
-    description: 'Насыщенное и ароматное турецкое рагу с мясом и овощами, томленое в глиняном горшочке.',
-    ingredients: ['Говядина', 'Баклажаны', 'Помидоры', 'Болгарский перец', 'Картофель', 'Специи'],
-    price: 550,
+    description: 'Баранина, овощи запеченные в томатном соусе.',
+    ingredients: ['Баранина', 'Овощи', 'Томатный соус', 'Специи'],
+    price: 790,
     category: 'main-dishes',
     subCategory: 'meat',
     imageUrl: '/Гувеч по-Турецки.png',
@@ -344,8 +344,8 @@ export const mockDishes: Dish[] = [
   {
     id: '40',
     name: 'Запечёная тыква',
-    description: 'Сладкие и нежные ломтики тыквы, запеченные с медом, корицей и грецкими орехами. Идеальный десерт.',
-    ingredients: ['Тыква', 'Мед', 'Грецкие орехи', 'Корица', 'Сливочное масло'],
+    description: 'Подается со сливочным мороженым.',
+    ingredients: ['Тыква', 'Мед', 'Корица', 'Сливочное мороженое'],
     price: 350,
     category: 'bar',
     subCategory: 'desserts',
@@ -359,9 +359,9 @@ export const mockDishes: Dish[] = [
   {
     id: '41',
     name: 'Кёфтен Кифте',
-    description: 'Сочные и пряные турецкие котлеты из говяжьего фарша, обжаренные до золотистой корочки.',
-    ingredients: ['Говяжий фарш', 'Лук', 'Петрушка', 'Панировочные сухари', 'Турецкие специи'],
-    price: 480,
+    description: 'Фарш из говядины, сыр сулугуни, томат, лепешка.',
+    ingredients: ['Говяжий фарш', 'Сыр сулугуни', 'Томат', 'Лепешка', 'Специи'],
+    price: 650,
     category: 'main-dishes',
     subCategory: 'meat',
     imageUrl: '/Кёфтен Кифте.png',
@@ -374,9 +374,9 @@ export const mockDishes: Dish[] = [
   {
     id: '42',
     name: 'Салат свекольный',
-    description: 'Классический салат из отварной свеклы с чесноком и грецкими орехами, заправленный майонезом.',
-    ingredients: ['Свекла', 'Грецкий орех', 'Чеснок', 'Майонез', 'Соль'],
-    price: 280,
+    description: 'Свекла запеченная, микс салата, фирменный соус.',
+    ingredients: ['Запеченная свекла', 'Микс салата', 'Фирменный соус'],
+    price: 260,
     category: 'salads',
     imageUrl: '/Салат свекольный.png',
     dataAiHint: 'beetroot salad',
@@ -416,5 +416,6 @@ export const getDishesByCategory = (categorySlug: string, subCategorySlug?: stri
 export const getPopularDishes = (): Dish[] => mockDishes.filter(dish => dish.popular);
 export const getNewDishes = (): Dish[] => mockDishes.filter(dish => dish.new);
 export const getDishById = (id: string): Dish | undefined => mockDishes.find(dish => dish.id === id);
+
 
 
