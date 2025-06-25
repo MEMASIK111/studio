@@ -184,7 +184,7 @@ export const mockDishes: Dish[] = [
     price: 390,
     category: 'rolls',
     subCategory: 'hot-rolls',
-    imageUrl: '/Ролл Цезарь с курицей.png',
+    imageUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'sushi caesar chicken tempura',
     popular: false,
     new: true,
@@ -416,6 +416,7 @@ export const getDishesByCategory = (categorySlug: string, subCategorySlug?: stri
 export const getPopularDishes = (): Dish[] => mockDishes.filter(dish => dish.popular);
 export const getNewDishes = (): Dish[] => mockDishes.filter(dish => dish.new);
 export const getDishById = (id: string): Dish | undefined => mockDishes.find(dish => dish.id === id);
+
 
 
 
