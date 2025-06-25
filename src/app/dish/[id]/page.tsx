@@ -34,7 +34,7 @@ export default async function DishPage({ params }: { params: { id: string } }) {
           <div className="md:col-span-2 animate-in fade-in zoom-in-95 duration-500">
             <div className="relative aspect-square rounded-lg overflow-hidden shadow-2xl">
                 <Image
-                src={dish.imageUrl}
+                src={encodeURI(dish.imageUrl)}
                 alt={dish.name}
                 fill
                 style={{ objectFit: 'cover' }}
