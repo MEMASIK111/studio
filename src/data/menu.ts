@@ -411,7 +411,7 @@ export const mockDishes: Dish[] = [
     imageUrl: '/Стейк «Томагавк».png',
     dataAiHint: 'tomahawk steak',
     popular: false,
-    new: false,
+    new: true,
     rating: 4.8,
     reviews: 15,
   }
@@ -449,5 +449,4 @@ export const getDishById = (id: string): Dish | undefined => mockDishes.find(dis
     
 
 
-
-
+    
