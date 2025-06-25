@@ -184,7 +184,7 @@ export const mockDishes: Dish[] = [
     price: 350,
     category: 'rolls',
     subCategory: 'hot-rolls',
-    imageUrl: '/roll-Caesar s kuritsei.png',
+    imageUrl: '/roll-caesar with kuritsei.png',
     dataAiHint: 'sushi caesar chicken tempura',
     popular: false,
     new: false,
@@ -416,6 +416,7 @@ export const getDishesByCategory = (categorySlug: string, subCategorySlug?: stri
 export const getPopularDishes = (): Dish[] => mockDishes.filter(dish => dish.popular);
 export const getNewDishes = (): Dish[] => mockDishes.filter(dish => dish.new);
 export const getDishById = (id: string): Dish | undefined => mockDishes.find(dish => dish.id === id);
+
 
 
 
