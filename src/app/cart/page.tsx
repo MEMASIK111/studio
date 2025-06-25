@@ -44,7 +44,7 @@ export default function CartPage() {
                 <Card key={item.id} className="flex items-center p-3 gap-4 shadow-sm">
                   <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-md overflow-hidden flex-shrink-0">
                     <Image 
-                        src={encodeURI(item.imageUrl)} 
+                        src={item.imageUrl} 
                         alt={item.name} 
                         fill 
                         style={{ objectFit: 'cover' }}
