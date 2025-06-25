@@ -362,7 +362,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Запеченная свекла', 'Микс салата', 'Фирменный соус'],
     price: 260,
     category: 'salads',
-    imageUrl: '/Салат Свекольный.png',
+    imageUrl: '/салат свекольный.png',
     dataAiHint: 'beetroot salad',
     popular: false,
     new: true,
@@ -432,7 +432,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Помидоры', 'Огурцы', 'Болгарский перец', 'Красный лук', 'Сыр фета', 'Оливки', 'Оливковое масло', 'Орегано'],
     price: 350,
     category: 'salads',
-    imageUrl: '/Салат Греческий.png',
+    imageUrl: '/салат греческий.png',
     dataAiHint: 'greek salad',
     popular: false,
     new: true,
@@ -446,7 +446,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Куриная печень', 'Микс салетов', 'Помидоры черри', 'Ягодный соус', 'Кедровые орешки'],
     price: 420,
     category: 'salads',
-    imageUrl: '/Салат Куриный с печенью.png',
+    imageUrl: '/салат куриный с печенью.png',
     dataAiHint: 'chicken liver salad',
     popular: false,
     new: true,
@@ -548,6 +548,7 @@ export const getDishById = (id: string): Dish | undefined => mockDishes.find(dis
 
 
     
+
 
 
 
