@@ -154,7 +154,7 @@ export const mockDishes: Dish[] = [
     price: 540,
     category: 'rolls',
     subCategory: 'hot-rolls',
-    imageUrl: '/roll-oisi-hotto.png',
+    imageUrl: '/roll-oisi-hot.png',
     dataAiHint: 'sushi tiger shrimp salmon',
     popular: true,
     new: false,
