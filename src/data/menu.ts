@@ -429,6 +429,21 @@ export const mockDishes: Dish[] = [
     new: true,
     rating: 4.9,
     reviews: 25,
+  },
+  {
+    id: '48',
+    name: 'Форель',
+    description: 'форель, грибы, брокколи, соевый соус',
+    ingredients: ['Форель', 'грибы', 'брокколи', 'соевый соус'],
+    price: 690,
+    category: 'main-dishes',
+    subCategory: 'fish',
+    imageUrl: '/Форель.png',
+    dataAiHint: 'trout fish vegetables',
+    popular: false,
+    new: true,
+    rating: 4.8,
+    reviews: 10,
   }
 ];
 
@@ -465,5 +480,6 @@ export const getDishById = (id: string): Dish | undefined => mockDishes.find(dis
 
 
     
+
 
 
