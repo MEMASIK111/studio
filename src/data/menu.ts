@@ -184,7 +184,7 @@ export const mockDishes: Dish[] = [
     price: 350,
     category: 'rolls',
     subCategory: 'hot-rolls',
-    imageUrl: '/roll-caesar with kuritsa.png',
+    imageUrl: '/roll-ceasar with kurica.png',
     dataAiHint: 'sushi caesar chicken tempura',
     popular: false,
     new: false,
@@ -384,6 +384,21 @@ export const mockDishes: Dish[] = [
     new: true,
     rating: 4.6,
     reviews: 35,
+  },
+  {
+    id: '43',
+    name: 'Молочный коктейль "Орео"',
+    description: 'Густой молочный коктейль с мороженым и знаменитым печеньем "Орео", украшенный взбитыми сливками.',
+    ingredients: ['Молоко', 'Мороженое', 'Печенье "Орео"', 'Взбитые сливки'],
+    price: 280,
+    category: 'bar',
+    subCategory: 'cocktails',
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'oreo milkshake',
+    popular: false,
+    new: true,
+    rating: 4.9,
+    reviews: 40,
   }
 ];
 
