@@ -187,7 +187,7 @@ export const mockDishes: Dish[] = [
     imageUrl: '/Ролл Цезарь с курицей.png',
     dataAiHint: 'sushi caesar chicken tempura',
     popular: false,
-    new: true,
+    new: false,
     rating: 4.7,
     reviews: 50,
   },
@@ -416,6 +416,7 @@ export const getDishesByCategory = (categorySlug: string, subCategorySlug?: stri
 export const getPopularDishes = (): Dish[] => mockDishes.filter(dish => dish.popular);
 export const getNewDishes = (): Dish[] => mockDishes.filter(dish => dish.new);
 export const getDishById = (id: string): Dish | undefined => mockDishes.find(dish => dish.id === id);
+
 
 
 
