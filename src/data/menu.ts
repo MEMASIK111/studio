@@ -366,7 +366,7 @@ export const mockDishes: Dish[] = [
     subCategory: 'meat',
     imageUrl: '/Кёфтен Кифте.png',
     dataAiHint: 'turkish kofte',
-    popular: false,
+    popular: true,
     new: true,
     rating: 4.8,
     reviews: 22,
@@ -447,6 +447,7 @@ export const getDishById = (id: string): Dish | undefined => mockDishes.find(dis
 
 
     
+
 
 
 
