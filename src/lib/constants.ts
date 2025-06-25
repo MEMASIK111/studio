@@ -29,6 +29,7 @@ export const USER_NAV_LINKS_AUTHENTICATED = [
 export const MENU_CATEGORIES: Category[] = [
   { id: "popular", name: "Популярное", slug: "popular" },
   { id: "new", name: "Новинки", slug: "new" },
+  { id: "breakfasts", name: "Завтраки", slug: "breakfasts" },
   {
     id: "rolls",
     name: "Роллы",
