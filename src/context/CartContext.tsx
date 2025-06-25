@@ -98,7 +98,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         return prevItems;
       }
 
-      const newCartItemId = `${currentItem.dishId}-${newSize}`;
+      const addonsKey = currentItem.selectedAddons?.map(a => a.name).sort().join('-') ?? '';
+      const newCartItemId = [currentItem.dishId, newSize, addonsKey].filter(Boolean).join('-');
+
 
       // If the size is the same, do nothing
       if (cartItemId === newCartItemId) {
@@ -136,6 +138,43 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const updateItemAddons = (cartItemId: string, newAddons: Addon[]) => {
+    setCartItems((prevItems) => {
+      const currentItem = prevItems.find((item) => item.id === cartItemId);
+      if (!currentItem || !currentItem.dishId) {
+        return prevItems;
+      }
+
+      const sortedNewAddons = [...newAddons].sort((a, b) => a.name.localeCompare(b.name));
+      const addonsKey = sortedNewAddons.map(a => a.name).join('-');
+      
+      const newCartItemId = [currentItem.dishId, currentItem.size, addonsKey].filter(Boolean).join('-');
+
+      if (cartItemId === newCartItemId) {
+        return prevItems;
+      }
+
+      const otherItems = prevItems.filter((item) => item.id !== cartItemId);
+      const existingTargetItem = otherItems.find((item) => item.id === newCartItemId);
+
+      if (existingTargetItem) {
+        return otherItems.map((item) =>
+          item.id === newCartItemId
+            ? { ...item, quantity: item.quantity + currentItem.quantity }
+            : item
+        );
+      } else {
+        const updatedItem: CartItem = {
+          ...currentItem,
+          id: newCartItemId,
+          selectedAddons: sortedNewAddons,
+        };
+        return [...otherItems, updatedItem];
+      }
+    });
+  };
+
+
   const clearCart = () => {
     setCartItems([]);
   };
@@ -161,6 +200,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         removeItem,
         updateItemQuantity,
         updateItemSize,
+        updateItemAddons,
         clearCart,
         totalPrice,
         totalItems,

@@ -29,7 +29,7 @@ export interface Category {
 
 export interface CartItem extends Dish {
   quantity: number;
-  // Overriding id to be the unique identifier for the cart item (e.g., "pizza-1-30cm")
+  // Overriding id to be the unique identifier for the cart item (e.g., "pizza-1-30cm-cheese")
   id: string; 
   // The original dish ID
   dishId: string;
@@ -47,6 +47,7 @@ export interface CartContextType {
   removeItem: (cartItemId: string) => void;
   updateItemQuantity: (cartItemId: string, quantity: number) => void;
   updateItemSize: (cartItemId: string, newSize: string) => void;
+  updateItemAddons: (cartItemId: string, addons: Addon[]) => void;
   clearCart: () => void;
   totalPrice: number;
   totalItems: number; // Total number of individual items (sum of quantities)

@@ -1,6 +1,7 @@
-
+// src/app/cart/page.tsx
 'use client';
 
+import { useState } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
@@ -11,9 +12,43 @@ import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
+import { breakfastAddons } from '@/data/menu';
+import type { CartItem, Addon } from '@/lib/types';
 
 export default function CartPage() {
-  const { cartItems, totalPrice, removeItem, updateItemQuantity, updateItemSize, totalItems } = useCart();
+  const { cartItems, totalPrice, removeItem, updateItemQuantity, updateItemSize, totalItems, updateItemAddons } = useCart();
+
+  const [itemToEditAddons, setItemToEditAddons] = useState<CartItem | null>(null);
+  const [tempSelectedAddons, setTempSelectedAddons] = useState<Addon[]>([]);
+
+  const handleOpenAddonDialog = (item: CartItem) => {
+    setItemToEditAddons(item);
+    setTempSelectedAddons(item.selectedAddons || []);
+  };
+
+  const handleCloseAddonDialog = () => {
+    setItemToEditAddons(null);
+    setTempSelectedAddons([]);
+  };
+
+  const handleAddonToggleInDialog = (addon: Addon, checked: boolean) => {
+    setTempSelectedAddons(prev => {
+        if (checked) {
+            return [...prev, addon];
+        } else {
+            return prev.filter(a => a.name !== addon.name);
+        }
+    });
+  };
+
+  const handleSaveAddons = () => {
+    if (!itemToEditAddons) return;
+    updateItemAddons(itemToEditAddons.id, tempSelectedAddons);
+    handleCloseAddonDialog();
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -43,96 +78,118 @@ export default function CartPage() {
               {cartItems.map((item) => {
                 const addonsPrice = item.selectedAddons?.reduce((s, a) => s + a.price, 0) ?? 0;
                 const itemTotalPrice = (item.price + addonsPrice) * item.quantity;
+                const isBreakfast = item.category === 'breakfasts';
 
                 return (
-                  <Card key={item.id} className="flex items-center p-3 gap-4 shadow-sm">
-                    <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-md overflow-hidden flex-shrink-0">
-                      <Image 
-                          src={encodeURI(item.imageUrl)} 
-                          alt={item.name} 
-                          fill 
-                          style={{ objectFit: 'cover' }}
-                          sizes="(max-width: 640px) 80px, 96px"
-                          data-ai-hint="food meal"
-                          unoptimized
-                      />
-                    </div>
+                  <Card key={item.id} className="flex flex-col p-3 shadow-sm">
+                    <div className="flex items-center gap-4">
+                      <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-md overflow-hidden flex-shrink-0">
+                        <Image 
+                            src={encodeURI(item.imageUrl)} 
+                            alt={item.name} 
+                            fill 
+                            style={{ objectFit: 'cover' }}
+                            sizes="(max-width: 640px) 80px, 96px"
+                            data-ai-hint="food meal"
+                            unoptimized
+                        />
+                      </div>
 
-                    <div className="flex-grow flex flex-col gap-2">
-                      {item.category === 'pizza' && item.prices && Object.keys(item.prices).length > 1 && item.size ? (
-                        <>
+                      <div className="flex-grow flex flex-col gap-2">
+                        {item.category === 'pizza' && item.prices && Object.keys(item.prices).length > 1 && item.size ? (
+                          <>
+                            <h3 className="text-base sm:text-lg font-semibold text-foreground leading-tight">
+                              {item.name}
+                            </h3>
+                            <Select
+                              value={item.size}
+                              onValueChange={(newSize) => {
+                                if (newSize) updateItemSize(item.id, newSize);
+                              }}
+                            >
+                              <SelectTrigger className="w-[120px] h-8 text-sm">
+                                <SelectValue placeholder="Размер" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {Object.keys(item.prices).map((size) => (
+                                  <SelectItem key={size} value={size}>
+                                    {size}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </>
+                        ) : (
                           <h3 className="text-base sm:text-lg font-semibold text-foreground leading-tight">
                             {item.name}
+                            {item.size && <span className="text-muted-foreground font-normal text-sm ml-2">({item.size})</span>}
                           </h3>
-                          <Select
-                            value={item.size}
-                            onValueChange={(newSize) => {
-                              if (newSize) updateItemSize(item.id, newSize);
-                            }}
+                        )}
+
+                        {item.selectedAddons && item.selectedAddons.length > 0 && (
+                          <div className="text-xs text-muted-foreground pl-1">
+                            {item.selectedAddons.map(addon => (
+                              <div key={addon.name}>+ {addon.name}</div>
+                            ))}
+                          </div>
+                        )}
+
+                        <div className="flex items-center gap-2">
+                          <Button 
+                              variant="outline" 
+                              size="icon" 
+                              onClick={() => updateItemQuantity(item.id, item.quantity - 1)}
+                              aria-label="Уменьшить количество"
+                              disabled={item.quantity <= 1}
+                              className="h-7 w-7 sm:h-8 sm:w-8"
                           >
-                            <SelectTrigger className="w-[120px] h-8 text-sm">
-                              <SelectValue placeholder="Размер" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {Object.keys(item.prices).map((size) => (
-                                <SelectItem key={size} value={size}>
-                                  {size}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </>
-                      ) : (
-                        <h3 className="text-base sm:text-lg font-semibold text-foreground leading-tight">
-                          {item.name}
-                          {item.size && <span className="text-muted-foreground font-normal text-sm ml-2">({item.size})</span>}
-                        </h3>
-                      )}
-
-                      {item.selectedAddons && item.selectedAddons.length > 0 && (
-                        <div className="text-xs text-muted-foreground pl-1">
-                          {item.selectedAddons.map(addon => (
-                            <div key={addon.name}>+ {addon.name}</div>
-                          ))}
+                            <Minus className="h-4 w-4" />
+                          </Button>
+                          <span className="w-6 text-center font-medium text-sm sm:text-base">{item.quantity}</span>
+                          <Button 
+                              variant="outline" 
+                              size="icon" 
+                              onClick={() => updateItemQuantity(item.id, item.quantity + 1)}
+                              aria-label="Увеличить количество"
+                              className="h-7 w-7 sm:h-8 sm:w-8"
+                          >
+                            <Plus className="h-4 w-4" />
+                          </Button>
                         </div>
-                      )}
+                      </div>
 
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-col items-end justify-between self-stretch">
+                        <p className="font-semibold text-base sm:text-lg text-primary whitespace-nowrap">{itemTotalPrice} руб.</p>
                         <Button 
-                            variant="outline" 
-                            size="icon" 
-                            onClick={() => updateItemQuantity(item.id, item.quantity - 1)}
-                            aria-label="Уменьшить количество"
-                            disabled={item.quantity <= 1}
-                            className="h-7 w-7 sm:h-8 sm:w-8"
+                          variant="ghost" 
+                          size="icon" 
+                          onClick={() => removeItem(item.id)} 
+                          aria-label="Удалить товар"
+                          className="text-muted-foreground hover:text-destructive h-7 w-7"
                         >
-                          <Minus className="h-4 w-4" />
-                        </Button>
-                        <span className="w-6 text-center font-medium text-sm sm:text-base">{item.quantity}</span>
-                        <Button 
-                            variant="outline" 
-                            size="icon" 
-                            onClick={() => updateItemQuantity(item.id, item.quantity + 1)}
-                            aria-label="Увеличить количество"
-                            className="h-7 w-7 sm:h-8 sm:w-8"
-                        >
-                          <Plus className="h-4 w-4" />
+                          <Trash2 className="h-4 w-4" />
                         </Button>
                       </div>
                     </div>
-
-                    <div className="flex flex-col items-end justify-between self-stretch">
-                      <p className="font-semibold text-base sm:text-lg text-primary whitespace-nowrap">{itemTotalPrice} руб.</p>
-                      <Button 
-                        variant="ghost" 
-                        size="icon" 
-                        onClick={() => removeItem(item.id)} 
-                        aria-label="Удалить товар"
-                        className="text-muted-foreground hover:text-destructive h-7 w-7"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
+                    {isBreakfast && (
+                      <div className="mt-3 border-t pt-3">
+                          <Button
+                              variant="ghost"
+                              className="h-auto p-2 text-left w-full justify-start"
+                              onClick={() => handleOpenAddonDialog(item)}
+                          >
+                              <div className="flex items-center">
+                                  <span className="text-2xl mr-3" role="img" aria-label="salt-shaker">🧂</span>
+                                  <div>
+                                      <p className="font-semibold text-primary">Добавить что-то к завтраку?</p>
+                                      <p className="text-xs text-muted-foreground font-normal">
+                                          Нажми, чтобы выбрать сыр, урбеч, семгу и др.
+                                      </p>
+                                  </div>
+                              </div>
+                          </Button>
+                      </div>
+                    )}
                   </Card>
                 )
               })}
@@ -163,6 +220,37 @@ export default function CartPage() {
           </div>
         )}
       </main>
+
+      <Dialog open={!!itemToEditAddons} onOpenChange={(isOpen) => !isOpen && handleCloseAddonDialog()}>
+          <DialogContent>
+              <DialogHeader>
+                  <DialogTitle>Добавки к "{itemToEditAddons?.name}"</DialogTitle>
+              </DialogHeader>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-3 py-4 max-h-64 overflow-y-auto">
+                  {breakfastAddons.map(addon => {
+                      const isChecked = tempSelectedAddons.some(a => a.name === addon.name);
+                      return (
+                          <div key={addon.name} className="flex items-center space-x-2">
+                              <Checkbox
+                                  id={`addon-cart-${itemToEditAddons?.id}-${addon.name}`}
+                                  checked={isChecked}
+                                  onCheckedChange={(checked) => handleAddonToggleInDialog(addon, Boolean(checked))}
+                              />
+                              <Label htmlFor={`addon-cart-${itemToEditAddons?.id}-${addon.name}`} className="flex justify-between w-full cursor-pointer text-sm">
+                                  <span>{addon.name}</span>
+                                  <span className="text-muted-foreground">+{addon.price}₽</span>
+                              </Label>
+                          </div>
+                      )
+                  })}
+              </div>
+              <DialogFooter>
+                  <Button variant="outline" onClick={handleCloseAddonDialog}>Отмена</Button>
+                  <Button onClick={handleSaveAddons}>Сохранить</Button>
+              </DialogFooter>
+          </DialogContent>
+      </Dialog>
+
       <Footer />
     </div>
   );
