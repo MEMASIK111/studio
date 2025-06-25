@@ -1,3 +1,8 @@
+export interface Addon {
+  name: string;
+  price: number;
+}
+
 export interface Dish {
   id: string;
   name: string;
@@ -32,11 +37,13 @@ export interface CartItem extends Dish {
   size?: string;
   // The price for the selected size
   price: number;
+  // Addons for the dish
+  selectedAddons?: Addon[];
 }
 
 export interface CartContextType {
   cartItems: CartItem[];
-  addItem: (dish: Dish, quantity?: number, size?: string) => void;
+  addItem: (dish: Dish, quantity?: number, size?: string, selectedAddons?: Addon[]) => void;
   removeItem: (cartItemId: string) => void;
   updateItemQuantity: (cartItemId: string, quantity: number) => void;
   updateItemSize: (cartItemId: string, newSize: string) => void;

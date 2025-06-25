@@ -5,31 +5,54 @@ import { Button } from '@/components/ui/button';
 import { Heart, ShoppingCart } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useToast } from '@/hooks/use-toast';
-import type { Dish } from '@/lib/types';
+import type { Dish, Addon } from '@/lib/types';
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 import { cn } from '@/lib/utils';
 
-export default function DishDetailsActions({ dish }: { dish: Dish }) {
+interface DishDetailsActionsProps {
+  dish: Dish;
+  addons?: Addon[];
+}
+
+export default function DishDetailsActions({ dish, addons }: DishDetailsActionsProps) {
     const { addItem } = useCart();
     const { toast } = useToast();
     const [isFavorite, setIsFavorite] = useState(false);
     
     const isPizza = dish.category === 'pizza' && dish.prices && Object.keys(dish.prices).length > 0;
     
-    // State for size selection
     const [selectedSize, setSelectedSize] = useState<string | undefined>(
         isPizza ? Object.keys(dish.prices!)[0] : undefined
     );
-    const [currentPrice, setCurrentPrice] = useState<number | undefined>(
+    const [basePrice, setBasePrice] = useState<number | undefined>(
         isPizza ? dish.prices![Object.keys(dish.prices!)[0]] : dish.price
     );
     
+    const [selectedAddons, setSelectedAddons] = useState<Addon[]>([]);
+    const [totalPrice, setTotalPrice] = useState(basePrice);
+
     useEffect(() => {
         if (isPizza && selectedSize) {
-            setCurrentPrice(dish.prices![selectedSize]);
+            setBasePrice(dish.prices![selectedSize]);
         }
     }, [selectedSize, isPizza, dish]);
+    
+    useEffect(() => {
+        const addonsPrice = selectedAddons.reduce((sum, addon) => sum + addon.price, 0);
+        setTotalPrice((basePrice || 0) + addonsPrice);
+    }, [basePrice, selectedAddons]);
 
+    const handleAddonToggle = (addon: Addon, checked: boolean) => {
+        setSelectedAddons(prev => {
+            if (checked) {
+                return [...prev, addon];
+            } else {
+                return prev.filter(a => a.name !== addon.name);
+            }
+        });
+    };
 
     const handleAddToCart = () => {
         if (isPizza && !selectedSize) {
@@ -41,10 +64,14 @@ export default function DishDetailsActions({ dish }: { dish: Dish }) {
             return;
         }
         
-        addItem(dish, 1, selectedSize);
+        const addonsDescription = selectedAddons.length > 0
+            ? ` с добавками: ${selectedAddons.map(a => a.name).join(', ')}`
+            : '';
+
+        addItem(dish, 1, selectedSize, selectedAddons);
         toast({
             title: "Блюдо добавлено!",
-            description: `${dish.name}${selectedSize ? ` (${selectedSize})` : ''} теперь в вашей корзине.`,
+            description: `${dish.name}${selectedSize ? ` (${selectedSize})` : ''}${addonsDescription} теперь в вашей корзине.`,
         });
     };
 
@@ -58,6 +85,25 @@ export default function DishDetailsActions({ dish }: { dish: Dish }) {
 
     return (
         <div className="flex flex-col gap-4">
+            {addons && addons.length > 0 && (
+                <div className="space-y-4 border-b pb-4 mb-4">
+                    <h4 className="font-semibold text-foreground">Добавки к завтраку</h4>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-3">
+                        {addons.map(addon => (
+                            <div key={addon.name} className="flex items-center space-x-2">
+                                <Checkbox
+                                    id={`addon-${addon.name}`}
+                                    onCheckedChange={(checked) => handleAddonToggle(addon, Boolean(checked))}
+                                />
+                                <Label htmlFor={`addon-${addon.name}`} className="flex justify-between w-full cursor-pointer text-sm">
+                                    <span>{addon.name}</span>
+                                    <span className="text-muted-foreground">+{addon.price}₽</span>
+                                </Label>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
             {isPizza && dish.prices && (
                 <div className='flex flex-col sm:flex-row gap-4 items-center'>
                     <span className='font-medium text-foreground shrink-0'>Размер:</span>
@@ -78,7 +124,7 @@ export default function DishDetailsActions({ dish }: { dish: Dish }) {
                 </div>
             )}
             <div className="flex flex-col sm:flex-row items-center gap-4 w-full">
-                <p className="text-3xl sm:text-4xl font-bold text-primary flex-shrink-0">{currentPrice} руб.</p>
+                <p className="text-3xl sm:text-4xl font-bold text-primary flex-shrink-0">{totalPrice} руб.</p>
                 <div className="flex items-center gap-3 w-full">
                     <Button onClick={handleAddToCart} size="lg" className="flex-grow text-base sm:text-lg font-semibold h-12 sm:h-14">
                         <ShoppingCart className="mr-2 h-5 w-5" />

@@ -1,7 +1,7 @@
 // src/context/CartContext.tsx
 "use client";
 
-import type { Dish, CartItem, CartContextType } from '@/lib/types';
+import type { Dish, CartItem, CartContextType, Addon } from '@/lib/types';
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -32,10 +32,14 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [cartItems, isCartLoadedFromStorage]);
 
-  const addItem = (dish: Dish, quantity: number = 1, size?: string) => {
+  const addItem = (dish: Dish, quantity: number = 1, size?: string, selectedAddons?: Addon[]) => {
     setCartItems((prevItems) => {
-      // Create a unique ID for the cart item based on the dish ID and size
-      const cartItemId = size ? `${dish.id}-${size}` : dish.id;
+      // Create a unique ID for the cart item based on the dish ID, size, and selected addons
+      const addonsKey = selectedAddons && selectedAddons.length > 0
+        ? selectedAddons.map(a => a.name).sort().join('-')
+        : '';
+      
+      const cartItemId = [dish.id, size, addonsKey].filter(Boolean).join('-');
       
       const existingItem = prevItems.find((item) => item.id === cartItemId);
 
@@ -65,6 +69,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
           quantity,
           size,
           price,
+          selectedAddons,
         };
         return [...prevItems, newItem];
       }
@@ -136,7 +141,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const totalPrice = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) => {
+        const addonsPrice = item.selectedAddons?.reduce((sum, addon) => sum + addon.price, 0) ?? 0;
+        return total + (item.price + addonsPrice) * item.quantity;
+    },
     0
   );
 

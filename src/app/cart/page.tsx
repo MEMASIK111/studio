@@ -40,89 +40,102 @@ export default function CartPage() {
         ) : (
           <div className="grid md:grid-cols-3 gap-8 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
             <div className="md:col-span-2 space-y-4">
-              {cartItems.map((item) => (
-                <Card key={item.id} className="flex items-center p-3 gap-4 shadow-sm">
-                  <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-md overflow-hidden flex-shrink-0">
-                    <Image 
-                        src={encodeURI(item.imageUrl)} 
-                        alt={item.name} 
-                        fill 
-                        style={{ objectFit: 'cover' }}
-                        sizes="(max-width: 640px) 80px, 96px"
-                        data-ai-hint="food meal"
-                        unoptimized
-                    />
-                  </div>
+              {cartItems.map((item) => {
+                const addonsPrice = item.selectedAddons?.reduce((s, a) => s + a.price, 0) ?? 0;
+                const itemTotalPrice = (item.price + addonsPrice) * item.quantity;
 
-                  <div className="flex-grow flex flex-col gap-2">
-                    {item.category === 'pizza' && item.prices && Object.keys(item.prices).length > 1 && item.size ? (
-                      <>
+                return (
+                  <Card key={item.id} className="flex items-center p-3 gap-4 shadow-sm">
+                    <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-md overflow-hidden flex-shrink-0">
+                      <Image 
+                          src={encodeURI(item.imageUrl)} 
+                          alt={item.name} 
+                          fill 
+                          style={{ objectFit: 'cover' }}
+                          sizes="(max-width: 640px) 80px, 96px"
+                          data-ai-hint="food meal"
+                          unoptimized
+                      />
+                    </div>
+
+                    <div className="flex-grow flex flex-col gap-2">
+                      {item.category === 'pizza' && item.prices && Object.keys(item.prices).length > 1 && item.size ? (
+                        <>
+                          <h3 className="text-base sm:text-lg font-semibold text-foreground leading-tight">
+                            {item.name}
+                          </h3>
+                          <Select
+                            value={item.size}
+                            onValueChange={(newSize) => {
+                              if (newSize) updateItemSize(item.id, newSize);
+                            }}
+                          >
+                            <SelectTrigger className="w-[120px] h-8 text-sm">
+                              <SelectValue placeholder="Размер" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {Object.keys(item.prices).map((size) => (
+                                <SelectItem key={size} value={size}>
+                                  {size}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </>
+                      ) : (
                         <h3 className="text-base sm:text-lg font-semibold text-foreground leading-tight">
                           {item.name}
+                          {item.size && <span className="text-muted-foreground font-normal text-sm ml-2">({item.size})</span>}
                         </h3>
-                        <Select
-                          value={item.size}
-                          onValueChange={(newSize) => {
-                            if (newSize) updateItemSize(item.id, newSize);
-                          }}
-                        >
-                          <SelectTrigger className="w-[120px] h-8 text-sm">
-                            <SelectValue placeholder="Размер" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {Object.keys(item.prices).map((size) => (
-                              <SelectItem key={size} value={size}>
-                                {size}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </>
-                    ) : (
-                      <h3 className="text-base sm:text-lg font-semibold text-foreground leading-tight">
-                        {item.name}
-                        {item.size && <span className="text-muted-foreground font-normal text-sm ml-2">({item.size})</span>}
-                      </h3>
-                    )}
+                      )}
 
-                    <div className="flex items-center gap-2">
-                       <Button 
-                          variant="outline" 
-                          size="icon" 
-                          onClick={() => updateItemQuantity(item.id, item.quantity - 1)}
-                          aria-label="Уменьшить количество"
-                          disabled={item.quantity <= 1}
-                          className="h-7 w-7 sm:h-8 sm:w-8"
-                      >
-                        <Minus className="h-4 w-4" />
-                      </Button>
-                      <span className="w-6 text-center font-medium text-sm sm:text-base">{item.quantity}</span>
+                      {item.selectedAddons && item.selectedAddons.length > 0 && (
+                        <div className="text-xs text-muted-foreground pl-1">
+                          {item.selectedAddons.map(addon => (
+                            <div key={addon.name}>+ {addon.name}</div>
+                          ))}
+                        </div>
+                      )}
+
+                      <div className="flex items-center gap-2">
+                        <Button 
+                            variant="outline" 
+                            size="icon" 
+                            onClick={() => updateItemQuantity(item.id, item.quantity - 1)}
+                            aria-label="Уменьшить количество"
+                            disabled={item.quantity <= 1}
+                            className="h-7 w-7 sm:h-8 sm:w-8"
+                        >
+                          <Minus className="h-4 w-4" />
+                        </Button>
+                        <span className="w-6 text-center font-medium text-sm sm:text-base">{item.quantity}</span>
+                        <Button 
+                            variant="outline" 
+                            size="icon" 
+                            onClick={() => updateItemQuantity(item.id, item.quantity + 1)}
+                            aria-label="Увеличить количество"
+                            className="h-7 w-7 sm:h-8 sm:w-8"
+                        >
+                          <Plus className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col items-end justify-between self-stretch">
+                      <p className="font-semibold text-base sm:text-lg text-primary whitespace-nowrap">{itemTotalPrice} руб.</p>
                       <Button 
-                          variant="outline" 
-                          size="icon" 
-                          onClick={() => updateItemQuantity(item.id, item.quantity + 1)}
-                          aria-label="Увеличить количество"
-                          className="h-7 w-7 sm:h-8 sm:w-8"
+                        variant="ghost" 
+                        size="icon" 
+                        onClick={() => removeItem(item.id)} 
+                        aria-label="Удалить товар"
+                        className="text-muted-foreground hover:text-destructive h-7 w-7"
                       >
-                        <Plus className="h-4 w-4" />
+                        <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
-                  </div>
-
-                  <div className="flex flex-col items-end justify-between self-stretch">
-                     <p className="font-semibold text-base sm:text-lg text-primary whitespace-nowrap">{item.price * item.quantity} руб.</p>
-                     <Button 
-                      variant="ghost" 
-                      size="icon" 
-                      onClick={() => removeItem(item.id)} 
-                      aria-label="Удалить товар"
-                      className="text-muted-foreground hover:text-destructive h-7 w-7"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </Card>
-              ))}
+                  </Card>
+                )
+              })}
             </div>
             <div className="md:col-span-1">
               <Card className="sticky top-24 p-4 sm:p-6 shadow-lg">

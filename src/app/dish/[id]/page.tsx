@@ -1,5 +1,5 @@
 
-import { getDishById } from '@/data/menu';
+import { getDishById, breakfastAddons } from '@/data/menu';
 import { notFound } from 'next/navigation';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -17,6 +17,8 @@ export default async function DishPage({ params }: { params: { id: string } }) {
   if (!dish) {
     notFound();
   }
+
+  const isBreakfast = dish.category === 'breakfasts';
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -61,7 +63,7 @@ export default async function DishPage({ params }: { params: { id: string } }) {
             </div>
             
              <div className="mt-auto pt-6 border-t border-border/40">
-                <DishDetailsActions dish={dish} />
+                <DishDetailsActions dish={dish} addons={isBreakfast ? breakfastAddons : undefined} />
              </div>
           </div>
         </div>

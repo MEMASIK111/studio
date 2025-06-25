@@ -1,5 +1,5 @@
 
-import type { Dish } from '@/lib/types';
+import type { Addon, Dish } from '@/lib/types';
 
 export const mockDishes: Dish[] = [
   // Breakfasts
@@ -633,7 +633,7 @@ export const mockDishes: Dish[] = [
   {
     id: '56',
     name: 'Дорадо',
-    description: 'Дорадо, овощной микс',
+    description: 'дорадо, овощной микс',
     ingredients: ['Дорадо', 'Овощной микс'],
     price: 700,
     category: 'main-dishes',
@@ -775,3 +775,16 @@ export const getDishesByCategory = (categorySlug: string, subCategorySlug?: stri
 export const getPopularDishes = (): Dish[] => mockDishes.filter(dish => dish.popular);
 export const getNewDishes = (): Dish[] => mockDishes.filter(dish => dish.new);
 export const getDishById = (id: string): Dish | undefined => mockDishes.find(dish => dish.id === id);
+
+export const breakfastAddons: Addon[] = [
+  { name: 'Сыр дагестанский', price: 60 },
+  { name: 'Помидоры', price: 50 },
+  { name: 'Сметана', price: 50 },
+  { name: 'Сливочное масло', price: 50 },
+  { name: 'Урбеч', price: 50 },
+  { name: 'Авокадо', price: 100 },
+  { name: 'Семга с/с', price: 120 },
+  { name: 'Сосиски', price: 40 },
+  { name: 'Пышки', price: 60 },
+  { name: 'Сгущенка', price: 50 },
+];
