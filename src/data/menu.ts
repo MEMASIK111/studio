@@ -187,7 +187,7 @@ export const mockDishes: Dish[] = [
     imageUrl: '/roll-caesar-chicken.png',
     dataAiHint: 'sushi caesar chicken tempura',
     popular: false,
-    new: false,
+    new: true,
     rating: 4.7,
     reviews: 50,
   },
