@@ -47,7 +47,7 @@ export const MENU_CATEGORIES: Category[] = [
       { id: "chicken", name: "Куриные блюда", slug: "chicken" },
       { id: "meat", name: "Мясные блюда", slug: "meat" },
       { id: "steaks", name: "Стейки", slug: "steaks" },
-      { id: "pasta-noodles", name: "Паста/Лапша", slug: "pasta-noodles" },
+      { id: "fish", name: "Рыба", slug: "fish" },
     ],
   },
   { id: "soups", name: "Супы", slug: "soups" },
