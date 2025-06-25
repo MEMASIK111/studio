@@ -177,21 +177,6 @@ export const mockDishes: Dish[] = [
     reviews: 50,
   },
   {
-    id: '27',
-    name: 'Ролл Цезарь с курицей',
-    description: 'Соус Цезарь, пармезан, лист салата, курица, помидоры, кляр, сухари панко.',
-    ingredients: ['Рис', 'Нори', 'Соус Цезарь', 'Сыр Пармезан', 'Лист салата', 'Курица', 'Помидоры', 'Кляр', 'Сухари панко'],
-    price: 350,
-    category: 'rolls',
-    subCategory: 'hot-rolls',
-    imageUrl: '/roll-caesar with kuritsei.png',
-    dataAiHint: 'sushi caesar chicken tempura',
-    popular: false,
-    new: false,
-    rating: 4.7,
-    reviews: 60,
-  },
-  {
     id: '2',
     name: 'Ролл Филадельфия',
     description: 'Сыр кремчиз, огурцы, авокадо, лосось.',
@@ -416,6 +401,7 @@ export const getDishesByCategory = (categorySlug: string, subCategorySlug?: stri
 export const getPopularDishes = (): Dish[] => mockDishes.filter(dish => dish.popular);
 export const getNewDishes = (): Dish[] => mockDishes.filter(dish => dish.new);
 export const getDishById = (id: string): Dish | undefined => mockDishes.find(dish => dish.id === id);
+
 
 
 
