@@ -414,6 +414,21 @@ export const mockDishes: Dish[] = [
     new: true,
     rating: 4.8,
     reviews: 15,
+  },
+  {
+    id: '47',
+    name: 'Стейк «Томагавк»',
+    description: 'Говядина, соус сальса.',
+    ingredients: ['Говядина', 'Соус сальса', 'Специи'],
+    price: 990,
+    category: 'main-dishes',
+    subCategory: 'steaks',
+    imageUrl: '/Стейк «Томагавк».png',
+    dataAiHint: 'tomahawk steak',
+    popular: false,
+    new: true,
+    rating: 4.8,
+    reviews: 15,
   }
 ];
 
