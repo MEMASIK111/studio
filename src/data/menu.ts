@@ -184,7 +184,7 @@ export const mockDishes: Dish[] = [
     price: 350,
     category: 'rolls',
     subCategory: 'hot-rolls',
-    imageUrl: '/roll-Caesarl with kuritsa.png',
+    imageUrl: '/roll-caesar with kuritsa.png',
     dataAiHint: 'sushi caesar chicken tempura',
     popular: false,
     new: false,
