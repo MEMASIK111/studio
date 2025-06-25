@@ -52,7 +52,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Томатный соус', 'Сыр Моцарелла', 'Говядина', 'Курица', 'Грибы'],
     prices: { '30 см': 460, '40 см': 690 },
     category: 'pizza',
-    imageUrl: '/Асорти.png',
+    imageUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'pizza assorted',
     popular: false, 
     new: false,
@@ -139,7 +139,7 @@ export const mockDishes: Dish[] = [
     price: 520,
     category: 'rolls',
     subCategory: 'hot-rolls',
-    imageUrl: '/roll-Tokyo.png',
+    imageUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'sushi salmon avocado tempura',
     popular: false,
     new: false,
@@ -199,7 +199,7 @@ export const mockDishes: Dish[] = [
     price: 390,
     category: 'rolls',
     subCategory: 'hot-rolls',
-    imageUrl: '/roll-Yaki-maki.png',
+    imageUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'sushi baked chicken mushroom',
     popular: false,
     new: false,
@@ -214,7 +214,7 @@ export const mockDishes: Dish[] = [
     price: 540,
     category: 'rolls',
     subCategory: 'cold-rolls',
-    imageUrl: '/roll-Philadelphia Roll.png',
+    imageUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'sushi philadelphia',
     popular: true,
     rating: 4.8,
@@ -289,7 +289,7 @@ export const mockDishes: Dish[] = [
     price: 450,
     category: 'rolls',
     subCategory: 'cold-rolls',
-    imageUrl: '/roll-rolls oisi.png',
+    imageUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'sushi salmon tuna',
     popular: false,
     new: false,
@@ -304,7 +304,7 @@ export const mockDishes: Dish[] = [
     price: 350,
     category: 'main-dishes',
     subCategory: 'meat',
-    imageUrl: '/Грузинские хинкали.png',
+    imageUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'georgian khinkali',
     popular: false,
     new: true,
@@ -319,7 +319,7 @@ export const mockDishes: Dish[] = [
     price: 790,
     category: 'main-dishes',
     subCategory: 'meat',
-    imageUrl: '/Гувеч по-Турецки.png',
+    imageUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'turkish guvec',
     popular: false,
     new: true,
@@ -521,6 +521,7 @@ export const getDishById = (id: string): Dish | undefined => mockDishes.find(dis
 
 
     
+
 
 
 
