@@ -386,21 +386,6 @@ export const mockDishes: Dish[] = [
     reviews: 35,
   },
   {
-    id: '43',
-    name: 'Молочный коктейль "Орео"',
-    description: 'Густой молочный коктейль с мороженым и знаменитым печеньем "Орео", украшенный взбитыми сливками.',
-    ingredients: ['Молоко', 'Мороженое', 'Печенье "Орео"', 'Взбитые сливки'],
-    price: 280,
-    category: 'bar',
-    subCategory: 'cocktails',
-    imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'oreo milkshake',
-    popular: false,
-    new: true,
-    rating: 4.9,
-    reviews: 40,
-  },
-  {
     id: '44',
     name: 'Шах плов',
     description: 'Королевский плов в хрустящей корочке из лаваша с сочной бараниной, рисом и сухофруктами.',
@@ -431,4 +416,5 @@ export const getDishesByCategory = (categorySlug: string, subCategorySlug?: stri
 export const getPopularDishes = (): Dish[] => mockDishes.filter(dish => dish.popular);
 export const getNewDishes = (): Dish[] => mockDishes.filter(dish => dish.new);
 export const getDishById = (id: string): Dish | undefined => mockDishes.find(dish => dish.id === id);
+
 
