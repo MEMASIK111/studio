@@ -177,6 +177,36 @@ export const mockDishes: Dish[] = [
     reviews: 50,
   },
   {
+    id: '27',
+    name: 'Ролл Цезарь с курицей',
+    description: 'Горячий ролл с нежной курицей, соусом цезарь, помидорами и хрустящим салатом, обжаренный в темпуре.',
+    ingredients: ['Рис', 'Нори', 'Курица', 'Соус Цезарь', 'Помидоры', 'Лист салата', 'Сыр Пармезан', 'Кляр', 'Сухари панко'],
+    price: 390,
+    category: 'rolls',
+    subCategory: 'hot-rolls',
+    imageUrl: '/Ролл Цезарь с курицей.png',
+    dataAiHint: 'sushi caesar chicken tempura',
+    popular: false,
+    new: true,
+    rating: 4.7,
+    reviews: 50,
+  },
+  {
+    id: '30',
+    name: 'Яки маки',
+    description: 'Сыр,огурцы,лосось,шампиньоны,филе цыпленка,тобико.',
+    ingredients: ['Рис', 'Нори', 'Сыр', 'Огурцы', 'Лосось', 'Шампиньоны', 'Филе цыпленка', 'Тобико'],
+    price: 390,
+    category: 'rolls',
+    subCategory: 'hot-rolls',
+    imageUrl: '/roll-Yaki-maki.png',
+    dataAiHint: 'sushi baked chicken mushroom',
+    popular: false,
+    new: false,
+    rating: 4.4,
+    reviews: 70,
+  },
+  {
     id: '2',
     name: 'Ролл Филадельфия',
     description: 'Сыр кремчиз, огурцы, авокадо, лосось.',
@@ -204,21 +234,6 @@ export const mockDishes: Dish[] = [
     new: false,
     rating: 4.6,
     reviews: 80,
-  },
-  {
-    id: '30',
-    name: 'Яки маки',
-    description: 'Сыр,огурцы,лосось,шампиньоны,филе цыпленка,тобико.',
-    ingredients: ['Рис', 'Нори', 'Сыр', 'Огурцы', 'Лосось', 'Шампиньоны', 'Филе цыпленка', 'Тобико'],
-    price: 390,
-    category: 'rolls',
-    subCategory: 'hot-rolls',
-    imageUrl: '/roll-Yaki-maki.png',
-    dataAiHint: 'sushi baked chicken mushroom',
-    popular: false,
-    new: false,
-    rating: 4.4,
-    reviews: 70,
   },
   
   // Other dishes
@@ -401,6 +416,7 @@ export const getDishesByCategory = (categorySlug: string, subCategorySlug?: stri
 export const getPopularDishes = (): Dish[] => mockDishes.filter(dish => dish.popular);
 export const getNewDishes = (): Dish[] => mockDishes.filter(dish => dish.new);
 export const getDishById = (id: string): Dish | undefined => mockDishes.find(dish => dish.id === id);
+
 
 
 
