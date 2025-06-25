@@ -55,10 +55,6 @@ export const MENU_CATEGORIES: Category[] = [
     id: "salads",
     name: "Салаты",
     slug: "salads",
-    subCategories: [
-      { id: "bowls", name: "Боулы", slug: "bowls" },
-      { id: "sandwiches", name: "Сэндвичи", slug: "sandwiches" },
-    ],
   },
   {
     id: "fast-food",
