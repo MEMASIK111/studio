@@ -1,3 +1,4 @@
+
 import type { Category } from './types';
 
 export const APP_NAME = "Mozzarella";
@@ -29,7 +30,17 @@ export const USER_NAV_LINKS_AUTHENTICATED = [
 export const MENU_CATEGORIES: Category[] = [
   { id: "popular", name: "Популярное", slug: "popular" },
   { id: "new", name: "Новинки", slug: "new" },
-  { id: "breakfasts", name: "Завтраки", slug: "breakfasts" },
+  {
+    id: "breakfasts",
+    name: "Завтраки",
+    slug: "breakfasts",
+    subCategories: [
+      { id: "main-breakfasts", name: "Основные завтраки", slug: "main-breakfasts" },
+      { id: "porridges", name: "Каши", slug: "porridges" },
+      { id: "pancakes", name: "Блины и панкейки", slug: "pancakes" },
+      { id: "breakfast-desserts", name: "Десерты", slug: "breakfast-desserts" },
+    ],
+  },
   {
     id: "rolls",
     name: "Роллы",
