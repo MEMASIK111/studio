@@ -243,7 +243,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Креветки', 'Грибы Шиитаке', 'Кокосовое молоко', 'Лемонграсс', 'Галангал', 'Чили'],
     price: 400,
     category: 'soups',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/Том Ям.png',
     dataAiHint: 'thai soup',
     rating: 4.9,
     reviews: 110,
@@ -258,7 +258,7 @@ export const mockDishes: Dish[] = [
     price: 250,
     category: 'bar',
     subCategory: 'desserts',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/Чизкейк Нью-Йорк.png',
     dataAiHint: 'newyork cheesecake',
     rating: 4.8,
     reviews: 85,
@@ -273,7 +273,7 @@ export const mockDishes: Dish[] = [
     price: 150,
     category: 'bar',
     subCategory: 'lemonades',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/Лимонад Классический.png',
     dataAiHint: 'drink lemonade',
     new: false,
     rating: 4.5,
@@ -432,7 +432,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Помидоры', 'Огурцы', 'Болгарский перец', 'Красный лук', 'Сыр фета', 'Оливки', 'Оливковое масло', 'Орегано'],
     price: 350,
     category: 'salads',
-    imageUrl: '/салат греческий.png',
+    imageUrl: '/Салат Греческий.png',
     dataAiHint: 'greek salad',
     popular: false,
     new: true,
@@ -446,7 +446,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Куриная печень', 'Микс салетов', 'Помидоры черри', 'Ягодный соус', 'Кедровые орешки'],
     price: 420,
     category: 'salads',
-    imageUrl: '/салат куриный с печенью.png',
+    imageUrl: '/Салат Куриный с печенью.png',
     dataAiHint: 'chicken liver salad',
     popular: false,
     new: true,
@@ -548,6 +548,7 @@ export const getDishById = (id: string): Dish | undefined => mockDishes.find(dis
 
 
     
+
 
 
 
