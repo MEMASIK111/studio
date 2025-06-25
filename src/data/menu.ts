@@ -238,21 +238,6 @@ export const mockDishes: Dish[] = [
   
   // Other dishes
   {
-    id: '4',
-    name: 'Салат Боул с Креветками',
-    description: 'Сытный и полезный боул с киноа, креветками и свежими овощами.',
-    ingredients: ['Киноа', 'Креветки', 'Авокадо', 'Огурец', 'Помидоры черри', 'Соус манго-чили'],
-    price: 550,
-    category: 'salads',
-    subCategory: 'bowls',
-    imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'salad shrimp',
-    new: false,
-    rating: 4.7,
-    reviews: 45,
-    popular: false,
-  },
-  {
     id: '8',
     name: 'Том Ям',
     description: 'Острый тайский суп с креветками, грибами и кокосовым молоком.',
@@ -386,6 +371,62 @@ export const mockDishes: Dish[] = [
     reviews: 35,
   },
   {
+    id: '50',
+    name: 'Салат с хрустящими баклажанами',
+    description: 'Хрустящие баклажаны с помидорами, кинзой и кисло-сладким соусом.',
+    ingredients: ['Баклажаны', 'Помидоры', 'Кинза', 'Кисло-сладкий соус', 'Кунжут'],
+    price: 380,
+    category: 'salads',
+    imageUrl: '/Салат с хрустящими баклажанами.png',
+    dataAiHint: 'eggplant salad',
+    popular: false,
+    new: true,
+    rating: 4.7,
+    reviews: 40,
+  },
+  {
+    id: '51',
+    name: 'Салат Авокадо с креветками',
+    description: 'Тигровые креветки с авокадо, помидорами черри и миксом салата под легкой заправкой.',
+    ingredients: ['Тигровые креветки', 'Авокадо', 'Помидоры черри', 'Микс салата', 'Лимонный соус'],
+    price: 480,
+    category: 'salads',
+    imageUrl: '/Салат-Авокадо с креветками.png',
+    dataAiHint: 'avocado shrimp salad',
+    popular: true,
+    new: true,
+    rating: 4.8,
+    reviews: 65,
+  },
+  {
+    id: '52',
+    name: 'Салат Цезарь с креветками',
+    description: 'Классический салат Цезарь с тигровыми креветками, гренками, перепелиными яйцами и сыром Пармезан.',
+    ingredients: ['Тигровые креветки', 'Салат Романо', 'Гренки', 'Соус Цезарь', 'Сыр Пармезан', 'Перепелиные яйца', 'Помидоры черри'],
+    price: 520,
+    category: 'salads',
+    imageUrl: '/Салат-Цезарь с криветками.png',
+    dataAiHint: 'caesar salad shrimp',
+    popular: true,
+    new: false,
+    rating: 4.9,
+    reviews: 90,
+  },
+  {
+    id: '53',
+    name: 'Салат Цезарь с курицей',
+    description: 'Классический салат Цезарь с нежным куриным филе, гренками и сыром Пармезан.',
+    ingredients: ['Куриное филе', 'Салат Романо', 'Гренки', 'Соус Цезарь', 'Сыр Пармезан', 'Помидоры черри'],
+    price: 450,
+    category: 'salads',
+    imageUrl: '/Салат-Цезарь с курицей.png',
+    dataAiHint: 'caesar salad chicken',
+    popular: false,
+    new: false,
+    rating: 4.8,
+    reviews: 110,
+  },
+  {
     id: '44',
     name: 'Шах плов',
     description: 'Королевский плов в хрустящей корочке из лаваша с сочной бараниной, рисом и сухофруктами.',
@@ -480,6 +521,7 @@ export const getDishById = (id: string): Dish | undefined => mockDishes.find(dis
 
 
     
+
 
 
 
