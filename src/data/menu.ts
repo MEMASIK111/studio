@@ -118,7 +118,7 @@ export const mockDishes: Dish[] = [
   {
     id: '13',
     name: 'Пицца Моцарелла',
-    description: 'Сыр, лосось, черри.',
+    description: 'Сыр,лосось,черри.',
     ingredients: ['Тесто', 'Соус', 'Сыр', 'Лосось', 'Черри'],
     prices: { '30 см': 620, '40 см': 780 },
     category: 'pizza',
@@ -134,7 +134,7 @@ export const mockDishes: Dish[] = [
   {
     id: '29',
     name: 'Ролл Tokuo',
-    description: 'Майонез, лосось, авокадо, сыр моцарелла.',
+    description: 'Майонез, Лосось,авокадо,сыр моцарелла.',
     ingredients: ['Рис', 'Нори', 'Майонез', 'Лосось', 'Авокадо', 'Сыр моцарелла'],
     price: 520,
     category: 'rolls',
@@ -149,7 +149,7 @@ export const mockDishes: Dish[] = [
   {
     id: '32',
     name: 'Ойси хото',
-    description: 'Сыр кремчиз, огурцы, криветки, лосось.',
+    description: 'Сыр кремчиз ,огурцы, криветки, лосось.',
     ingredients: ['Рис', 'Нори', 'Сыр кремчиз', 'Огурцы', 'Криветки', 'Лосось'],
     price: 540,
     category: 'rolls',
@@ -184,7 +184,7 @@ export const mockDishes: Dish[] = [
     price: 350,
     category: 'rolls',
     subCategory: 'hot-rolls',
-    imageUrl: '/Ролл Цезарь с курицей.png',
+    imageUrl: '/roll-Caesarl with Shrimp.png',
     dataAiHint: 'sushi caesar chicken tempura',
     popular: false,
     new: false,
