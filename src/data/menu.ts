@@ -444,21 +444,6 @@ export const mockDishes: Dish[] = [
     new: true,
     rating: 4.8,
     reviews: 10,
-  },
-  {
-    id: '49',
-    name: 'Дорадо',
-    description: 'дорадо, овощной микс',
-    ingredients: ['Дорадо', 'Овощной микс', 'Лимон', 'Специи'],
-    price: 700,
-    category: 'main-dishes',
-    subCategory: 'fish',
-    imageUrl: '/Дорадо.png',
-    dataAiHint: 'dorado fish vegetables',
-    popular: false,
-    new: true,
-    rating: 4.8,
-    reviews: 8,
   }
 ];
 
@@ -495,6 +480,7 @@ export const getDishById = (id: string): Dish | undefined => mockDishes.find(dis
 
 
     
+
 
 
 
