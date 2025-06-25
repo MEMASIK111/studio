@@ -184,7 +184,7 @@ export const mockDishes: Dish[] = [
     price: 350,
     category: 'rolls',
     subCategory: 'hot-rolls',
-    imageUrl: '/roll-Caesar with kuritsa.png',
+    imageUrl: '/Ролл Цезарь с курицей.png',
     dataAiHint: 'sushi caesar chicken tempura',
     popular: false,
     new: false,
@@ -314,7 +314,7 @@ export const mockDishes: Dish[] = [
   {
     id: '38',
     name: 'Грузинские хинкали',
-    description: 'Подаются со сметаной.',
+    description: 'подаются со сметаной',
     ingredients: ['Тесто', 'Мясной фарш', 'Специи', 'Сметана'],
     price: 350,
     category: 'main-dishes',
@@ -329,7 +329,7 @@ export const mockDishes: Dish[] = [
   {
     id: '39',
     name: 'Гувеч по-Турецки',
-    description: 'Баранина, овощи запеченные в томатном соусе.',
+    description: 'баранина, овощи запеченные в томатном соусе',
     ingredients: ['Баранина', 'Овощи', 'Томатный соус', 'Специи'],
     price: 790,
     category: 'main-dishes',
@@ -344,7 +344,7 @@ export const mockDishes: Dish[] = [
   {
     id: '40',
     name: 'Запечёная тыква',
-    description: 'Подается со сливочным мороженым.',
+    description: 'подается со сливочным мороженным',
     ingredients: ['Тыква', 'Мед', 'Корица', 'Сливочное мороженое'],
     price: 350,
     category: 'bar',
@@ -358,8 +358,8 @@ export const mockDishes: Dish[] = [
   },
   {
     id: '41',
-    name: 'Кёфтен Кифте',
-    description: 'Фарш из говядины, сыр сулугуни, томат, лепешка.',
+    name: 'Кёфтен кифте',
+    description: 'Фарш из говядины, сыр сулугуни,томат,Лепешка.',
     ingredients: ['Говяжий фарш', 'Сыр сулугуни', 'Томат', 'Лепешка', 'Специи'],
     price: 650,
     category: 'main-dishes',
@@ -373,8 +373,8 @@ export const mockDishes: Dish[] = [
   },
   {
     id: '42',
-    name: 'Салат свекольный',
-    description: 'Свекла запеченная, микс салата, фирменный соус.',
+    name: 'Салат Свекольный',
+    description: 'свекла запеченная, микс салата. фирменный соус',
     ingredients: ['Запеченная свекла', 'Микс салата', 'Фирменный соус'],
     price: 260,
     category: 'salads',
@@ -416,6 +416,7 @@ export const getDishesByCategory = (categorySlug: string, subCategorySlug?: stri
 export const getPopularDishes = (): Dish[] => mockDishes.filter(dish => dish.popular);
 export const getNewDishes = (): Dish[] => mockDishes.filter(dish => dish.new);
 export const getDishById = (id: string): Dish | undefined => mockDishes.find(dish => dish.id === id);
+
 
 
 
