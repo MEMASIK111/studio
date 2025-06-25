@@ -405,7 +405,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тигровые креветки', 'Салат Романо', 'Гренки', 'Соус Цезарь', 'Сыр Пармезан', 'Перепелиные яйца', 'Помидоры черри'],
     price: 520,
     category: 'salads',
-    imageUrl: '/Салат-Цезарь с криветками.png',
+    imageUrl: '/Салат-Цезарь с креветками.png',
     dataAiHint: 'caesar salad shrimp',
     popular: true,
     new: false,
@@ -444,7 +444,7 @@ export const mockDishes: Dish[] = [
     id: '55',
     name: 'Салат Куриный с печенью',
     description: 'Теплый салат с нежной куриной печенью, миксом салатов, помидорами черри и ягодным соусом.',
-    ingredients: ['Куриная печень', 'Микс салатов', 'Помидоры черри', 'Ягодный соус', 'Кедровые орешки'],
+    ingredients: ['Куриная печень', 'Микс салетов', 'Помидоры черри', 'Ягодный соус', 'Кедровые орешки'],
     price: 420,
     category: 'salads',
     imageUrl: '/Салат-Куриный с печенью.png',
@@ -549,3 +549,4 @@ export const getDishById = (id: string): Dish | undefined => mockDishes.find(dis
 
 
     
+
