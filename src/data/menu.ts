@@ -52,7 +52,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Тесто', 'Томатный соус', 'Сыр Моцарелла', 'Говядина', 'Курица', 'Грибы'],
     prices: { '30 см': 460, '40 см': 690 },
     category: 'pizza',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/Асорти.png',
     dataAiHint: 'pizza assorted',
     popular: false, 
     new: false,
@@ -139,7 +139,7 @@ export const mockDishes: Dish[] = [
     price: 520,
     category: 'rolls',
     subCategory: 'hot-rolls',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/roll-Tokyo.png',
     dataAiHint: 'sushi salmon avocado tempura',
     popular: false,
     new: false,
@@ -199,7 +199,7 @@ export const mockDishes: Dish[] = [
     price: 390,
     category: 'rolls',
     subCategory: 'hot-rolls',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/roll-Yaki-maki.png',
     dataAiHint: 'sushi baked chicken mushroom',
     popular: false,
     new: false,
@@ -214,7 +214,7 @@ export const mockDishes: Dish[] = [
     price: 540,
     category: 'rolls',
     subCategory: 'cold-rolls',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/roll-Philadelphia Roll.png',
     dataAiHint: 'sushi philadelphia',
     popular: true,
     rating: 4.8,
@@ -289,7 +289,7 @@ export const mockDishes: Dish[] = [
     price: 450,
     category: 'rolls',
     subCategory: 'cold-rolls',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/roll-rolls oisi.png',
     dataAiHint: 'sushi salmon tuna',
     popular: false,
     new: false,
@@ -304,7 +304,7 @@ export const mockDishes: Dish[] = [
     price: 350,
     category: 'main-dishes',
     subCategory: 'meat',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/Грузинские хинкали.png',
     dataAiHint: 'georgian khinkali',
     popular: false,
     new: true,
@@ -319,7 +319,7 @@ export const mockDishes: Dish[] = [
     price: 790,
     category: 'main-dishes',
     subCategory: 'meat',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/Гувеч по-Турецки.png',
     dataAiHint: 'turkish guvec',
     popular: false,
     new: true,
@@ -427,6 +427,34 @@ export const mockDishes: Dish[] = [
     reviews: 110,
   },
   {
+    id: '54',
+    name: 'Салат Греческий',
+    description: 'Классический греческий салат со свежими овощами, сыром фета, оливками и орегано.',
+    ingredients: ['Помидоры', 'Огурцы', 'Болгарский перец', 'Красный лук', 'Сыр фета', 'Оливки', 'Оливковое масло', 'Орегано'],
+    price: 350,
+    category: 'salads',
+    imageUrl: '/Салат-Греческий.png',
+    dataAiHint: 'greek salad',
+    popular: false,
+    new: true,
+    rating: 4.7,
+    reviews: 15,
+  },
+  {
+    id: '55',
+    name: 'Салат Куриный с печенью',
+    description: 'Теплый салат с нежной куриной печенью, миксом салатов, помидорами черри и ягодным соусом.',
+    ingredients: ['Куриная печень', 'Микс салатов', 'Помидоры черри', 'Ягодный соус', 'Кедровые орешки'],
+    price: 420,
+    category: 'salads',
+    imageUrl: '/Салат-Куриный с печенью.png',
+    dataAiHint: 'chicken liver salad',
+    popular: false,
+    new: true,
+    rating: 4.8,
+    reviews: 10,
+  },
+  {
     id: '44',
     name: 'Шах плов',
     description: 'Королевский плов в хрустящей корочке из лаваша с сочной бараниной, рисом и сухофруктами.',
@@ -521,10 +549,3 @@ export const getDishById = (id: string): Dish | undefined => mockDishes.find(dis
 
 
     
-
-
-
-
-
-
-
