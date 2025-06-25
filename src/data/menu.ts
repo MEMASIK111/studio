@@ -1,4 +1,3 @@
-
 import type { Dish } from '@/lib/types';
 
 export const mockDishes: Dish[] = [
@@ -549,5 +548,6 @@ export const getDishById = (id: string): Dish | undefined => mockDishes.find(dis
 
 
     
+
 
 
