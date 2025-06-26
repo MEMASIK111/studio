@@ -1,12 +1,8 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label'; // Added import
-import { Phone, Mail, MapPin, Clock, Instagram, MessageSquare } from 'lucide-react';
-import { APP_NAME, PHONE_NUMBER, ADDRESS, WORKING_HOURS, INSTAGRAM_URL, WHATSAPP_NUMBER } from '@/lib/constants';
+import { Phone, MapPin, Clock, Instagram, MessageSquare } from 'lucide-react';
+import { PHONE_NUMBER, ADDRESS, WORKING_HOURS, INSTAGRAM_URL, WHATSAPP_NUMBER } from '@/lib/constants';
 import Link from 'next/link';
 
 
@@ -17,35 +13,8 @@ export default function ContactPage() {
       <main className="flex-grow container mx-auto max-w-screen-lg px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         <h1 className="text-4xl font-headline font-bold text-primary mb-10 text-center">Свяжитесь с нами</h1>
         
-        <div className="grid md:grid-cols-2 gap-12">
-          <Card className="shadow-lg">
-            <CardHeader>
-              <CardTitle className="text-2xl font-headline text-primary">Отправить сообщение</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <form className="space-y-6">
-                <div>
-                  <Label htmlFor="name" className="block text-foreground mb-1">Ваше имя</Label>
-                  <Input id="name" type="text" placeholder="Иван Иванов" required />
-                </div>
-                <div>
-                  <Label htmlFor="email" className="block text-foreground mb-1">Email</Label>
-                  <Input id="email" type="email" placeholder="you@example.com" required />
-                </div>
-                <div>
-                  <Label htmlFor="phone" className="block text-foreground mb-1">Телефон (необязательно)</Label>
-                  <Input id="phone" type="tel" placeholder="+7 (9XX) XXX-XX-XX" />
-                </div>
-                <div>
-                  <Label htmlFor="message" className="block text-foreground mb-1">Сообщение</Label>
-                  <Textarea id="message" placeholder="Ваше сообщение..." rows={5} required />
-                </div>
-                <Button type="submit" className="w-full" disabled>Отправить (форма в разработке)</Button>
-              </form>
-            </CardContent>
-          </Card>
-
-          <div className="space-y-8">
+        <div className="flex justify-center">
+          <div className="w-full max-w-lg space-y-8">
             <Card className="shadow-lg">
               <CardHeader>
                 <CardTitle className="text-2xl font-headline text-primary">Наши контакты</CardTitle>
