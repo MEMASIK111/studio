@@ -403,7 +403,7 @@ export const mockDishes: Dish[] = [
   },
   {
     id: '30',
-    name: 'Яки маки',
+    name: 'Ролл Яки маки',
     description: 'Сыр,огурцы,лосось,шампиньоны,филе цыпленка,тобико.',
     ingredients: ['Рис', 'Нори', 'Сыр', 'Огурцы', 'Лосось', 'Шампиньоны', 'Филе цыпленка', 'Тобико'],
     price: 390,
@@ -501,7 +501,7 @@ export const mockDishes: Dish[] = [
     price: 350,
     category: 'bar',
     subCategory: 'desserts',
-    imageUrl: '/zaneveanaya-tykva.png',
+    imageUrl: '/Запечённая тыква.png',
     dataAiHint: 'baked pumpkin',
     popular: false,
     new: true,
@@ -980,5 +980,3 @@ export const breakfastAddons: Addon[] = [
   { name: 'Пышки', price: 60 },
   { name: 'Сгущенка', price: 50 },
 ];
-
-    
