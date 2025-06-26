@@ -89,7 +89,7 @@ export const mockDishes: Dish[] = [
     price: 210,
     category: 'breakfasts',
     subCategory: 'porridges',
-    imageUrl: '/Каша овсяная.png',
+    imageUrl: '/Каша Овсяная.png',
     dataAiHint: 'porridge oatmeal',
     popular: false,
     new: true,
@@ -980,5 +980,7 @@ export const breakfastAddons: Addon[] = [
   { name: 'Пышки', price: 60 },
   { name: 'Сгущенка', price: 50 },
 ];
+
+    
 
     
