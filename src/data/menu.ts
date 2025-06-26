@@ -115,7 +115,7 @@ export const mockDishes: Dish[] = [
     price: 210,
     category: 'breakfasts',
     subCategory: 'porridges',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/Рисовая Каша.png',
     dataAiHint: 'porridge rice',
     popular: false,
     new: true,
