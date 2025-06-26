@@ -206,7 +206,7 @@ export const mockDishes: Dish[] = [
     price: 350,
     category: 'bar',
     subCategory: 'desserts',
-    imageUrl: '/Шоколадный фондан.png',
+    imageUrl: '/Шоколадный_фондан.png',
     dataAiHint: 'chocolate fondant',
     popular: false,
     new: true,
@@ -478,21 +478,6 @@ export const mockDishes: Dish[] = [
   },
   
   // Bar
-  {
-    id: '9',
-    name: 'Чизкейк Нью-Йорк',
-    description: 'Классический чизкейк на песочной основе.',
-    ingredients: ['Сливочный сыр', 'Сахар', 'Яйца', 'Сливки', 'Песочное тесто'],
-    price: 250,
-    category: 'bar',
-    subCategory: 'desserts',
-    imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'newyork cheesecake',
-    rating: 4.8,
-    reviews: 85,
-    popular: false,
-    new: false,
-  },
    {
     id: '10',
     name: 'Лимонад "Классический"',
@@ -982,3 +967,5 @@ export const breakfastAddons: Addon[] = [
   { name: 'Пышки', price: 60 },
   { name: 'Сгущенка', price: 50 },
 ];
+
+    
