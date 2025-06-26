@@ -206,7 +206,7 @@ export const mockDishes: Dish[] = [
     price: 350,
     category: 'bar',
     subCategory: 'desserts',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/Шоколадный фондан.png',
     dataAiHint: 'chocolate fondant',
     popular: false,
     new: true,
