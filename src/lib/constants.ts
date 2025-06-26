@@ -61,6 +61,7 @@ export const MENU_CATEGORIES: Category[] = [
       { id: "fish", name: "Рыба", slug: "fish" },
     ],
   },
+   { id: "pasta", name: "Паста и лапша", slug: "pasta" },
   { id: "soups", name: "Супы", slug: "soups" },
   {
     id: "salads",
@@ -72,6 +73,8 @@ export const MENU_CATEGORIES: Category[] = [
     name: "Фаст-фуд",
     slug: "fast-food",
     subCategories: [
+      { id: "burgers", name: "Бургеры", slug: "burgers" },
+      { id: "sandwiches", name: "Чиабатты", slug: "sandwiches" },
       { id: "hot-snacks", name: "Горячие закуски", slug: "hot-snacks" },
       { id: "side-dishes", name: "Гарниры", slug: "side-dishes" },
       { id: "sauces", name: "Соусы", slug: "sauces" },
