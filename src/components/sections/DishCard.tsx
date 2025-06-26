@@ -83,8 +83,8 @@ export default function DishCard({ dish }: DishCardProps) {
               <p className="text-lg font-bold text-primary">
                 {isPizza && 'от '}{startingPrice} руб.
               </p>
-               <Button variant="ghost" size="icon" onClick={handleToggleFavorite} className="text-muted-foreground hover:text-destructive rounded-md border bg-transparent hover:bg-card flex-shrink-0 h-8 w-8">
-                  <Heart className={`h-4 w-4 transition-colors ${isFavorite ? 'fill-destructive text-destructive' : ''}`} />
+               <Button variant="ghost" size="icon" onClick={handleToggleFavorite} className="text-primary/70 hover:text-primary rounded-md border bg-transparent hover:bg-card flex-shrink-0 h-8 w-8">
+                  <Heart className={`h-4 w-4 transition-colors ${isFavorite ? 'fill-primary text-primary' : ''}`} />
               </Button>
             </div>
             <Button onClick={handleAddToCart} size="sm" className="w-full font-semibold">
