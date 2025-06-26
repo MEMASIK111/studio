@@ -43,7 +43,7 @@ export default async function DishPage({ params }: { params: { id: string } }) {
                 sizes="(max-width: 768px) 100vw, 40vw"
                 data-ai-hint={dish.dataAiHint || "food meal"}
                 priority
-                
+                unoptimized
                 />
             </div>
           </div>
