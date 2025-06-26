@@ -67,7 +67,7 @@ export default function DishCard({ dish }: DishCardProps) {
               style={{ objectFit: 'cover' }}
               className="transition-transform duration-300 group-hover:scale-105"
               data-ai-hint={dish.dataAiHint || "food meal"}
-              unoptimized
+              
             />
           </div>
         </CardHeader>
