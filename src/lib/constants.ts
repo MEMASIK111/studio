@@ -37,7 +37,6 @@ export const MENU_CATEGORIES: Category[] = [
       { id: "main-breakfasts", name: "Основные завтраки", slug: "main-breakfasts" },
       { id: "porridges", name: "Каши", slug: "porridges" },
       { id: "pancakes", name: "Блины и панкейки", slug: "pancakes" },
-      { id: "breakfast-desserts", name: "Десерты", slug: "breakfast-desserts" },
     ],
   },
   {
