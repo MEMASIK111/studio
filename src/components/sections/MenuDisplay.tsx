@@ -60,9 +60,7 @@ export default function MenuDisplay() {
 
 const renderDishes = (categorySlug: string, subCategorySlug?: string) => {
   let dishes: Dish[];
-  if (categorySlug === 'popular') {
-    dishes = getPopularDishes();
-  } else if (categorySlug === 'new') {
+  if (categorySlug === 'new') {
     dishes = getNewDishes();
   } else {
     dishes = getDishesByCategory(categorySlug, subCategorySlug);
