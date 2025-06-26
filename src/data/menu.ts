@@ -89,7 +89,7 @@ export const mockDishes: Dish[] = [
     price: 210,
     category: 'breakfasts',
     subCategory: 'porridges',
-    imageUrl: '/Овсяная каша.png',
+    imageUrl: '/Каша овсяная.png',
     dataAiHint: 'porridge oatmeal',
     popular: false,
     new: true,
@@ -440,7 +440,7 @@ export const mockDishes: Dish[] = [
     price: 540,
     category: 'rolls',
     subCategory: 'cold-rolls',
-    imageUrl: '/Калифорния с Лососем.png',
+    imageUrl: '/roll-California Salmon.png',
     dataAiHint: 'sushi california salmon',
     popular: false,
     new: true,
@@ -486,7 +486,7 @@ export const mockDishes: Dish[] = [
     price: 150,
     category: 'bar',
     subCategory: 'lemonades',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/Лимонад классический.png',
     dataAiHint: 'drink lemonade',
     new: false,
     rating: 4.5,
@@ -907,7 +907,7 @@ export const mockDishes: Dish[] = [
     price: 390,
     category: 'fast-food',
     subCategory: 'burgers',
-    imageUrl: '/Бургер от шефа.png',
+    imageUrl: '/Шеф-бургер.png',
     dataAiHint: 'beef burger fries',
     popular: false,
     new: true,
@@ -986,3 +986,4 @@ export const breakfastAddons: Addon[] = [
     
 
     
+
