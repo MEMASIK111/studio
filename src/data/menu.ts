@@ -828,7 +828,7 @@ export const mockDishes: Dish[] = [
     ingredients: ['Огурцы', 'помидоры', 'зелёный лук', 'листья салата', 'сыр дагестанский'],
     price: 350,
     category: 'salads',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/Овощная нарезка.png',
     dataAiHint: 'vegetable platter cheese',
     popular: false,
     new: true,
