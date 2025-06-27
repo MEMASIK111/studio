@@ -14,7 +14,7 @@ import AnimatedHamburgerIcon from './AnimatedHamburgerIcon';
 const Logo = () => (
     <Link href="/" className="flex items-center shrink-0" aria-label={`${APP_NAME} - на главную`}>
         <Image
-            src="/logo.png"
+            src="/Logo.png"
             alt={`${APP_NAME} logo`}
             width={40}
             height={40}
@@ -45,7 +45,7 @@ const MobileNavSheet = () => (
         <SheetClose asChild>
           <Link href="/" className="flex items-center" aria-label={`${APP_NAME} - на главную`}>
                <Image
-                  src="/logo.png"
+                  src="/Logo.png"
                   alt={`${APP_NAME} logo`}
                   width={40}
                   height={40}
