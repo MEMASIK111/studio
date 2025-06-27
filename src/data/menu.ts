@@ -346,7 +346,7 @@ export const mockDishes: Dish[] = [
     imageUrl: '/Чуду с мясом.png',
     dataAiHint: 'chudu meat pie',
     popular: false,
-    new: false,
+    new: true,
   },
   {
     id: 'chudu-greens',
@@ -690,7 +690,7 @@ export const mockDishes: Dish[] = [
     price: 760,
     category: 'main-dishes',
     subCategory: 'meat',
-    imageUrl: '/Пистолеты из Ягненка.png',
+    imageUrl: '/Пистолеты из ягненка.png',
     dataAiHint: 'lamb chops',
     popular: false,
     new: false,
