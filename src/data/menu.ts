@@ -346,7 +346,7 @@ export const mockDishes: Dish[] = [
     imageUrl: '/Чуду с мясом.png',
     dataAiHint: 'chudu meat pie',
     popular: false,
-    new: true,
+    new: false,
   },
   {
     id: 'chudu-greens',
@@ -359,7 +359,7 @@ export const mockDishes: Dish[] = [
     imageUrl: '/Чуду с Зеленью.jpg',
     dataAiHint: 'chudu greens pie',
     popular: false,
-    new: true,
+    new: false,
   },
   {
     id: 'botishal',
@@ -372,7 +372,7 @@ export const mockDishes: Dish[] = [
     imageUrl: '/Ботишал.png',
     dataAiHint: 'dagestani pie cheese',
     popular: false,
-    new: true,
+    new: false,
   },
 
   // Rolls
@@ -512,17 +512,89 @@ export const mockDishes: Dish[] = [
   // Soups
   {
     id: '8',
-    name: 'Том Ям',
-    description: 'Острый тайский суп с креветками, грибами и кокосовым молоком.',
-    ingredients: ['Креветки', 'Грибы Шиитаке', 'Кокосовое молоко', 'Лемонграсс', 'Галангал', 'Чили'],
-    price: 400,
+    name: 'Том Ям Стандарт',
+    description: 'Креветки, грибы, паста том-ям, черри, кокосовые сливки',
+    ingredients: ['Креветки', 'грибы', 'паста том-ям', 'черри', 'кокосовые сливки'],
+    price: 620,
     category: 'soups',
     imageUrl: '/Том ям.png',
     dataAiHint: 'thai soup',
     rating: 4.9,
     reviews: 110,
     popular: false,
-    new: false,
+    new: true,
+  },
+  {
+    id: 'soup-tom-yum-seafood',
+    name: 'Том Ям с морепродуктами',
+    description: 'Креветки, лосось, мидии, кальмар, грибы, паста том-ям, черри, кокосовые сливки',
+    ingredients: ['Креветки', 'лосось', 'мидии', 'кальмар', 'грибы', 'паста том-ям', 'черри', 'кокосовые сливки'],
+    price: 500,
+    category: 'soups',
+    imageUrl: '/Том Ям с морепродуктами.png',
+    dataAiHint: 'tom yum seafood',
+    popular: false,
+    new: true,
+  },
+  {
+    id: 'soup-borscht',
+    name: 'Борщ со сметаной',
+    description: 'Капуста, свёкла, картофель, лук, морковь, говядина, сметана',
+    ingredients: ['Капуста', 'свёкла', 'картофель', 'лук', 'морковь', 'говядина', 'сметана'],
+    price: 370,
+    category: 'soups',
+    imageUrl: '/Борщ со сметаной.png',
+    dataAiHint: 'borscht soup',
+    popular: false,
+    new: true,
+  },
+  {
+    id: 'soup-lentil-cream',
+    name: 'Чечевичный крем-суп',
+    description: 'Красная чечевица, морковь, картофель, сливки, сухари, лимон',
+    ingredients: ['Красная чечевица', 'морковь', 'картофель', 'сливки', 'сухари', 'лимон'],
+    price: 320,
+    category: 'soups',
+    imageUrl: '/Чечевичный крем-суп.png',
+    dataAiHint: 'lentil soup',
+    popular: false,
+    new: true,
+  },
+  {
+    id: 'soup-piti',
+    name: 'Суп Пити',
+    description: 'Филе ягнёнка, нут, курдюк, гранат, фиолетовый лук',
+    ingredients: ['Филе ягнёнка', 'нут', 'курдюк', 'гранат', 'фиолетовый лук'],
+    price: 470,
+    category: 'soups',
+    imageUrl: '/Суп Пити.png',
+    dataAiHint: 'piti soup lamb',
+    popular: false,
+    new: true,
+  },
+  {
+    id: 'soup-chicken',
+    name: 'Куриный суп',
+    description: 'Куриное филе, домашняя лапша, картофель, зелень, перепелиное яйцо',
+    ingredients: ['Куриное филе', 'домашняя лапша', 'картофель', 'зелень', 'перепелиное яйцо'],
+    price: 250,
+    category: 'soups',
+    imageUrl: '/Куриный суп.png',
+    dataAiHint: 'chicken noodle soup',
+    popular: false,
+    new: true,
+  },
+  {
+    id: 'soup-mushroom-cream',
+    name: 'Грибной крем-суп',
+    description: 'Грибы, лук, картофель, морковь, сливки, сухари, лимон',
+    ingredients: ['Грибы', 'лук', 'картофель', 'морковь', 'сливки', 'сухари', 'лимон'],
+    price: 320,
+    category: 'soups',
+    imageUrl: '/Грибной крем-суп.png',
+    dataAiHint: 'mushroom cream soup',
+    popular: false,
+    new: true,
   },
   
   // Bar
@@ -621,7 +693,7 @@ export const mockDishes: Dish[] = [
     imageUrl: '/Писталеты из Ягненка.png',
     dataAiHint: 'lamb chops',
     popular: false,
-    new: true,
+    new: false,
   },
   {
     id: 'md6',
@@ -662,7 +734,7 @@ export const mockDishes: Dish[] = [
     imageUrl: '/Курзе с мясом.png',
     dataAiHint: 'dumplings meat',
     popular: false,
-    new: true,
+    new: false,
   },
   {
     id: '39',
@@ -932,7 +1004,7 @@ export const mockDishes: Dish[] = [
     imageUrl: '/Удон с курицей.png',
     dataAiHint: 'udon chicken vegetables',
     popular: false,
-    new: true,
+    new: false,
   },
   {
     id: 'pasta4',
@@ -944,7 +1016,7 @@ export const mockDishes: Dish[] = [
     imageUrl: '/Удон с говядиной.png',
     dataAiHint: 'udon beef vegetables',
     popular: false,
-    new: true,
+    new: false,
   },
   {
     id: 'pasta5',
@@ -956,7 +1028,7 @@ export const mockDishes: Dish[] = [
     imageUrl: '/Фунчоза с курицей.png',
     dataAiHint: 'funchoza chicken vegetables',
     popular: false,
-    new: true,
+    new: false,
   },
 
   // Fast Food
@@ -971,7 +1043,7 @@ export const mockDishes: Dish[] = [
     imageUrl: '/Шеф-бургер.png',
     dataAiHint: 'beef burger fries',
     popular: false,
-    new: true,
+    new: false,
   },
   {
     id: 'ff2',
@@ -1049,6 +1121,7 @@ export const breakfastAddons: Addon[] = [
     
 
     
+
 
 
 
