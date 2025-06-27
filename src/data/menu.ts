@@ -1067,7 +1067,7 @@ export const mockDishes: Dish[] = [
     price: 800,
     category: 'fast-food',
     subCategory: 'sandwiches',
-    imageUrl: '/Чиабатта с лососем.png',
+    imageUrl: '/Чабата с курицей.png',
     dataAiHint: 'ciabatta salmon sandwich',
     popular: false,
     new: false,
