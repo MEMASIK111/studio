@@ -359,7 +359,7 @@ export const mockDishes: Dish[] = [
     imageUrl: '/Чуду с Зеленью.jpg',
     dataAiHint: 'chudu greens pie',
     popular: false,
-    new: false,
+    new: true,
   },
   {
     id: 'botishal',
@@ -372,7 +372,7 @@ export const mockDishes: Dish[] = [
     imageUrl: '/Ботишал.png',
     dataAiHint: 'dagestani pie cheese',
     popular: false,
-    new: false,
+    new: true,
   },
 
   // Rolls
@@ -488,7 +488,7 @@ export const mockDishes: Dish[] = [
     price: 540,
     category: 'rolls',
     subCategory: 'cold-rolls',
-    imageUrl: '/roll-California Salmon.png',
+    imageUrl: '/roll-California-Salmon.png',
     dataAiHint: 'sushi california salmon',
     popular: false,
     new: false,
@@ -515,7 +515,7 @@ export const mockDishes: Dish[] = [
     name: 'Том Ям Стандарт',
     description: 'Креветки, грибы, паста том-ям, черри, кокосовые сливки',
     ingredients: ['Креветки', 'грибы', 'паста том-ям', 'черри', 'кокосовые сливки'],
-    price: 620,
+    price: 500,
     category: 'soups',
     imageUrl: '/Том ям.png',
     dataAiHint: 'thai soup',
@@ -529,7 +529,7 @@ export const mockDishes: Dish[] = [
     name: 'Том Ям с морепродуктами',
     description: 'Креветки, лосось, мидии, кальмар, грибы, паста том-ям, черри, кокосовые сливки',
     ingredients: ['Креветки', 'лосось', 'мидии', 'кальмар', 'грибы', 'паста том-ям', 'черри', 'кокосовые сливки'],
-    price: 500,
+    price: 620,
     category: 'soups',
     imageUrl: '/Том Ям с морепродуктами.png',
     dataAiHint: 'tom yum seafood',
@@ -734,7 +734,7 @@ export const mockDishes: Dish[] = [
     imageUrl: '/Курзе с мясом.png',
     dataAiHint: 'dumplings meat',
     popular: false,
-    new: false,
+    new: true,
   },
   {
     id: '39',
@@ -1121,6 +1121,7 @@ export const breakfastAddons: Addon[] = [
     
 
     
+
 
 
 
