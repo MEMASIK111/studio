@@ -48,7 +48,15 @@ export const MENU_CATEGORIES: Category[] = [
       { id: "cold-rolls", name: "Холодные роллы", slug: "cold-rolls" },
     ],
   },
-  { id: "pizza", name: "Пицца", slug: "pizza" },
+  {
+    id: "pizza",
+    name: "Пицца и Чуду",
+    slug: "pizza",
+    subCategories: [
+      { id: "pizza", name: "Пицца", slug: "pizza" },
+      { id: "chudu", name: "Чуду", slug: "chudu" },
+    ],
+  },
   {
     id: "main-dishes",
     name: "Горячие блюда",
@@ -104,3 +112,4 @@ export const DELIVERY_INFO = {
 };
 
 export const PAYMENT_METHODS = ["наличными", "онлайн"];
+
