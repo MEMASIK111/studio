@@ -690,7 +690,7 @@ export const mockDishes: Dish[] = [
     price: 760,
     category: 'main-dishes',
     subCategory: 'meat',
-    imageUrl: '/Писталеты из Ягненка.png',
+    imageUrl: '/Пистолеты из Ягненка.png',
     dataAiHint: 'lamb chops',
     popular: false,
     new: false,
@@ -804,7 +804,7 @@ export const mockDishes: Dish[] = [
     price: 980,
     category: 'main-dishes',
     subCategory: 'steaks',
-    imageUrl: '/steik-tomagavk.png',
+    imageUrl: '/Том ям.png',
     dataAiHint: 'ribeye steak',
     popular: false,
     new: false,
@@ -1115,15 +1115,3 @@ export const breakfastAddons: Addon[] = [
 ];
 
     
-
-    
-
-    
-
-    
-
-
-
-
-
-
