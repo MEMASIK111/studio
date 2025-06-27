@@ -89,7 +89,7 @@ export const mockDishes: Dish[] = [
     price: 210,
     category: 'breakfasts',
     subCategory: 'porridges',
-    imageUrl: '/Каша овсяная.png',
+    imageUrl: '/Каша Овсяная.png',
     dataAiHint: 'porridge oatmeal',
     popular: false,
     new: false,
@@ -345,6 +345,32 @@ export const mockDishes: Dish[] = [
     subCategory: 'chudu',
     imageUrl: '/Чуду с мясом.png',
     dataAiHint: 'chudu meat pie',
+    popular: false,
+    new: true,
+  },
+  {
+    id: 'chudu-greens',
+    name: 'Чуду с зеленью',
+    description: 'Тонкий дагестанский пирог с ароматной начинкой из свежей зелени.',
+    ingredients: ['Тонкое тесто', 'Свежая зелень', 'Лук'],
+    price: 230,
+    category: 'pizza',
+    subCategory: 'chudu',
+    imageUrl: '/Чуду с Зеленью.jpg',
+    dataAiHint: 'chudu greens pie',
+    popular: false,
+    new: true,
+  },
+  {
+    id: 'botishal',
+    name: 'Ботишал',
+    description: 'Дагестанский пирог с начинкой из творога и картофеля, подается с топленым маслом.',
+    ingredients: ['Тесто', 'Творог', 'Картофель', 'Топленое масло'],
+    price: 250,
+    category: 'pizza',
+    subCategory: 'chudu',
+    imageUrl: '/Ботишал.png',
+    dataAiHint: 'dagestani pie cheese',
     popular: false,
     new: true,
   },
@@ -624,6 +650,19 @@ export const mockDishes: Dish[] = [
     new: false,
     rating: 4.9,
     reviews: 18,
+  },
+  {
+    id: 'kurze-meat',
+    name: 'Курзе с мясом',
+    description: 'Традиционные дагестанские пельмени с сочной мясной начинкой.',
+    ingredients: ['Тесто', 'Мясной фарш', 'Лук', 'Специи'],
+    price: 280,
+    category: 'main-dishes',
+    subCategory: 'meat',
+    imageUrl: '/Курзе с мясом.png',
+    dataAiHint: 'dumplings meat',
+    popular: false,
+    new: true,
   },
   {
     id: '39',
@@ -1010,4 +1049,5 @@ export const breakfastAddons: Addon[] = [
     
 
     
+
 
