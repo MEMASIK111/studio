@@ -560,14 +560,14 @@ export const mockDishes: Dish[] = [
   // Main Dishes
   {
     id: 'md1',
-    name: 'Жаркое из говядины',
-    description: 'Говядина, кабачки, цветной перец, баклажаны, помидоры, грибы, лук, зелень.',
-    ingredients: ['Говядина', 'кабачки', 'цветной перец', 'баклажаны', 'помидоры', 'грибы', 'лук', 'зелень'],
+    name: 'Жаркое из ягненка',
+    description: 'Ягненок, кабачки, цветной перец, баклажаны, помидоры, грибы, лук, зелень.',
+    ingredients: ['Ягненок', 'кабачки', 'цветной перец', 'баклажаны', 'помидоры', 'грибы', 'лук', 'зелень'],
     price: 450,
     category: 'main-dishes',
     subCategory: 'meat',
-    imageUrl: '/Жаркое из говядины.png',
-    dataAiHint: 'beef roast vegetables',
+    imageUrl: '/Жаркое из ягненка.png',
+    dataAiHint: 'lamb roast vegetables',
     popular: false,
     new: false,
   },
@@ -621,7 +621,7 @@ export const mockDishes: Dish[] = [
     imageUrl: '/Писталеты из Ягненка.png',
     dataAiHint: 'lamb chops',
     popular: false,
-    new: false,
+    new: true,
   },
   {
     id: 'md6',
@@ -981,10 +981,10 @@ export const mockDishes: Dish[] = [
     price: 360,
     category: 'fast-food',
     subCategory: 'burgers',
-    imageUrl: '/Чикен бургер.png',
+    imageUrl: '/Чикен-бургер.png',
     dataAiHint: 'chicken burger fries',
     popular: false,
-    new: true,
+    new: false,
   },
   {
     id: 'ff3',
@@ -997,7 +997,7 @@ export const mockDishes: Dish[] = [
     imageUrl: '/Чабата с курицей.png',
     dataAiHint: 'ciabatta chicken sandwich',
     popular: false,
-    new: true,
+    new: false,
   },
   {
     id: 'ff4',
@@ -1049,6 +1049,7 @@ export const breakfastAddons: Addon[] = [
     
 
     
+
 
 
 
