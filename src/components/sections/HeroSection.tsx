@@ -14,7 +14,6 @@ export default function HeroSection() {
                 style={{objectFit: "cover"}}
                 className="opacity-20"
                 priority
-                unoptimized
             />
         </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center justify-center h-full">

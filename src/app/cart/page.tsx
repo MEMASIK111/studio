@@ -91,7 +91,6 @@ export default function CartPage() {
                             style={{ objectFit: 'cover' }}
                             sizes="(max-width: 640px) 80px, 96px"
                             data-ai-hint="food meal"
-                            unoptimized
                         />
                       </div>
 
