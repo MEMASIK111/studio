@@ -12,7 +12,7 @@ export default function HeroSection() {
                 alt="Фоновое изображение еды"
                 fill
                 style={{objectFit: "cover"}}
-                className="opacity-20"
+                className="opacity-40"
                 priority
             />
         </div>
