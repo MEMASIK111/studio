@@ -677,7 +677,7 @@ export const mockDishes: Dish[] = [
     price: 530,
     category: 'main-dishes',
     subCategory: 'meat',
-    imageUrl: '/Запеченные ребра.png',
+    imageUrl: '/Ребра запеченные.png',
     dataAiHint: 'baked ribs',
     popular: false,
     new: false,
