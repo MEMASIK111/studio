@@ -7,7 +7,7 @@ import type { Dish } from '@/lib/types';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Terminal } from 'lucide-react';
 
-const FALLBACK_DISH_NAMES = ["Пицца Цезарь", "Ролл Филадельфия", "Салат Боул с Креветками", "Пицца Пепперони", "Том Ям"];
+const FALLBACK_DISH_NAMES = ["Чуду с мясом", "Чуду с зеленью", "Пицца Цезарь", "Ролл Филадельфия", "Пицца Пепперони"];
 
 export default function RecommendationSection() {
     const [recommendations, setRecommendations] = useState<Dish[]>([]);

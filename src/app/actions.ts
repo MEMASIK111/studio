@@ -6,7 +6,7 @@ import { getDishRecommendations, type DishRecommendationsInput, type DishRecomme
 import { mockDishes } from '@/data/menu'; // For fallback popular items
 import type { Dish } from '@/lib/types';
 
-const FALLBACK_RECOMMENDATION_NAMES = ["Пицца Цезарь", "Ролл Филадельфия", "Том Ям", "Салат Боул с Креветками", "Пицца Пепперони"];
+const FALLBACK_RECOMMENDATION_NAMES = ["Чуду с мясом", "Чуду с зеленью", "Пицца Цезарь", "Ролл Филадельфия", "Пицца Пепперони"];
 
 export async function fetchRecommendationsAction(input: DishRecommendationsInput): Promise<DishRecommendationsOutput> {
   // If no API key, immediately return fallback recommendations to prevent crash.
