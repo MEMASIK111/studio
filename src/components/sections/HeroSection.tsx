@@ -7,9 +7,9 @@ export default function HeroSection() {
     <section className="relative w-full h-[50vh] min-h-[350px] md:h-[60vh] flex items-center justify-center text-center overflow-hidden bg-gradient-to-r from-amber-50 to-orange-100">
         <div className="absolute inset-0 z-0">
              <Image
-                src="https://placehold.co/1920x1080.png"
-                data-ai-hint="restaurant interior"
-                alt=""
+                src="/CTP1.png"
+                data-ai-hint="food dish"
+                alt="Фоновое изображение еды"
                 fill
                 style={{objectFit: "cover"}}
                 className="opacity-20"
