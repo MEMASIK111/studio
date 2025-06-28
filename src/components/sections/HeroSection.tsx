@@ -28,7 +28,7 @@ export default function HeroSection() {
           <Button size="lg" asChild className="text-base font-semibold px-6 h-12">
             <Link href="/#menu">Перейти в меню</Link>
           </Button>
-          <Button size="lg" variant="outline" asChild className="text-base font-semibold px-6 h-12 border-white text-white hover:bg-white/20">
+          <Button size="lg" asChild className="text-base font-semibold px-6 h-12">
             <Link href="/delivery-info">Условия доставки</Link>
           </Button>
         </div>
