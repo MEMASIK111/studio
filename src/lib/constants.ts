@@ -16,17 +16,6 @@ export const NAV_LINKS = [
   { href: "/contact", label: "Контакты" },
 ];
 
-export const USER_NAV_LINKS_GUEST = [
-  { href: "/auth/login", label: "Вход" },
-  { href: "/auth/register", label: "Регистрация" },
-];
-
-export const USER_NAV_LINKS_AUTHENTICATED = [
-  { href: "/profile", label: "Профиль" },
-  { href: "/favorites", label: "Избранное" },
-  // Logout functionality will be handled by a button/action
-];
-
 export const MENU_CATEGORIES: Category[] = [
   { id: "new", name: "Новинки", slug: "new" },
   {
@@ -112,4 +101,3 @@ export const DELIVERY_INFO = {
 };
 
 export const PAYMENT_METHODS = ["наличными", "онлайн"];
-

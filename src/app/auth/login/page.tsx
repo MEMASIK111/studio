@@ -1,4 +1,9 @@
+'use client';
 
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '@/lib/firebase';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -6,8 +11,39 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Link from 'next/link';
+import { useToast } from "@/hooks/use-toast";
+import { Loader2 } from 'lucide-react';
 
 export default function LoginPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  const { toast } = useToast();
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      toast({
+        title: "Вход выполнен",
+        description: "Добро пожаловать!",
+      });
+      router.push('/'); // Redirect to home or dashboard after login
+    } catch (error: any) {
+      console.error("Login failed:", error);
+      toast({
+        title: "Ошибка входа",
+        description: "Неверный email или пароль. Попробуйте снова.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -17,25 +53,42 @@ export default function LoginPage() {
             <CardTitle className="text-3xl font-headline text-primary">Вход в аккаунт</CardTitle>
             <CardDescription>Введите ваши данные для входа</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="you@example.com" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Пароль</Label>
-              <Input id="password" type="password" placeholder="••••••••" />
-            </div>
-             <div className="flex items-center justify-between text-base">
-              {/* <div className="flex items-center space-x-2">
-                <Checkbox id="remember-me" />
-                <Label htmlFor="remember-me">Запомнить меня</Label>
-              </div> */}
-              <Link href="/auth/forgot-password" className="text-primary hover:underline">
-                Забыли пароль?
-              </Link>
-            </div>
-            <Button type="submit" className="w-full" disabled>Войти (в разработке)</Button>
+          <CardContent>
+            <form onSubmit={handleLogin} className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  disabled={isLoading}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="password">Пароль</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  disabled={isLoading}
+                />
+              </div>
+               <div className="flex items-center justify-end text-base">
+                <Link href="/auth/forgot-password" className="text-primary hover:underline">
+                  Забыли пароль?
+                </Link>
+              </div>
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                Войти
+              </Button>
+            </form>
           </CardContent>
           <CardFooter className="text-center flex-col">
             <p className="text-base text-muted-foreground">

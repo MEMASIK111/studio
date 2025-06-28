@@ -6,23 +6,31 @@ import { Home, UtensilsCrossed, ShoppingCart, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useCart } from '@/context/CartContext';
 import { useEffect, useState } from 'react';
+import { useAuth } from '@/context/AuthContext';
 
-const navItems = [
+const baseNavItems = [
   { href: '/', label: 'Главная', icon: Home },
   { href: '/#menu', label: 'Меню', icon: UtensilsCrossed },
   { href: '/cart', label: 'Корзина', icon: ShoppingCart },
-  { href: '/auth/login', label: 'Войти', icon: User },
 ];
 
 export default function BottomNavBar() {
   const pathname = usePathname();
   const { totalItems } = useCart();
   const [isClient, setIsClient] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
     // This is to prevent hydration mismatch, as cart items are loaded from localStorage
     setIsClient(true);
   }, []);
+
+  const navItems = [
+    ...baseNavItems,
+    user 
+      ? { href: '/profile', label: 'Профиль', icon: User }
+      : { href: '/auth/login', label: 'Войти', icon: User }
+  ];
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 border-t bg-background/95 backdrop-blur-sm md:hidden">
@@ -30,8 +38,9 @@ export default function BottomNavBar() {
         {navItems.map((item) => {
           const isActive =
             (item.href === '/' && pathname === '/') || // Home is active only at root
-            (item.href !== '/' && pathname.startsWith(item.href)) || // Other pages are active if path starts with their href
-            (item.href === '/cart' && pathname.startsWith('/checkout')); // Special case for cart to be active during checkout
+            (item.href !== '/' && pathname.startsWith(item.href) && item.href !== '/profile') || // Other pages are active if path starts with their href
+            (item.href === '/cart' && pathname.startsWith('/checkout')) || // Special case for cart to be active during checkout
+            (item.href === '/profile' && pathname.startsWith('/profile')); // Active for profile
 
           return (
             <Link
