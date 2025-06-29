@@ -26,13 +26,14 @@
 
 'use client';
 
-import { getFunctions, httpsCallable } from "firebase/functions";
-import { app } from "@/lib/firebase"; // Assuming your firebase app instance is exported from here
+// Firebase imports are commented out to allow local development without a deployed backend.
+// import { getFunctions, httpsCallable } from "firebase/functions";
+// import { app } from "@/lib/firebase"; 
 import { mockDishes } from "@/data/menu"; // Your local menu data
 import type { CartItem } from "@/lib/types";
 
 // Initialize Firebase Functions
-const functions = getFunctions(app);
+// const functions = getFunctions(app);
 
 // --- 1. Menu Synchronization ---
 
@@ -49,21 +50,19 @@ const menuForIiko = mockDishes.map(dish => ({
 
 
 /**
- * Calls the `syncMenu` Firebase Function to send the local menu to iiko.
+ * MOCK: Calls the `syncMenu` Firebase Function to send the local menu to iiko.
  */
 export async function syncMenuWithIiko() {
+  console.log("--- MOCK MODE ---");
   console.log("Starting menu sync with iiko...");
-  try {
-    const syncMenu = httpsCallable(functions, 'syncMenu');
-    const result: any = await syncMenu({ dishes: menuForIiko });
-    console.log("Sync successful!", result.data);
-    alert("Menu sync successful! Check the console for details.");
-    return result.data;
-  } catch (error) {
-    console.error("Error syncing menu:", error);
-    alert("Menu sync failed. Check the console for details.");
-    throw error;
-  }
+  console.log("Data that would be sent:", { dishes: menuForIiko });
+  
+  // Simulate a successful API call
+  const mockResult = { data: { success: true, message: "MOCK: Menu synchronized successfully with iiko." } };
+  
+  console.log("Sync successful (mock)!", mockResult.data);
+  alert("Menu sync successful (MOCK)! Check the console for details.");
+  return mockResult.data;
 }
 
 
@@ -108,22 +107,20 @@ export function prepareOrderData(cartItems: CartItem[], customer: OrderCustomer)
 
 
 /**
- * Calls the `createOrder` Firebase Function to send a new order to iiko.
+ * MOCK: Calls the `createOrder` Firebase Function to send a new order to iiko.
  * @param orderData - The complete order payload.
  */
 export async function createOrderInIiko(orderData: OrderPayload) {
+  console.log("--- MOCK MODE ---");
   console.log("Sending order to iiko...");
-  try {
-    const createOrder = httpsCallable(functions, 'createOrder');
-    const result: any = await createOrder(orderData);
-    console.log("Order creation successful!", result.data);
-    alert(`Order created with ID: ${result.data.orderId}. Check console for details.`);
-    return result.data;
-  } catch (error) {
-    console.error("Error creating order:", error);
-    alert("Order creation failed. Check the console for details.");
-    throw error;
-  }
+  console.log("Data that would be sent:", orderData);
+
+  // Simulate a successful API call
+  const mockResult = { data: { success: true, orderId: `mock-order-${Date.now()}` } };
+  
+  console.log("Order creation successful (mock)!", mockResult.data);
+  alert(`MOCK: Order created with ID: ${mockResult.data.orderId}. Check console for details.`);
+  return mockResult.data;
 }
 
 // EXAMPLE USAGE (you can call these from your checkout page)
