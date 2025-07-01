@@ -10,6 +10,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { cn } from '@/lib/utils';
+import { useRouter } from 'next/navigation';
 
 interface DishDetailsActionsProps {
   dish: Dish;
@@ -20,6 +21,7 @@ export default function DishDetailsActions({ dish, addons }: DishDetailsActionsP
     const { addItem } = useCart();
     const { toast } = useToast();
     const [isFavorite, setIsFavorite] = useState(false);
+    const router = useRouter();
     
     const isPizza = dish.category === 'pizza' && dish.prices && Object.keys(dish.prices).length > 0;
     
@@ -72,6 +74,7 @@ export default function DishDetailsActions({ dish, addons }: DishDetailsActionsP
         toast({
             title: "Блюдо добавлено!",
             description: `${dish.name}${selectedSize ? ` (${selectedSize})` : ''}${addonsDescription} теперь в вашей корзине.`,
+            onClick: () => router.push('/cart'),
         });
     };
 

@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useState } from 'react';
 import { useCart } from '@/context/CartContext';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface DishCardProps {
   dish: Dish;
@@ -19,6 +20,7 @@ export default function DishCard({ dish }: DishCardProps) {
   const { toast } = useToast();
   const [isFavorite, setIsFavorite] = useState(false);
   const { addItem } = useCart();
+  const router = useRouter();
 
   const isPizza = dish.category === 'pizza' && dish.prices;
   const startingPrice = isPizza ? Object.values(dish.prices!)[0] : dish.price;
@@ -41,6 +43,7 @@ export default function DishCard({ dish }: DishCardProps) {
       title: "Блюдо добавлено!",
       description: toastDescription,
       variant: "default",
+      onClick: () => router.push('/cart'),
     });
   };
 
