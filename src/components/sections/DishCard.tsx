@@ -1,4 +1,3 @@
-
 'use client';
 
 import Image from 'next/image';
@@ -17,7 +16,7 @@ interface DishCardProps {
 }
 
 export default function DishCard({ dish }: DishCardProps) {
-  const { toast } = useToast();
+  const { toast, dismiss } = useToast();
   const [isFavorite, setIsFavorite] = useState(false);
   const { addItem } = useCart();
   const router = useRouter();
@@ -39,11 +38,15 @@ export default function DishCard({ dish }: DishCardProps) {
     
     addItem(dish, 1, size);
     
-    toast({
+    const { id: toastId } = toast({
       title: "Блюдо добавлено!",
       description: toastDescription,
       variant: "default",
-      onClick: () => router.push('/cart'),
+      className: "cursor-pointer",
+      onClick: () => {
+        router.push('/cart');
+        dismiss(toastId);
+      },
     });
   };
 

@@ -19,7 +19,7 @@ interface DishDetailsActionsProps {
 
 export default function DishDetailsActions({ dish, addons }: DishDetailsActionsProps) {
     const { addItem } = useCart();
-    const { toast } = useToast();
+    const { toast, dismiss } = useToast();
     const [isFavorite, setIsFavorite] = useState(false);
     const router = useRouter();
     
@@ -71,10 +71,15 @@ export default function DishDetailsActions({ dish, addons }: DishDetailsActionsP
             : '';
 
         addItem(dish, 1, selectedSize, selectedAddons);
-        toast({
+        
+        const { id: toastId } = toast({
             title: "Блюдо добавлено!",
             description: `${dish.name}${selectedSize ? ` (${selectedSize})` : ''}${addonsDescription} теперь в вашей корзине.`,
-            onClick: () => router.push('/cart'),
+            className: "cursor-pointer",
+            onClick: () => {
+                router.push('/cart');
+                dismiss(toastId);
+            },
         });
     };
 
