@@ -26,14 +26,9 @@
 
 'use client';
 
-// Firebase imports are commented out to allow local development without a deployed backend.
-// import { getFunctions, httpsCallable } from "firebase/functions";
-// import { app } from "@/lib/firebase"; 
 import { mockDishes } from "@/data/menu"; // Your local menu data
 import type { CartItem } from "@/lib/types";
 
-// Initialize Firebase Functions
-// const functions = getFunctions(app);
 
 // --- 1. Menu Synchronization ---
 

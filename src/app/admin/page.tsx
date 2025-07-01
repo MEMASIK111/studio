@@ -3,12 +3,9 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { signOut } from 'firebase/auth';
-import { auth, db } from '@/lib/firebase';
-import { collection, onSnapshot, addDoc, updateDoc, deleteDoc, doc, QuerySnapshot, DocumentData } from 'firebase/firestore';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -17,12 +14,13 @@ import { useToast } from "@/hooks/use-toast";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Loader2, PlusCircle, Edit, Trash2 } from 'lucide-react';
 import type { Dish } from '@/lib/types';
+import { mockDishes } from '@/data/menu';
 
 // Extend Dish type for Firestore operations, making id optional for new dishes
 type EditableDish = Partial<Dish> & { id?: string };
 
 export default function AdminPage() {
-  const { user, loading } = useAuth();
+  const { user, loading, logout } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
 
@@ -35,109 +33,86 @@ export default function AdminPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // --- Authentication ---
-  // This effect protects the route. If the user is not logged in after loading,
-  // they are redirected to the login page.
   useEffect(() => {
     if (!loading && !user) {
       router.push('/admin/login');
     }
   }, [user, loading, router]);
 
-  // --- Data Fetching ---
-  // This effect sets up a real-time listener for the 'dishes' collection in Firestore.
-  // The list of dishes will update automatically when the data changes in the database.
+  // --- Data Fetching (from mock data) ---
   useEffect(() => {
     if (user) {
-      const dishesCollection = collection(db, 'dishes');
-      const unsubscribe = onSnapshot(dishesCollection, (snapshot: QuerySnapshot<DocumentData>) => {
-        const dishesData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as Dish[];
-        setDishes(dishesData);
-        setIsDishesLoading(false);
-      }, (error) => {
-        console.error("Error fetching dishes:", error);
-        toast({ title: "Ошибка загрузки данных", description: "Не удалось получить список блюд.", variant: "destructive" });
-        setIsDishesLoading(false);
-      });
-      // Cleanup the listener when the component unmounts
-      return () => unsubscribe();
+      // Load dishes from local mock data instead of Firestore
+      setDishes(mockDishes);
+      setIsDishesLoading(false);
     }
-  }, [user, toast]);
+  }, [user]);
   
   // Handle user logout
   const handleLogout = async () => {
-    await signOut(auth);
+    logout(); // Use logout from our mock AuthContext
     router.push('/admin/login');
   };
 
-  // --- CRUD Operations ---
+  // --- CRUD Operations (on local state) ---
 
-  // Opens the dialog to add a new dish
   const handleAddNew = () => {
-    setCurrentDish({}); // Reset form for new dish
+    setCurrentDish({});
     setIsDialogOpen(true);
   };
 
-  // Opens the dialog to edit an existing dish
   const handleEdit = (dish: Dish) => {
-    setCurrentDish(dish); // Pre-fill form with dish data
+    setCurrentDish(dish);
     setIsDialogOpen(true);
   };
 
-  // Deletes a dish from Firestore
   const handleDelete = async (dishId: string) => {
-    try {
-      await deleteDoc(doc(db, 'dishes', dishId));
-      toast({ title: "Блюдо удалено", description: "Блюдо успешно удалено из меню." });
-    } catch (error) {
-      console.error("Error deleting document: ", error);
-      toast({ title: "Ошибка удаления", description: "Не удалось удалить блюдо.", variant: "destructive" });
-    }
+    // Update local state instead of deleting from Firestore
+    setDishes(prevDishes => prevDishes.filter(dish => dish.id !== dishId));
+    toast({ title: "Блюдо удалено", description: "Блюдо успешно удалено из меню (локально)." });
   };
 
-  // Handles form submission for both adding and editing dishes
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Basic validation
     if (!currentDish.name || !currentDish.price || !currentDish.description) {
       toast({ title: "Ошибка валидации", description: "Пожалуйста, заполните все обязательные поля.", variant: "destructive" });
       setIsSubmitting(false);
       return;
     }
     
-    // Prepare data by removing id from the object to be saved
-    const dishData = { ...currentDish };
-    delete dishData.id; 
-    dishData.price = Number(dishData.price) // Ensure price is a number
-
-    try {
-      if (currentDish.id) {
-        // If an ID exists, update the existing document
-        const dishRef = doc(db, 'dishes', currentDish.id);
-        await updateDoc(dishRef, dishData);
-        toast({ title: "Блюдо обновлено", description: "Данные блюда успешно обновлены." });
-      } else {
-        // Otherwise, add a new document
-        await addDoc(collection(db, 'dishes'), dishData);
-        toast({ title: "Блюдо добавлено", description: "Новое блюдо успешно добавлено в меню." });
-      }
-      setIsDialogOpen(false); // Close dialog on success
-    } catch (error) {
-      console.error("Error saving document: ", error);
-      toast({ title: "Ошибка сохранения", description: "Не удалось сохранить данные.", variant: "destructive" });
-    } finally {
-      setIsSubmitting(false);
-    }
+    const dishData: Omit<EditableDish, 'id'> & { price: number } = {
+        name: currentDish.name,
+        description: currentDish.description || '',
+        price: Number(currentDish.price),
+        ingredients: currentDish.ingredients || [],
+        category: currentDish.category || 'uncategorized',
+        imageUrl: currentDish.imageUrl || 'https://placehold.co/400x300.png'
+    };
+    
+    // Simulate saving
+    setTimeout(() => {
+        if (currentDish.id) {
+            // Update existing dish in local state
+            setDishes(prev => prev.map(d => d.id === currentDish.id ? { ...d, ...currentDish, price: Number(currentDish.price) } : d));
+            toast({ title: "Блюдо обновлено", description: "Данные блюда успешно обновлены (локально)." });
+        } else {
+            // Add new dish to local state with a temporary ID
+            const newDish: Dish = { ...dishData, id: `new-${Date.now()}`};
+            setDishes(prev => [newDish, ...prev]);
+            toast({ title: "Блюдо добавлено", description: "Новое блюдо успешно добавлено в меню (локально)." });
+        }
+        setIsDialogOpen(false);
+        setIsSubmitting(false);
+    }, 500);
   };
   
-  // Handles input changes in the form
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setCurrentDish(prev => ({ ...prev, [name]: value }));
   };
 
-  // Render a loading state while checking auth
   if (loading || !user) {
     return (
         <div className="flex items-center justify-center min-h-screen">
@@ -148,7 +123,6 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen bg-muted/40">
-      {/* Header */}
       <header className="bg-background border-b sticky top-0 z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
           <h1 className="text-xl font-bold text-primary">Админ-панель</h1>
@@ -159,7 +133,6 @@ export default function AdminPage() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="container mx-auto p-4 sm:p-6 lg:p-8">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-semibold">Управление Меню</h2>
@@ -169,7 +142,6 @@ export default function AdminPage() {
           </Button>
         </div>
 
-        {/* Dishes Table */}
         <div className="bg-background rounded-lg border shadow-sm">
           <Table>
             <TableHeader>
@@ -190,7 +162,7 @@ export default function AdminPage() {
                 dishes.map((dish) => (
                   <TableRow key={dish.id}>
                     <TableCell className="font-medium">{dish.name}</TableCell>
-                    <TableCell>{dish.price} руб.</TableCell>
+                    <TableCell>{dish.price || (dish.prices ? Object.values(dish.prices)[0] : 'N/A')} руб.</TableCell>
                     <TableCell className="text-right">
                         <Button variant="ghost" size="icon" className="mr-2" onClick={() => handleEdit(dish)}>
                            <Edit className="h-4 w-4" />
@@ -229,7 +201,6 @@ export default function AdminPage() {
         </div>
       </main>
 
-       {/* Add/Edit Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogContent className="sm:max-w-[425px]">
               <form onSubmit={handleFormSubmit}>

@@ -3,42 +3,41 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext';
 
 export default function AdminLoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('admin@example.com');
+  const [password, setPassword] = useState('password');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
+  const { login } = useAuth();
 
   // Handle form submission for login
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    try {
-      // Sign in with Firebase Auth
-      await signInWithEmailAndPassword(auth, email, password);
-      // On successful login, redirect to the admin dashboard
-      router.push('/admin');
-    } catch (error: any) {
-      // On failure, show an error message
-      console.error("Login failed:", error);
-      toast({
-        title: "Ошибка входа",
-        description: error.message || "Неверный email или пароль.",
-        variant: "destructive",
-      });
-      setIsLoading(false);
-    }
+    // Simulate network delay
+    setTimeout(() => {
+        // Mock login
+        login(email, "Admin");
+        
+        toast({
+            title: "Вход выполнен",
+            description: "Добро пожаловать, администратор!",
+        });
+
+        // On successful login, redirect to the admin dashboard
+        router.push('/admin');
+        setIsLoading(false);
+    }, 500);
   };
 
   return (

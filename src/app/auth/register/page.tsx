@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -14,6 +12,7 @@ import Link from 'next/link';
 import { APP_NAME } from '@/lib/constants';
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext';
 
 export default function RegisterPage() {
   const [name, setName] = useState('');
@@ -23,6 +22,7 @@ export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
+  const { login } = useAuth();
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,35 +36,16 @@ export default function RegisterPage() {
     }
     setIsLoading(true);
 
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      if (userCredential.user) {
-        await updateProfile(userCredential.user, {
-            displayName: name,
-        });
-      }
-
+    // Simulate registration
+    setTimeout(() => {
+      login(email, name); // Use mock login
       toast({
         title: "Аккаунт создан",
         description: `Добро пожаловать в ${APP_NAME}!`,
       });
       router.push('/');
-    } catch (error: any) {
-      console.error("Registration failed:", error);
-      let description = "Произошла ошибка при регистрации.";
-      if (error.code === 'auth/email-already-in-use') {
-        description = "Этот email уже используется.";
-      } else if (error.code === 'auth/weak-password') {
-        description = "Пароль слишком слабый. Он должен содержать не менее 6 символов.";
-      }
-      toast({
-        title: "Ошибка регистрации",
-        description: description,
-        variant: "destructive",
-      });
-    } finally {
       setIsLoading(false);
-    }
+    }, 500);
   };
 
   return (

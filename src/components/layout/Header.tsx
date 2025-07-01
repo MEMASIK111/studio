@@ -10,8 +10,6 @@ import Image from 'next/image';
 import { useState } from 'react';
 import AnimatedHamburgerIcon from './AnimatedHamburgerIcon';
 import { useAuth } from '@/context/AuthContext';
-import { signOut } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
 
 const Logo = () => (
@@ -42,7 +40,7 @@ const DesktopNav = () => (
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -50,7 +48,7 @@ export default function Header() {
     if (isMobileMenuOpen) {
         setIsMobileMenuOpen(false);
     }
-    await signOut(auth);
+    logout(); // Use mock logout
     router.push('/');
   };
   

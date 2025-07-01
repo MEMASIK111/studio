@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,6 +11,7 @@ import { Label } from '@/components/ui/label';
 import Link from 'next/link';
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -20,28 +19,22 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
+  const { login } = useAuth();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
+    // Simulate login without Firebase
+    setTimeout(() => {
+      login(email); // Use mock login
       toast({
         title: "Вход выполнен",
         description: "Добро пожаловать!",
       });
       router.push('/'); // Redirect to home or dashboard after login
-    } catch (error: any) {
-      console.error("Login failed:", error);
-      toast({
-        title: "Ошибка входа",
-        description: "Неверный email или пароль. Попробуйте снова.",
-        variant: "destructive",
-      });
-    } finally {
       setIsLoading(false);
-    }
+    }, 500);
   };
 
   return (

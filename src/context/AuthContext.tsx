@@ -1,15 +1,22 @@
 // src/context/AuthContext.tsx
 "use client";
 
-import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { onAuthStateChanged, User } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { Loader2 } from 'lucide-react';
+import type { User as FirebaseUser } from 'firebase/auth'; // Keep type for compatibility in other files
+
+// Define a compatible User type
+export type User = {
+  displayName: string | null;
+  email: string | null;
+};
 
 // Define the shape of the context's value
 interface AuthContextType {
   user: User | null;
   loading: boolean;
+  login: (email: string, name?: string) => void;
+  logout: () => void;
 }
 
 // Create the context with a default undefined value
@@ -18,29 +25,18 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 // AuthProvider component that will wrap the application
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  // No loading needed as auth state is instant
+  const loading = false;
 
-  useEffect(() => {
-    // onAuthStateChanged returns an unsubscribe function
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
-    });
+  const login = (email: string, name: string = 'Пользователь') => {
+    setUser({ email, displayName: name });
+  };
+    
+  const logout = () => {
+    setUser(null);
+  };
 
-    // Cleanup subscription on unmount
-    return () => unsubscribe();
-  }, []);
-
-  const value = { user, loading };
-
-  // Show a loading screen while checking for user session
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <Loader2 className="h-16 w-16 animate-spin text-primary" />
-      </div>
-    );
-  }
+  const value = { user, loading, login, logout };
 
   return (
     <AuthContext.Provider value={value}>

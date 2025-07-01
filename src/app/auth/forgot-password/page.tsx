@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { sendPasswordResetEmail } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -30,22 +28,14 @@ export default function ForgotPasswordPage() {
     }
     setIsLoading(true);
 
-    try {
-      await sendPasswordResetEmail(auth, email);
-      toast({
-        title: "Ссылка отправлена",
-        description: "Проверьте вашу почту для сброса пароля.",
-      });
-    } catch (error: any) {
-      console.error("Password reset failed:", error);
-      toast({
-        title: "Ошибка",
-        description: "Не удалось отправить ссылку для сброса. Проверьте правильность email.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    // Simulate sending email
+    setTimeout(() => {
+        toast({
+            title: "Ссылка отправлена",
+            description: "Проверьте вашу почту для сброса пароля (имитация).",
+        });
+        setIsLoading(false);
+    }, 500);
   };
 
   return (

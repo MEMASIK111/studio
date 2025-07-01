@@ -1,21 +1,2 @@
 {
-  "hosting": {
-    "source": ".",
-    "rewrites": [
-      {
-        "source": "**",
-        "apphosting": {
-          "backendId": "mozzarella-mia"
-        }
-      }
-    ]
-  },
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
-  },
-  "functions": {
-    "source": "functions",
-    "runtime": "nodejs18"
-  }
 }

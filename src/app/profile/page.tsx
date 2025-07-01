@@ -8,11 +8,9 @@ import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2, User, Mail, LogOut } from 'lucide-react';
-import { signOut } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
 
 export default function ProfilePage() {
-  const { user, loading } = useAuth();
+  const { user, loading, logout } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -22,7 +20,7 @@ export default function ProfilePage() {
   }, [user, loading, router]);
 
   const handleLogout = async () => {
-    await signOut(auth);
+    logout(); // Use mock logout
     router.push('/');
   };
 
