@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Phone, Mail, MapPin, Clock, Instagram, MessageSquare } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Instagram, MessageSquare, Lock } from 'lucide-react';
 import { APP_NAME, PHONE_NUMBER, ADDRESS, WORKING_HOURS, INSTAGRAM_URL, DELIVERY_INFO, WHATSAPP_NUMBER } from '@/lib/constants';
 
 const FooterLink = ({ href, icon: Icon, text, external = false }: { href: string, icon: React.ElementType, text: string, external?: boolean }) => (
@@ -42,6 +42,7 @@ export default function Footer() {
               <li><FooterLink href="/#menu" icon={MapPin} text="Меню" /></li>
               <li><FooterLink href="/delivery-info" icon={MapPin} text="Доставка" /></li>
               <li><FooterLink href="/contact" icon={MapPin} text="Контакты" /></li>
+              <li><FooterLink href="/admin/login" icon={Lock} text="Админ-панель" /></li>
             </ul>
           </div>
 
