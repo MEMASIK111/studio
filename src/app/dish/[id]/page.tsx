@@ -68,7 +68,15 @@ export default function DishPage() {
           </div>
           <div className="md:col-span-3 flex flex-col animate-in fade-in slide-in-from-right-8 duration-700 delay-200">
             <h1 className="text-3xl md:text-4xl font-headline font-bold text-primary mb-2">{dish.name}</h1>
-            <p className="text-base text-muted-foreground mb-6">{dish.description}</p>
+            
+            {dish.ingredients && dish.ingredients.length > 0 && (
+              <div className="mb-6">
+                <h4 className="font-semibold text-foreground mb-1">Состав:</h4>
+                <p className="text-base text-muted-foreground">
+                  {dish.ingredients.join(', ')}
+                </p>
+              </div>
+            )}
             
              <div className="mt-auto pt-6 border-t border-border/40">
                 <DishDetailsActions dish={dish} addons={isBreakfast ? breakfastAddons : undefined} />

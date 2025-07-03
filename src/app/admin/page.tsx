@@ -19,7 +19,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { MENU_CATEGORIES } from '@/lib/constants';
 
 
-type EditableDish = Partial<Dish> & { id?: string };
+// A type for the form state, where ingredients is a string for the textarea
+type EditableDish = Omit<Partial<Dish>, 'ingredients'> & {
+  id?: string;
+  ingredients?: string;
+};
 
 export default function AdminMenuPage() {
   const { toast } = useToast();
@@ -36,7 +40,8 @@ export default function AdminMenuPage() {
   };
 
   const handleEdit = (dish: Dish) => {
-    setCurrentDish(dish);
+    // Convert ingredients array to a comma-separated string for the form
+    setCurrentDish({ ...dish, ingredients: dish.ingredients?.join(', ') });
     setIsDialogOpen(true);
   };
 
@@ -49,28 +54,37 @@ export default function AdminMenuPage() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    if (!currentDish.name || !currentDish.price || !currentDish.description || !currentDish.category) {
+    if (!currentDish.name || !currentDish.price || !currentDish.category) {
       toast({ title: "Ошибка валидации", description: "Пожалуйста, заполните все обязательные поля, включая категорию.", variant: "destructive" });
       setIsSubmitting(false);
       return;
     }
     
+    // Convert ingredients string back to array for saving
+    const ingredientsArray = (currentDish.ingredients || '').split(',').map(s => s.trim()).filter(Boolean);
+
     setTimeout(() => {
         if (currentDish.id) {
+            const originalDish = dishes.find(d => d.id === currentDish.id)!;
+            const { ingredients, ...restOfCurrentDish } = currentDish;
+            
             const updatedDish: Dish = {
-                ...currentDish,
-                price: Number(currentDish.price),
-                ingredients: [],
-            } as Dish;
+                ...originalDish,
+                ...restOfCurrentDish,
+                price: Number(currentDish.price!),
+                ingredients: ingredientsArray,
+                description: '', // Set description to empty as requested
+            };
+
             updateDish(updatedDish);
             toast({ title: "Блюдо обновлено", description: "Данные блюда успешно обновлены." });
         } else {
             const newDish: Dish = { 
                 id: `dish-${Date.now()}`,
                 name: currentDish.name!,
-                description: currentDish.description || '',
+                description: '', // Set description to empty as requested
                 price: Number(currentDish.price!),
-                ingredients: [],
+                ingredients: ingredientsArray,
                 category: currentDish.category!,
                 subCategory: currentDish.subCategory,
                 imageUrl: currentDish.imageUrl || 'https://placehold.co/600x400.png'
@@ -213,8 +227,8 @@ export default function AdminMenuPage() {
                             <Input id="name" name="name" value={currentDish.name || ''} onChange={handleInputChange} className="col-span-3" required/>
                         </div>
                          <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="description" className="text-right">Описание</Label>
-                            <Textarea id="description" name="description" value={currentDish.description || ''} onChange={handleInputChange} className="col-span-3" required/>
+                            <Label htmlFor="ingredients" className="text-right">Состав</Label>
+                            <Textarea id="ingredients" name="ingredients" value={currentDish.ingredients || ''} onChange={handleInputChange} className="col-span-3" placeholder="Укажите ингредиенты через запятую" />
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="price" className="text-right">Цена (руб.)</Label>

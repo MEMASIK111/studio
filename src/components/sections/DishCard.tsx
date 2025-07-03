@@ -80,7 +80,7 @@ export default function DishCard({ dish }: DishCardProps) {
           <div className="h-28">
             <CardTitle className="text-lg font-headline leading-tight text-foreground mb-1">{dish.name}</CardTitle>
             <CardDescription className="text-xs text-muted-foreground mb-2 line-clamp-3">
-              {dish.description}
+              {dish.ingredients?.join(', ')}
             </CardDescription>
           </div>
           <div className="mt-auto">
