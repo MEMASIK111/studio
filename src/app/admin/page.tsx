@@ -197,80 +197,82 @@ export default function AdminMenuPage() {
                       </DialogDescription>
                   </DialogHeader>
 
-                  {/* Image Preview */}
-                  {currentDish.imageUrl && (
-                      <div className="relative aspect-video w-full rounded-md overflow-hidden my-4 bg-muted">
-                          <Image 
-                              src={currentDish.imageUrl} 
-                              alt="Предпросмотр изображения"
-                              fill
-                              className="object-cover"
-                              data-ai-hint="food meal"
-                           />
-                      </div>
-                  )}
-                  
-                  <div className="grid gap-4 py-4">
-                      <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="name" className="text-right">Название</Label>
-                          <Input id="name" name="name" value={currentDish.name || ''} onChange={handleInputChange} className="col-span-3" required/>
-                      </div>
-                       <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="description" className="text-right">Описание</Label>
-                          <Textarea id="description" name="description" value={currentDish.description || ''} onChange={handleInputChange} className="col-span-3" required/>
-                      </div>
-                       <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="ingredients" className="text-right">Состав</Label>
-                          <Input id="ingredients" name="ingredients" value={Array.isArray(currentDish.ingredients) ? currentDish.ingredients.join(', ') : currentDish.ingredients || ''} onChange={handleInputChange} className="col-span-3" placeholder="Через запятую"/>
-                      </div>
-                      <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="price" className="text-right">Цена (руб.)</Label>
-                          <Input id="price" name="price" type="number" value={currentDish.price || ''} onChange={handleInputChange} className="col-span-3" required/>
-                      </div>
+                  <div className="max-h-[60vh] overflow-y-auto pr-2">
+                    {/* Image Preview */}
+                    {currentDish.imageUrl && (
+                        <div className="relative aspect-video w-full rounded-md overflow-hidden my-4 bg-muted">
+                            <Image 
+                                src={currentDish.imageUrl} 
+                                alt="Предпросмотр изображения"
+                                fill
+                                className="object-cover"
+                                data-ai-hint="food meal"
+                             />
+                        </div>
+                    )}
+                    
+                    <div className="grid gap-4 py-4">
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="name" className="text-right">Название</Label>
+                            <Input id="name" name="name" value={currentDish.name || ''} onChange={handleInputChange} className="col-span-3" required/>
+                        </div>
+                         <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="description" className="text-right">Описание</Label>
+                            <Textarea id="description" name="description" value={currentDish.description || ''} onChange={handleInputChange} className="col-span-3" required/>
+                        </div>
+                         <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="ingredients" className="text-right">Состав</Label>
+                            <Input id="ingredients" name="ingredients" value={Array.isArray(currentDish.ingredients) ? currentDish.ingredients.join(', ') : currentDish.ingredients || ''} onChange={handleInputChange} className="col-span-3" placeholder="Через запятую"/>
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="price" className="text-right">Цена (руб.)</Label>
+                            <Input id="price" name="price" type="number" value={currentDish.price || ''} onChange={handleInputChange} className="col-span-3" required/>
+                        </div>
 
-                      <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="category" className="text-right">Категория</Label>
-                          <Select value={currentDish.category} onValueChange={handleCategoryChange}>
-                            <SelectTrigger className="col-span-3">
-                                <SelectValue placeholder="Выберите категорию" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                {MENU_CATEGORIES.map(cat => (
-                                    <SelectItem key={cat.slug} value={cat.slug}>{cat.name}</SelectItem>
-                                ))}
-                            </SelectContent>
-                          </Select>
-                      </div>
-                      
-                      {selectedCategoryData?.subCategories && selectedCategoryData.subCategories.length > 0 && (
-                          <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="subCategory" className="text-right">Подкатегория</Label>
-                            <Select value={currentDish.subCategory} onValueChange={handleSubCategoryChange}>
-                                <SelectTrigger className="col-span-3">
-                                <SelectValue placeholder="Выберите подкатегорию" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                {selectedCategoryData.subCategories.map(subCat => (
-                                    <SelectItem key={subCat.slug} value={subCat.slug}>{subCat.name}</SelectItem>
-                                ))}
-                                </SelectContent>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="category" className="text-right">Категория</Label>
+                            <Select value={currentDish.category} onValueChange={handleCategoryChange}>
+                              <SelectTrigger className="col-span-3">
+                                  <SelectValue placeholder="Выберите категорию" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                  {MENU_CATEGORIES.map(cat => (
+                                      <SelectItem key={cat.slug} value={cat.slug}>{cat.name}</SelectItem>
+                                  ))}
+                              </SelectContent>
                             </Select>
-                          </div>
-                      )}
-                      
-                      <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="imageFile" className="text-right">Фото</Label>
-                        <Input
-                            id="imageFile"
-                            name="imageFile"
-                            type="file"
-                            onChange={handleFileChange}
-                            className="col-span-3 file:text-primary file:font-medium"
-                            accept="image/*"
-                        />
-                      </div>
+                        </div>
+                        
+                        {selectedCategoryData?.subCategories && selectedCategoryData.subCategories.length > 0 && (
+                            <div className="grid grid-cols-4 items-center gap-4">
+                              <Label htmlFor="subCategory" className="text-right">Подкатегория</Label>
+                              <Select value={currentDish.subCategory} onValueChange={handleSubCategoryChange}>
+                                  <SelectTrigger className="col-span-3">
+                                  <SelectValue placeholder="Выберите подкатегорию" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                  {selectedCategoryData.subCategories.map(subCat => (
+                                      <SelectItem key={subCat.slug} value={subCat.slug}>{subCat.name}</SelectItem>
+                                  ))}
+                                  </SelectContent>
+                              </Select>
+                            </div>
+                        )}
+                        
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="imageFile" className="text-right">Фото</Label>
+                          <Input
+                              id="imageFile"
+                              name="imageFile"
+                              type="file"
+                              onChange={handleFileChange}
+                              className="col-span-3 file:text-primary file:font-medium"
+                              accept="image/*"
+                          />
+                        </div>
+                    </div>
                   </div>
-                  <DialogFooter>
+                  <DialogFooter className="pt-4 border-t">
                       <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)} disabled={isSubmitting}>Отмена</Button>
                       <Button type="submit" disabled={isSubmitting}>
                           {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
