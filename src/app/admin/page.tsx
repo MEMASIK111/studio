@@ -15,8 +15,11 @@ import { Loader2, PlusCircle, Edit, Trash2 } from 'lucide-react';
 import type { Dish } from '@/lib/types';
 import { useMenu } from '@/context/MenuContext';
 import Image from 'next/image';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { MENU_CATEGORIES } from '@/lib/constants';
 
-type EditableDish = Partial<Dish> & { id?: string };
+
+type EditableDish = Partial<Dish> & { id?: string; ingredients?: string | string[] };
 
 export default function AdminMenuPage() {
   const { toast } = useToast();
@@ -25,8 +28,10 @@ export default function AdminMenuPage() {
   const [currentDish, setCurrentDish] = useState<EditableDish>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const selectedCategoryData = MENU_CATEGORIES.find(c => c.slug === currentDish.category);
+
   const handleAddNew = () => {
-    setCurrentDish({});
+    setCurrentDish({ category: MENU_CATEGORIES[0].slug });
     setIsDialogOpen(true);
   };
 
@@ -44,15 +49,24 @@ export default function AdminMenuPage() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    if (!currentDish.name || !currentDish.price || !currentDish.description) {
-      toast({ title: "Ошибка валидации", description: "Пожалуйста, заполните все обязательные поля.", variant: "destructive" });
+    if (!currentDish.name || !currentDish.price || !currentDish.description || !currentDish.category) {
+      toast({ title: "Ошибка валидации", description: "Пожалуйста, заполните все обязательные поля, включая категорию.", variant: "destructive" });
       setIsSubmitting(false);
       return;
     }
+
+    const ingredientsArray = typeof currentDish.ingredients === 'string'
+      ? currentDish.ingredients.split(',').map(s => s.trim()).filter(Boolean)
+      : currentDish.ingredients || [];
     
     setTimeout(() => {
         if (currentDish.id) {
-            updateDish({ ...currentDish, price: Number(currentDish.price) } as Dish);
+            const updatedDish: Dish = {
+                ...currentDish,
+                price: Number(currentDish.price),
+                ingredients: ingredientsArray as string[],
+            } as Dish;
+            updateDish(updatedDish);
             toast({ title: "Блюдо обновлено", description: "Данные блюда успешно обновлены." });
         } else {
             const newDish: Dish = { 
@@ -60,8 +74,9 @@ export default function AdminMenuPage() {
                 name: currentDish.name!,
                 description: currentDish.description || '',
                 price: Number(currentDish.price!),
-                ingredients: currentDish.ingredients || [],
-                category: currentDish.category || 'uncategorized',
+                ingredients: ingredientsArray as string[],
+                category: currentDish.category!,
+                subCategory: currentDish.subCategory,
                 imageUrl: currentDish.imageUrl || 'https://placehold.co/600x400.png'
             };
             addDish(newDish);
@@ -76,6 +91,14 @@ export default function AdminMenuPage() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setCurrentDish(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleCategoryChange = (slug: string) => {
+      setCurrentDish(prev => ({ ...prev, category: slug, subCategory: undefined }));
+  };
+
+  const handleSubCategoryChange = (slug: string) => {
+      setCurrentDish(prev => ({ ...prev, subCategory: slug }));
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -196,10 +219,45 @@ export default function AdminMenuPage() {
                           <Label htmlFor="description" className="text-right">Описание</Label>
                           <Textarea id="description" name="description" value={currentDish.description || ''} onChange={handleInputChange} className="col-span-3" required/>
                       </div>
+                       <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="ingredients" className="text-right">Состав</Label>
+                          <Input id="ingredients" name="ingredients" value={Array.isArray(currentDish.ingredients) ? currentDish.ingredients.join(', ') : currentDish.ingredients || ''} onChange={handleInputChange} className="col-span-3" placeholder="Через запятую"/>
+                      </div>
                       <div className="grid grid-cols-4 items-center gap-4">
                           <Label htmlFor="price" className="text-right">Цена (руб.)</Label>
                           <Input id="price" name="price" type="number" value={currentDish.price || ''} onChange={handleInputChange} className="col-span-3" required/>
                       </div>
+
+                      <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="category" className="text-right">Категория</Label>
+                          <Select value={currentDish.category} onValueChange={handleCategoryChange}>
+                            <SelectTrigger className="col-span-3">
+                                <SelectValue placeholder="Выберите категорию" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {MENU_CATEGORIES.map(cat => (
+                                    <SelectItem key={cat.slug} value={cat.slug}>{cat.name}</SelectItem>
+                                ))}
+                            </SelectContent>
+                          </Select>
+                      </div>
+                      
+                      {selectedCategoryData?.subCategories && selectedCategoryData.subCategories.length > 0 && (
+                          <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="subCategory" className="text-right">Подкатегория</Label>
+                            <Select value={currentDish.subCategory} onValueChange={handleSubCategoryChange}>
+                                <SelectTrigger className="col-span-3">
+                                <SelectValue placeholder="Выберите подкатегорию" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                {selectedCategoryData.subCategories.map(subCat => (
+                                    <SelectItem key={subCat.slug} value={subCat.slug}>{subCat.name}</SelectItem>
+                                ))}
+                                </SelectContent>
+                            </Select>
+                          </div>
+                      )}
+                      
                       <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="imageFile" className="text-right">Фото</Label>
                         <Input
