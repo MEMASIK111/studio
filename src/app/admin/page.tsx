@@ -19,7 +19,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { MENU_CATEGORIES } from '@/lib/constants';
 
 
-type EditableDish = Partial<Dish> & { id?: string; ingredients?: string | string[] };
+type EditableDish = Partial<Dish> & { id?: string };
 
 export default function AdminMenuPage() {
   const { toast } = useToast();
@@ -54,17 +54,13 @@ export default function AdminMenuPage() {
       setIsSubmitting(false);
       return;
     }
-
-    const ingredientsArray = typeof currentDish.ingredients === 'string'
-      ? currentDish.ingredients.split(',').map(s => s.trim()).filter(Boolean)
-      : currentDish.ingredients || [];
     
     setTimeout(() => {
         if (currentDish.id) {
             const updatedDish: Dish = {
                 ...currentDish,
                 price: Number(currentDish.price),
-                ingredients: ingredientsArray as string[],
+                ingredients: [],
             } as Dish;
             updateDish(updatedDish);
             toast({ title: "Блюдо обновлено", description: "Данные блюда успешно обновлены." });
@@ -74,7 +70,7 @@ export default function AdminMenuPage() {
                 name: currentDish.name!,
                 description: currentDish.description || '',
                 price: Number(currentDish.price!),
-                ingredients: ingredientsArray as string[],
+                ingredients: [],
                 category: currentDish.category!,
                 subCategory: currentDish.subCategory,
                 imageUrl: currentDish.imageUrl || 'https://placehold.co/600x400.png'
@@ -219,10 +215,6 @@ export default function AdminMenuPage() {
                          <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="description" className="text-right">Описание</Label>
                             <Textarea id="description" name="description" value={currentDish.description || ''} onChange={handleInputChange} className="col-span-3" required/>
-                        </div>
-                         <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="ingredients" className="text-right">Состав</Label>
-                            <Input id="ingredients" name="ingredients" value={Array.isArray(currentDish.ingredients) ? currentDish.ingredients.join(', ') : currentDish.ingredients || ''} onChange={handleInputChange} className="col-span-3" placeholder="Через запятую"/>
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="price" className="text-right">Цена (руб.)</Label>

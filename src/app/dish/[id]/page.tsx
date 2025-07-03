@@ -70,17 +70,6 @@ export default function DishPage() {
             <h1 className="text-3xl md:text-4xl font-headline font-bold text-primary mb-2">{dish.name}</h1>
             <p className="text-base text-muted-foreground mb-6">{dish.description}</p>
             
-            <div className="mb-6">
-                <h3 className="text-lg font-semibold mb-3 text-foreground">Состав:</h3>
-                <div className="flex flex-wrap gap-2">
-                    {dish.ingredients && dish.ingredients.map((ingredient) => (
-                        <Badge key={ingredient} variant="outline" className="text-sm font-normal py-1 px-2 bg-card">
-                            {ingredient}
-                        </Badge>
-                    ))}
-                </div>
-            </div>
-            
              <div className="mt-auto pt-6 border-t border-border/40">
                 <DishDetailsActions dish={dish} addons={isBreakfast ? breakfastAddons : undefined} />
              </div>
