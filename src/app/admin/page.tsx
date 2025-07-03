@@ -1,4 +1,3 @@
-
 // src/app/admin/page.tsx
 "use client";
 
@@ -114,11 +113,14 @@ export default function AdminMenuPage() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setCurrentDish(prev => ({ ...prev, imageUrl: reader.result as string }));
-      };
-      reader.readAsDataURL(file);
+      // Using URL.createObjectURL is more efficient and avoids storing large base64 strings
+      // in state, which was causing the localStorage quota error.
+      // This URL is temporary and valid only for the current browser session.
+      if (currentDish.imageUrl && currentDish.imageUrl.startsWith('blob:')) {
+        URL.revokeObjectURL(currentDish.imageUrl); // Clean up previous blob URL to prevent memory leaks
+      }
+      const newImageObjectUrl = URL.createObjectURL(file);
+      setCurrentDish(prev => ({ ...prev, imageUrl: newImageObjectUrl }));
     }
   };
 
