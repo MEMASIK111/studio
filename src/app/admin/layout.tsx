@@ -18,23 +18,26 @@ export default function AdminLayout({
   const router = useRouter();
   const pathname = usePathname();
 
-  // If on the login page, don't apply protection logic.
-  // Let the login page handle its own state.
+  // All hooks are now called unconditionally at the top level.
+  useEffect(() => {
+    // The redirect logic is now inside the hook and checks the pathname.
+    if (!loading && !user && pathname !== '/admin/login') {
+      router.push('/admin/login');
+    }
+  }, [user, loading, router, pathname]);
+
+  // If on the login page, render it without the layout wrapper.
+  // This check now happens *after* all hooks are called.
   if (pathname === '/admin/login') {
     return <>{children}</>;
   }
-
-  useEffect(() => {
-    if (!loading && !user) {
-      router.push('/admin/login');
-    }
-  }, [user, loading, router]);
 
   const handleLogout = async () => {
     logout();
     router.push('/admin/login');
   };
 
+  // Show a loader while checking auth state or if the user is not yet available.
   if (loading || !user) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-muted/40">
@@ -43,6 +46,7 @@ export default function AdminLayout({
     );
   }
 
+  // Render the full admin layout for authenticated users.
   return (
     <div className="min-h-screen bg-muted/40">
       <header className="bg-background border-b sticky top-0 z-10">
