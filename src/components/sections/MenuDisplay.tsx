@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import DishCard from "./DishCard";
 import { MENU_CATEGORIES } from "@/lib/constants";
-import { mockDishes, getDishesByCategory, getNewDishes } from "@/data/menu";
+import { useMenu } from '@/context/MenuContext';
 import type { Dish } from '@/lib/types';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Input } from '@/components/ui/input';
@@ -28,6 +28,7 @@ const DishGrid = ({ dishes, emptyText }: { dishes: Dish[], emptyText: string }) 
 export default function MenuDisplay() {
   const [activeTab, setActiveTab] = useState(MENU_CATEGORIES[0].slug);
   const [searchQuery, setSearchQuery] = useState('');
+  const { dishes: allDishes } = useMenu();
 
   // Memoize search results for performance.
   // This filters all dishes if a search query is entered.
@@ -37,20 +38,26 @@ export default function MenuDisplay() {
     const lowercasedQuery = searchQuery.toLowerCase().trim();
     if (!lowercasedQuery) return null;
 
-    return mockDishes.filter(dish =>
+    return allDishes.filter(dish =>
       dish.name.toLowerCase().includes(lowercasedQuery) ||
       dish.description.toLowerCase().includes(lowercasedQuery) ||
-      dish.ingredients.some(ingredient => ingredient.toLowerCase().includes(lowercasedQuery))
+      (dish.ingredients && dish.ingredients.some(ingredient => ingredient.toLowerCase().includes(lowercasedQuery)))
     );
-  }, [searchQuery]);
+  }, [searchQuery, allDishes]);
 
   // This function gets dishes for the currently selected tab.
   const renderDishesForTab = (categorySlug: string, subCategorySlug?: string) => {
     let dishes: Dish[];
     if (categorySlug === 'new') {
-      dishes = getNewDishes();
+      dishes = allDishes.filter(d => d.new);
     } else {
-      dishes = getDishesByCategory(categorySlug, subCategorySlug);
+      dishes = allDishes.filter(dish => {
+        const categoryMatch = dish.category === categorySlug;
+        if (subCategorySlug) {
+          return categoryMatch && dish.subCategory === subCategorySlug;
+        }
+        return categoryMatch;
+      });
     }
     
     return <DishGrid dishes={dishes} emptyText="В этой категории пока нет блюд." />;

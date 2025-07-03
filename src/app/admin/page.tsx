@@ -2,7 +2,7 @@
 // src/app/admin/page.tsx
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { Input } from '@/components/ui/input';
@@ -13,23 +13,17 @@ import { useToast } from "@/hooks/use-toast";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Loader2, PlusCircle, Edit, Trash2 } from 'lucide-react';
 import type { Dish } from '@/lib/types';
-import { mockDishes } from '@/data/menu';
+import { useMenu } from '@/context/MenuContext';
 import Image from 'next/image';
 
 type EditableDish = Partial<Dish> & { id?: string };
 
 export default function AdminMenuPage() {
   const { toast } = useToast();
-  const [dishes, setDishes] = useState<Dish[]>([]);
-  const [isDishesLoading, setIsDishesLoading] = useState(true);
+  const { dishes, addDish, updateDish, deleteDish } = useMenu();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [currentDish, setCurrentDish] = useState<EditableDish>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  useEffect(() => {
-    setDishes(mockDishes);
-    setIsDishesLoading(false);
-  }, []);
 
   const handleAddNew = () => {
     setCurrentDish({});
@@ -42,8 +36,8 @@ export default function AdminMenuPage() {
   };
 
   const handleDelete = async (dishId: string) => {
-    setDishes(prevDishes => prevDishes.filter(dish => dish.id !== dishId));
-    toast({ title: "Блюдо удалено", description: "Блюдо успешно удалено из меню (локально)." });
+    deleteDish(dishId);
+    toast({ title: "Блюдо удалено", description: "Блюдо успешно удалено из меню." });
   };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
@@ -56,26 +50,26 @@ export default function AdminMenuPage() {
       return;
     }
     
-    const dishData: Omit<EditableDish, 'id'> & { price: number } = {
-        name: currentDish.name,
-        description: currentDish.description || '',
-        price: Number(currentDish.price),
-        ingredients: currentDish.ingredients || [],
-        category: currentDish.category || 'uncategorized',
-        imageUrl: currentDish.imageUrl || 'https://placehold.co/600x400.png'
-    };
-    
     setTimeout(() => {
         if (currentDish.id) {
-            setDishes(prev => prev.map(d => d.id === currentDish.id ? { ...d, ...currentDish, price: Number(currentDish.price) } as Dish : d));
-            toast({ title: "Блюдо обновлено", description: "Данные блюда успешно обновлены (локально)." });
+            updateDish({ ...currentDish, price: Number(currentDish.price) } as Dish);
+            toast({ title: "Блюдо обновлено", description: "Данные блюда успешно обновлены." });
         } else {
-            const newDish: Dish = { ...dishData, id: `new-${Date.now()}`};
-            setDishes(prev => [newDish, ...prev]);
-            toast({ title: "Блюдо добавлено", description: "Новое блюдо успешно добавлено в меню (локально)." });
+            const newDish: Dish = { 
+                id: `dish-${Date.now()}`,
+                name: currentDish.name!,
+                description: currentDish.description || '',
+                price: Number(currentDish.price!),
+                ingredients: currentDish.ingredients || [],
+                category: currentDish.category || 'uncategorized',
+                imageUrl: currentDish.imageUrl || 'https://placehold.co/600x400.png'
+            };
+            addDish(newDish);
+            toast({ title: "Блюдо добавлено", description: "Новое блюдо успешно добавлено в меню." });
         }
         setIsDialogOpen(false);
         setIsSubmitting(false);
+        setCurrentDish({});
     }, 500);
   };
   
@@ -116,13 +110,7 @@ export default function AdminMenuPage() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {isDishesLoading ? (
-              <TableRow>
-                <TableCell colSpan={4} className="text-center h-24">
-                   <Loader2 className="mx-auto h-8 w-8 animate-spin text-primary" />
-                </TableCell>
-              </TableRow>
-            ) : dishes.length > 0 ? (
+            {dishes.length > 0 ? (
               dishes.map((dish) => (
                 <TableRow key={dish.id}>
                   <TableCell>

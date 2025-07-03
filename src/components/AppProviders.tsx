@@ -4,21 +4,23 @@
 import React from 'react';
 import { CartProvider } from '@/context/CartContext';
 import { AuthProvider } from '@/context/AuthContext';
-// import { FavoritesProvider } from '@/context/FavoritesContext'; // Example
+import { MenuProvider } from '@/context/MenuContext';
 
 // This component will wrap around {children} in layout.tsx
 
 export default function AppProviders({ children }: { children: React.ReactNode }) {
   return (
     <AuthProvider>
-        <CartProvider>
+      <CartProvider>
+        <MenuProvider>
           {/* 
           <FavoritesProvider>
             {children}
           </FavoritesProvider>
           */}
           {children}
-        </CartProvider>
+        </MenuProvider>
+      </CartProvider>
     </AuthProvider>
   );
 }
