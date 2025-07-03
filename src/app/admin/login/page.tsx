@@ -1,7 +1,7 @@
 // src/app/admin/login/page.tsx
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -18,7 +18,15 @@ export default function AdminLoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
-  const { login } = useAuth();
+  const { user, login } = useAuth();
+
+  useEffect(() => {
+    // If user is already logged in, redirect them away from the login page.
+    if (user) {
+      router.push('/admin');
+    }
+  }, [user, router]);
+
 
   // Handle form submission for login
   const handleLogin = async (e: React.FormEvent) => {
@@ -37,9 +45,17 @@ export default function AdminLoginPage() {
 
         // On successful login, redirect to the admin page
         router.push('/admin');
-        setIsLoading(false);
     }, 500);
   };
+
+  // If a user exists, we are about to redirect. Show a loader to prevent form flashing.
+  if (user) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-muted/40">
+        <Loader2 className="h-16 w-16 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <main className="flex items-center justify-center min-h-screen bg-muted/40">
