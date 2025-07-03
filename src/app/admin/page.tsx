@@ -13,6 +13,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Loader2, PlusCircle, Edit, Trash2 } from 'lucide-react';
 import type { Dish } from '@/lib/types';
 import { mockDishes } from '@/data/menu';
+import Image from 'next/image';
 
 type EditableDish = Partial<Dish> & { id?: string };
 
@@ -60,7 +61,7 @@ export default function AdminMenuPage() {
         price: Number(currentDish.price),
         ingredients: currentDish.ingredients || [],
         category: currentDish.category || 'uncategorized',
-        imageUrl: currentDish.imageUrl || 'https://placehold.co/400x300.png'
+        imageUrl: currentDish.imageUrl || 'https://placehold.co/600x400.png'
     };
     
     setTimeout(() => {
@@ -96,6 +97,7 @@ export default function AdminMenuPage() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead className="w-[80px]">Изображение</TableHead>
               <TableHead>Название</TableHead>
               <TableHead className="w-[150px]">Цена</TableHead>
               <TableHead className="w-[150px] text-right">Действия</TableHead>
@@ -104,13 +106,25 @@ export default function AdminMenuPage() {
           <TableBody>
             {isDishesLoading ? (
               <TableRow>
-                <TableCell colSpan={3} className="text-center h-24">
+                <TableCell colSpan={4} className="text-center h-24">
                    <Loader2 className="mx-auto h-8 w-8 animate-spin text-primary" />
                 </TableCell>
               </TableRow>
             ) : dishes.length > 0 ? (
               dishes.map((dish) => (
                 <TableRow key={dish.id}>
+                  <TableCell>
+                    <div className="relative h-12 w-16 rounded-md overflow-hidden bg-muted">
+                        <Image
+                            src={dish.imageUrl || 'https://placehold.co/600x400.png'}
+                            alt={dish.name}
+                            fill
+                            sizes="64px"
+                            className="object-cover"
+                            data-ai-hint="food meal"
+                        />
+                    </div>
+                  </TableCell>
                   <TableCell className="font-medium">{dish.name}</TableCell>
                   <TableCell>{dish.price || (dish.prices ? Object.values(dish.prices)[0] : 'N/A')} руб.</TableCell>
                   <TableCell className="text-right">
@@ -141,7 +155,7 @@ export default function AdminMenuPage() {
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={3} className="text-center h-24">
+                <TableCell colSpan={4} className="text-center h-24">
                   Меню пока пустое. Добавьте первое блюдо.
                 </TableCell>
               </TableRow>
@@ -159,6 +173,20 @@ export default function AdminMenuPage() {
                           {currentDish.id ? 'Внесите изменения и нажмите "Сохранить".' : 'Заполните информацию о новом блюде.'}
                       </DialogDescription>
                   </DialogHeader>
+
+                  {/* Image Preview */}
+                  {currentDish.imageUrl && (
+                      <div className="relative aspect-video w-full rounded-md overflow-hidden my-4 bg-muted">
+                          <Image 
+                              src={currentDish.imageUrl} 
+                              alt="Предпросмотр изображения"
+                              fill
+                              className="object-cover"
+                              data-ai-hint="food meal"
+                           />
+                      </div>
+                  )}
+                  
                   <div className="grid gap-4 py-4">
                       <div className="grid grid-cols-4 items-center gap-4">
                           <Label htmlFor="name" className="text-right">Название</Label>
@@ -171,6 +199,10 @@ export default function AdminMenuPage() {
                       <div className="grid grid-cols-4 items-center gap-4">
                           <Label htmlFor="price" className="text-right">Цена (руб.)</Label>
                           <Input id="price" name="price" type="number" value={currentDish.price || ''} onChange={handleInputChange} className="col-span-3" required/>
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="imageUrl" className="text-right">URL фото</Label>
+                          <Input id="imageUrl" name="imageUrl" value={currentDish.imageUrl || ''} onChange={handleInputChange} className="col-span-3" placeholder="https://example.com/photo.png"/>
                       </div>
                   </div>
                   <DialogFooter>
