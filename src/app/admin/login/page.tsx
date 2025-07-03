@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
+import { APP_NAME } from '@/lib/constants';
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState('admin@example.com');
@@ -35,7 +36,7 @@ export default function AdminLoginPage() {
         });
 
         // On successful login, redirect to the admin dashboard
-        router.push('/admin');
+        router.push('/admin/dashboard');
         setIsLoading(false);
     }, 500);
   };
@@ -44,7 +45,7 @@ export default function AdminLoginPage() {
     <main className="flex items-center justify-center min-h-screen bg-muted/40">
       <Card className="w-full max-w-sm shadow-xl">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold text-primary">Панель Администратора</CardTitle>
+          <CardTitle className="text-2xl font-bold text-primary">{APP_NAME} Admin</CardTitle>
           <CardDescription>Пожалуйста, войдите для продолжения</CardDescription>
         </CardHeader>
         <CardContent>
