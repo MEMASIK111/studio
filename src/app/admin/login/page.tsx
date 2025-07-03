@@ -35,8 +35,8 @@ export default function AdminLoginPage() {
             description: "Добро пожаловать, администратор!",
         });
 
-        // On successful login, redirect to the admin dashboard
-        router.push('/admin/dashboard');
+        // On successful login, redirect to the admin page
+        router.push('/admin');
         setIsLoading(false);
     }, 500);
   };
