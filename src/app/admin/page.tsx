@@ -1,3 +1,4 @@
+
 // src/app/admin/page.tsx
 "use client";
 
@@ -66,7 +67,7 @@ export default function AdminMenuPage() {
     
     setTimeout(() => {
         if (currentDish.id) {
-            setDishes(prev => prev.map(d => d.id === currentDish.id ? { ...d, ...currentDish, price: Number(currentDish.price) } : d));
+            setDishes(prev => prev.map(d => d.id === currentDish.id ? { ...d, ...currentDish, price: Number(currentDish.price) } as Dish : d));
             toast({ title: "Блюдо обновлено", description: "Данные блюда успешно обновлены (локально)." });
         } else {
             const newDish: Dish = { ...dishData, id: `new-${Date.now()}`};
@@ -81,6 +82,17 @@ export default function AdminMenuPage() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setCurrentDish(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setCurrentDish(prev => ({ ...prev, imageUrl: reader.result as string }));
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -201,8 +213,15 @@ export default function AdminMenuPage() {
                           <Input id="price" name="price" type="number" value={currentDish.price || ''} onChange={handleInputChange} className="col-span-3" required/>
                       </div>
                       <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="imageUrl" className="text-right">URL фото</Label>
-                          <Input id="imageUrl" name="imageUrl" value={currentDish.imageUrl || ''} onChange={handleInputChange} className="col-span-3" placeholder="https://example.com/photo.png"/>
+                        <Label htmlFor="imageFile" className="text-right">Фото</Label>
+                        <Input
+                            id="imageFile"
+                            name="imageFile"
+                            type="file"
+                            onChange={handleFileChange}
+                            className="col-span-3 file:text-primary file:font-medium"
+                            accept="image/*"
+                        />
                       </div>
                   </div>
                   <DialogFooter>
