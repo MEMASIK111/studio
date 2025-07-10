@@ -3,34 +3,53 @@
 
 import type { Dish, CartItem, CartContextType, Addon } from '@/lib/types';
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { useAuth } from './AuthContext';
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
+  const { user } = useAuth();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [isCartLoadedFromStorage, setIsCartLoadedFromStorage] = useState(false);
+  
+  // The key in localStorage will now depend on the logged-in user.
+  // Guests will have a separate cart.
+  const getCartStorageKey = (): string => {
+    return user ? `cartItems_${user.email}` : 'cartItems_guest';
+  };
 
-  // Load cart from localStorage on client side after initial mount
+  // This effect runs when the user logs in or out, or when the component first mounts.
+  // It loads the correct cart from localStorage.
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const localData = localStorage.getItem('cartItems');
+      const cartStorageKey = getCartStorageKey();
+      const localData = localStorage.getItem(cartStorageKey);
+      
       if (localData) {
         try {
           setCartItems(JSON.parse(localData));
         } catch (e) {
-          console.error("Failed to parse cartItems from localStorage", e);
+          console.error(`Failed to parse cartItems from localStorage for key ${cartStorageKey}`, e);
+          setCartItems([]); // Reset to empty on error
         }
+      } else {
+        // If no cart data exists for this user/guest, start with an empty cart.
+        setCartItems([]);
       }
-      setIsCartLoadedFromStorage(true); // Mark cart as loaded from storage
     }
-  }, []);
+  // We re-run this effect whenever the user object changes (login/logout).
+  }, [user]);
 
-  // Save cart to localStorage whenever it changes, but only if it has been loaded from storage first
+  // This effect saves the current cart state to localStorage whenever it changes.
   useEffect(() => {
-    if (typeof window !== 'undefined' && isCartLoadedFromStorage) {
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    if (typeof window !== 'undefined') {
+       const cartStorageKey = getCartStorageKey();
+       // We don't save an empty array if there was nothing there to begin with,
+       // but we DO save it if the user just cleared their cart.
+      if (cartItems.length > 0 || localStorage.getItem(cartStorageKey)) {
+        localStorage.setItem(cartStorageKey, JSON.stringify(cartItems));
+      }
     }
-  }, [cartItems, isCartLoadedFromStorage]);
+  }, [cartItems, user]); // Re-run on user change as well, to ensure correct key is used.
 
   const addItem = (dish: Dish, quantity: number = 1, size?: string, selectedAddons?: Addon[]) => {
     setCartItems((prevItems) => {
@@ -218,3 +237,5 @@ export const useCart = (): CartContextType => {
   }
   return context;
 };
+
+    
