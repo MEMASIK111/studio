@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 
 export default function ContactPage() {
-  const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
+  const mapUrl = `https://2gis.ru/search/${encodeURIComponent(ADDRESS)}`;
 
   return (
     <div className="flex flex-col min-h-screen">

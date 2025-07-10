@@ -69,7 +69,7 @@ export default function CheckoutPage() {
       }
   };
 
-  const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
+  const mapUrl = `https://2gis.ru/search/${encodeURIComponent(ADDRESS)}`;
 
   if (totalItems === 0) {
     return (
