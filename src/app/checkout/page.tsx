@@ -69,6 +69,8 @@ export default function CheckoutPage() {
       }
   };
 
+  const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
+
   if (totalItems === 0) {
     return (
       <div className="flex flex-col min-h-screen">
@@ -225,10 +227,10 @@ export default function CheckoutPage() {
                     <span className="font-semibold text-base text-foreground">Самовывоз</span>
                   </div>
                   <div className="mt-2 ml-9 space-y-1 text-foreground/90">
-                    <div className="flex items-center text-sm">
-                      <MapPin className="mr-2 h-4 w-4 text-muted-foreground" />
+                    <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="flex items-center text-sm hover:text-primary transition-colors">
+                      <MapPin className="mr-2 h-4 w-4 text-muted-foreground group-hover:text-primary" />
                       <span>{ADDRESS}</span>
-                    </div>
+                    </a>
                     <div className="flex items-center text-sm">
                       <CalendarDays className="mr-2 h-4 w-4 text-muted-foreground" />
                       <span>{WORKING_HOURS}</span>

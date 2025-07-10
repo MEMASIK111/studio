@@ -16,6 +16,8 @@ const FooterLink = ({ href, icon: Icon, text, external = false }: { href: string
 
 
 export default function Footer() {
+  const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
+
   return (
     <footer className="bg-card border-t border-border/40 mt-auto">
       <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-12">
@@ -56,10 +58,10 @@ export default function Footer() {
                 <FooterLink href={`https://wa.me/${WHATSAPP_NUMBER}`} icon={MessageSquare} text="Написать в WhatsApp" external />
               </li>
               <li>
-                <div className="flex items-center space-x-2 text-base text-muted-foreground">
-                  <MapPin className="h-4 w-4 text-muted-foreground" />
+                <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-base text-muted-foreground hover:text-primary transition-colors group">
+                  <MapPin className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
                   <span>{ADDRESS}</span>
-                </div>
+                </a>
               </li>
               <li>
                 <div className="flex items-center space-x-2 text-base text-muted-foreground">

@@ -7,6 +7,8 @@ import Link from 'next/link';
 
 
 export default function ContactPage() {
+  const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -53,7 +55,7 @@ export default function ContactPage() {
                   <MapPin className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold text-foreground">Адрес</h4>
-                    <p className="text-muted-foreground">{ADDRESS}</p>
+                    <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">{ADDRESS}</a>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
