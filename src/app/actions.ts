@@ -8,12 +8,16 @@ import type { Dish } from '@/lib/types';
 
 const FALLBACK_RECOMMENDATION_NAMES = ["Чуду с мясом", "Чуду с зеленью", "Пицца Цезарь", "Ролл Филадельфия", "Пицца Пепперони"];
 
+async function getFallbackRecommendations(): Promise<DishRecommendationsOutput> {
+    const fallbackDishes = await getDishesByNamesAction(FALLBACK_RECOMMENDATION_NAMES);
+    return { recommendations: fallbackDishes.map(d => d.name).slice(0, 5) };
+}
+
 export async function fetchRecommendationsAction(input: DishRecommendationsInput): Promise<DishRecommendationsOutput> {
   // If no API key, immediately return fallback recommendations to prevent crash.
   if (!process.env.GOOGLE_API_KEY) {
       console.warn("GOOGLE_API_KEY is not set. Falling back to default recommendations.");
-      const fallbackDishes = await getDishesByNamesAction(FALLBACK_RECOMMENDATION_NAMES);
-      return { recommendations: fallbackDishes.map(d=>d.name).slice(0,5) };
+      return getFallbackRecommendations();
   }
   
   try {
@@ -24,17 +28,17 @@ export async function fetchRecommendationsAction(input: DishRecommendationsInput
             return { recommendations: popularDishes };
         } else {
             // If not enough popular, use the extended fallback list
-            const detailedFallback = await getDishesByNamesAction(FALLBACK_RECOMMENDATION_NAMES);
-            return { recommendations: detailedFallback.map(d => d.name).slice(0,5) };
+            return getFallbackRecommendations();
         }
     }
 
     const recommendations = await getDishRecommendations(input);
+    
     // Ensure we always return some recommendations, even if AI returns none
     if (!recommendations.recommendations || recommendations.recommendations.length === 0) {
-        const fallbackDishes = await getDishesByNamesAction(FALLBACK_RECOMMENDATION_NAMES);
-        return { recommendations: fallbackDishes.map(d=>d.name).slice(0,5) };
+        return getFallbackRecommendations();
     }
+    
     if (recommendations.recommendations.length < 5) {
         // If AI returns less than 5, try to supplement with general popular items or fallback
         const currentAiRecs = recommendations.recommendations;
@@ -60,8 +64,7 @@ export async function fetchRecommendationsAction(input: DishRecommendationsInput
   } catch (error) {
     console.error("Error fetching recommendations:", error);
     // Fallback to generic popular items in case of error
-    const fallbackDishes = await getDishesByNamesAction(FALLBACK_RECOMMENDATION_NAMES);
-    return { recommendations: fallbackDishes.map(d=>d.name).slice(0,5) };
+    return getFallbackRecommendations();
   }
 }
 
