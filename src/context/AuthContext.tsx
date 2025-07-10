@@ -16,7 +16,8 @@ interface AuthContextType {
   user: User | null;
   loading: boolean;
   login: (email: string, name?: string) => void;
-  logout: () => void;
+  // This function now needs access to the cart clearing logic
+  logout: (clearUserCart: () => void) => void;
 }
 
 // Create the context with a default undefined value
@@ -32,8 +33,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser({ email, displayName: name });
   };
     
-  const logout = () => {
+  const logout = (clearUserCart: () => void) => {
     setUser(null);
+    clearUserCart(); // Explicitly clear the cart on logout
   };
 
   const value = { user, loading, login, logout };

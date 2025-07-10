@@ -11,6 +11,7 @@ import { useState } from 'react';
 import AnimatedHamburgerIcon from './AnimatedHamburgerIcon';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
+import { useCart } from '@/context/CartContext';
 
 const Logo = () => (
     <Link href="/" className="flex items-center shrink-0" aria-label={`${APP_NAME} - на главную`}>
@@ -41,6 +42,7 @@ const DesktopNav = () => (
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { user, logout } = useAuth();
+  const { clearCart } = useCart();
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -48,7 +50,7 @@ export default function Header() {
     if (isMobileMenuOpen) {
         setIsMobileMenuOpen(false);
     }
-    logout(); // Use mock logout
+    logout(clearCart); // Pass clearCart to the logout function
     router.push('/');
   };
   

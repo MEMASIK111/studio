@@ -8,9 +8,11 @@ import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2, User, Mail, LogOut } from 'lucide-react';
+import { useCart } from '@/context/CartContext';
 
 export default function ProfilePage() {
   const { user, loading, logout } = useAuth();
+  const { clearCart } = useCart();
   const router = useRouter();
 
   useEffect(() => {
@@ -20,7 +22,7 @@ export default function ProfilePage() {
   }, [user, loading, router]);
 
   const handleLogout = async () => {
-    logout(); // Use mock logout
+    logout(clearCart); // Pass clearCart function to logout
     router.push('/');
   };
 

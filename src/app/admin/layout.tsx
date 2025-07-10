@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { APP_NAME } from '@/lib/constants';
+import { useCart } from '@/context/CartContext';
 
 export default function AdminLayout({
   children,
@@ -15,6 +16,7 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   const { user, loading, logout } = useAuth();
+  const { clearCart } = useCart();
   const router = useRouter();
   const pathname = usePathname();
 
@@ -33,7 +35,7 @@ export default function AdminLayout({
   }
 
   const handleLogout = async () => {
-    logout();
+    logout(clearCart); // Pass clearCart function to logout
     router.push('/admin/login');
   };
 

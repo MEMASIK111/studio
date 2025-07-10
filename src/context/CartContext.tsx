@@ -11,8 +11,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const { user } = useAuth();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   
-  // The key in localStorage will now depend on the logged-in user.
-  // Guests will have a separate cart.
   const getCartStorageKey = (): string => {
     return user ? `cartItems_${user.email}` : 'cartItems_guest';
   };
@@ -20,19 +18,21 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   // This effect runs when the user logs in or out, or when the component first mounts.
   // It loads the correct cart from localStorage.
   useEffect(() => {
+    // This check is crucial to avoid running on the server
     if (typeof window !== 'undefined') {
       const cartStorageKey = getCartStorageKey();
       const localData = localStorage.getItem(cartStorageKey);
       
       if (localData) {
         try {
-          setCartItems(JSON.parse(localData));
+          const parsedData = JSON.parse(localData);
+          setCartItems(parsedData);
         } catch (e) {
           console.error(`Failed to parse cartItems from localStorage for key ${cartStorageKey}`, e);
           setCartItems([]); // Reset to empty on error
         }
       } else {
-        // If no cart data exists for this user/guest, start with an empty cart.
+        // If no cart data exists for this user/guest, explicitly start with an empty cart.
         setCartItems([]);
       }
     }
@@ -43,11 +43,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
        const cartStorageKey = getCartStorageKey();
-       // We don't save an empty array if there was nothing there to begin with,
-       // but we DO save it if the user just cleared their cart.
-      if (cartItems.length > 0 || localStorage.getItem(cartStorageKey)) {
-        localStorage.setItem(cartStorageKey, JSON.stringify(cartItems));
-      }
+       // Save the current state. If the user cleared their cart, this saves an empty array.
+       localStorage.setItem(cartStorageKey, JSON.stringify(cartItems));
     }
   }, [cartItems, user]); // Re-run on user change as well, to ensure correct key is used.
 
@@ -237,5 +234,3 @@ export const useCart = (): CartContextType => {
   }
   return context;
 };
-
-    
