@@ -14,7 +14,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Separator } from '@/components/ui/separator';
 import { PackageOpen, Wallet, User, Mail, Phone, LockKeyhole, ShoppingBag, MapPin, CalendarDays } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
-import { ADDRESS, WORKING_HOURS } from '@/lib/constants';
+import { ADDRESS, WORKING_HOURS, APP_NAME } from '@/lib/constants';
 import Link from 'next/link';
 
 // All form fields in one state object for easier management
@@ -69,7 +69,7 @@ export default function CheckoutPage() {
       }
   };
 
-  const mapUrl = `https://2gis.ru/search/${encodeURIComponent(ADDRESS)}`;
+  const mapUrl = `https://2gis.ru/search/${encodeURIComponent(`${APP_NAME}, ${ADDRESS}`)}`;
 
   if (totalItems === 0) {
     return (

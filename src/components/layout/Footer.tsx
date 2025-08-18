@@ -16,7 +16,7 @@ const FooterLink = ({ href, icon: Icon, text, external = false }: { href: string
 
 
 export default function Footer() {
-  const mapUrl = `https://2gis.ru/search/${encodeURIComponent(ADDRESS)}`;
+  const mapUrl = `https://2gis.ru/search/${encodeURIComponent(`${APP_NAME}, ${ADDRESS}`)}`;
 
   return (
     <footer className="bg-card border-t border-border/40 mt-auto">

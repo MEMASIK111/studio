@@ -2,12 +2,12 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Phone, MapPin, Clock, Instagram, MessageSquare } from 'lucide-react';
-import { PHONE_NUMBER, ADDRESS, WORKING_HOURS, INSTAGRAM_URL, WHATSAPP_NUMBER } from '@/lib/constants';
+import { PHONE_NUMBER, ADDRESS, WORKING_HOURS, INSTAGRAM_URL, WHATSAPP_NUMBER, APP_NAME } from '@/lib/constants';
 import Link from 'next/link';
 
 
 export default function ContactPage() {
-  const mapUrl = `https://2gis.ru/search/${encodeURIComponent(ADDRESS)}`;
+  const mapUrl = `https://2gis.ru/search/${encodeURIComponent(`${APP_NAME}, ${ADDRESS}`)}`;
 
   return (
     <div className="flex flex-col min-h-screen">
