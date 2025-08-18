@@ -346,7 +346,7 @@ export const mockDishes: Dish[] = [
     imageUrl: '/chudu-s-myasom.png',
     dataAiHint: 'chudu meat pie',
     popular: false,
-    new: true,
+    new: false,
   },
   {
     id: 'chudu-greens',
@@ -359,7 +359,7 @@ export const mockDishes: Dish[] = [
     imageUrl: '/chudu-s-zelenyu.png',
     dataAiHint: 'chudu greens pie',
     popular: false,
-    new: true,
+    new: false,
   },
   {
     id: 'botishal',
